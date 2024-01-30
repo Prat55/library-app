@@ -1,338 +1,404 @@
 <!DOCTYPE html>
-<html lang="en" class="light scroll-smooth group" data-layout="vertical" data-sidebar="light" data-sidebar-size="lg"
-    data-mode="light" data-topbar="light" data-skin="default" data-navbar="sticky" data-content="fluid" dir="ltr">
+<html lang="en">
 
 <head>
 
-    <meta charset="utf-8">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta content="Minimal Admin & Dashboard Template" name="description">
-    <meta content="Themesdesign" name="author">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ 'admin-assets/images/favicon.ico' }}">
-    <!-- Layout config Js -->
-    <script src="{{ 'admin-assets/js/layout.js' }}"></script>
-    <!-- Icons CSS -->
+    {{-- <!-- Meta data --> --}}
+    <meta charset="UTF-8">
 
-    <!-- Tailwind CSS -->
+    <!-- Title -->
+    <title>Library | @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ 'admin-assets/css/tailwind2.css' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Favicon -->
+    <link rel="icon" href="{{ 'admin-assets/images/brand/favicon.ico' }}" type="image/x-icon">
+
+    <!--Bootstrap css -->
+    <link id="style" href="{{ 'admin-assets/plugins/bootstrap/css/bootstrap.min.css' }}" rel="stylesheet">
+
+    <!-- Style css -->
+    <link href="{{ 'admin-assets/css/style.css' }}" rel="stylesheet">
+    <link href="{{ 'admin-assets/css/dark.css' }}" rel="stylesheet">
+    <link href="{{ 'admin-assets/css/skin-modes.css' }}" rel="stylesheet">
+
+    <!-- Animate css -->
+    <link href="{{ 'admin-assets/css/animated.css' }}" rel="stylesheet">
 
 
-    <!-- Styles -->
-    @livewireStyles
+    <!-- P-scroll bar css-->
+    <link href="{{ 'admin-assets/plugins/p-scrollbar/p-scrollbar.css' }}" rel="stylesheet">
+
+    <!---Icons css-->
+    <link href="{{ 'admin-assets/css/icons.css' }}" rel="stylesheet">
+
+    <!-- Color Skin css -->
+    <link id="theme" href="{{ 'admin-assets/colors/color1.css' }}" rel="stylesheet" type="text/css">
+
+    <!-- INTERNAL Switcher css -->
+    <link href="{{ 'admin-assets/switcher/css/switcher.css' }}" rel="stylesheet">
+    <link href="{{ 'admin-assets/switcher/demo.css' }}" rel="stylesheet">
+    <!-- INTERNAL Morris Charts css -->
+    <link href="{{ 'admin-assets/plugins/morris/morris.css?v=1692028428' }}" rel="stylesheet">
+
+    <!-- INTERNAL Select2 css -->
+    <link href="{{ 'admin-assets/plugins/select2/select2.min.css?v=1692028428' }}" rel="stylesheet">
+
+    <!-- Data table css -->
+    <link href="{{ 'admin-assets/plugins/datatables/DataTables/css/dataTables.bootstrap5.css' }}" rel="stylesheet">
+    <link href="{{ 'admin-assets/plugins/datatables/Buttons/css/buttons.bootstrap5.min.css' }}" rel="stylesheet">
+    <link href="{{ 'admin-assets/plugins/datatables/Responsive/css/responsive.bootstrap5.min.css' }}" rel="stylesheet">
+
+    <!-- Color Skin css -->
+    <link id="theme" href="{{ 'admin-assets/colors/color1-1.css?v=1692028428' }}" rel="stylesheet" type="text/css">
 </head>
 
-<body
-    class="text-base bg-body-bg text-body font-public dark:text-zink-100 dark:bg-zink-800 group-data-[skin=bordered]:bg-body-bordered group-data-[skin=bordered]:dark:bg-zink-700">
-    <div class="group-data-[sidebar-size=sm]:min-h-sm group-data-[sidebar-size=sm]:relative">
+<body class="app sidebar-mini {{ auth()->user()->mode === 'dark' ? 'dark-mode' : '' }}">
 
-
-        @livewire('navigation-menu')
-
-        <div id="sidebar-overlay" class="absolute inset-0 z-[1002] bg-slate-500/30 hidden"></div>
-        @include('layouts.partials.header')
-
-
-
-        <main>
-            {{ $slot }}
-        </main>
-
-
-    </div>
-    <!-- end main content -->
-
-    <div class="fixed items-center hidden bottom-6 right-12 h-header group-data-[navbar=hidden]:flex">
-        <button data-drawer-target="customizerButton" type="button"
-            class="inline-flex items-center justify-center w-12 h-12 p-0 transition-all duration-200 ease-linear rounded-md shadow-lg text-sky-50 bg-sky-500">
-            <i data-lucide="settings" class="inline-block w-5 h-5"></i>
-        </button>
-    </div>
-
-    <div id="customizerButton" drawer-end=""
-        class="fixed inset-y-0 flex flex-col w-full transition-transform duration-300 ease-in-out transform bg-white shadow ltr:right-0 rtl:left-0 md:w-96 z-drawer show dark:bg-zink-600">
-        <div class="flex justify-between p-4 border-b border-slate-200 dark:border-zink-500">
-            <div class="grow">
-                <h5 class="mb-1 text-16">Tailwick Theme Customizer</h5>
-                <p class="font-normal text-slate-500 dark:text-zink-200">Choose your themes & layouts etc.</p>
-            </div>
-            <div class="shrink-0">
-                <button data-drawer-close="customizerButton"
-                    class="transition-all duration-150 ease-linear text-slate-500 hover:text-slate-800 dark:text-zink-200 dark:hover:text-zink-50"><i
-                        data-lucide="x" class="w-4 h-4"></i></button>
-            </div>
-        </div>
-        <div class="h-full p-6 overflow-y-auto">
-            <div>
-                <h5 class="mb-3 underline capitalize text-15">Choose Layouts</h5>
-                <div class="grid grid-cols-1 mb-5 gap-7 sm:grid-cols-2">
-                    <div class="relative">
-                        <input id="layout-one" name="dataLayout"
-                            class="absolute w-4 h-4 border rounded-full appearance-none cursor-pointer ltr:right-2 rtl:left-2 top-2 vertical-menu-btn bg-slate-100 border-slate-300 checked:bg-custom-500 checked:border-custom-500 dark:bg-zink-400 dark:border-zink-500"
-                            type="radio" value="vertical" checked="">
-                        <label
-                            class="block w-full h-24 p-0 overflow-hidden border rounded-lg cursor-pointer border-slate-200 dark:border-zink-500"
-                            for="layout-one">
-                            <span class="flex h-full gap-0">
-                                <span class="shrink-0">
-                                    <span
-                                        class="flex flex-col h-full gap-1 p-1 ltr:border-r rtl:border-l border-slate-200 dark:border-zink-500">
-                                        <span class="block p-1 px-2 mb-2 rounded bg-slate-100 dark:bg-zink-400"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                    </span>
-                                </span>
-                                <span class="grow">
-                                    <span class="flex flex-col h-full">
-                                        <span class="block h-3 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block h-3 mt-auto bg-slate-100 dark:bg-zink-500"></span>
-                                    </span>
-                                </span>
-                            </span>
-                        </label>
-                        <h5 class="mt-2 text-center text-15">Vertical</h5>
-                    </div>
-
-                    <div class="relative">
-                        <input id="layout-two" name="dataLayout"
-                            class="absolute w-4 h-4 border rounded-full appearance-none cursor-pointer ltr:right-2 rtl:left-2 top-2 vertical-menu-btn bg-slate-100 border-slate-300 checked:bg-custom-500 checked:border-custom-500 dark:bg-zink-400 dark:border-zink-500"
-                            type="radio" value="horizontal">
-                        <label
-                            class="block w-full h-24 p-0 overflow-hidden border rounded-lg cursor-pointer border-slate-200 dark:border-zink-500"
-                            for="layout-two">
-                            <span class="flex flex-col h-full gap-1">
-                                <span class="flex items-center gap-1 p-1 bg-slate-100 dark:bg-zink-500">
-                                    <span class="block p-1 ml-1 bg-white rounded dark:bg-zink-500"></span>
-                                    <span class="block p-1 px-2 pb-0 bg-white dark:bg-zink-500 ms-auto"></span>
-                                    <span class="block p-1 px-2 pb-0 bg-white dark:bg-zink-500"></span>
-                                </span>
-                                <span class="block p-1 bg-slate-100 dark:bg-zink-500"></span>
-                                <span class="block p-1 mt-auto bg-slate-100 dark:bg-zink-500"></span>
-                            </span>
-                        </label>
-                        <h5 class="mt-2 text-center text-15">Horizontal</h5>
-                    </div>
-                </div>
-
-                <div id="semi-dark">
-                    <div class="flex items-center">
-                        <div class="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in">
-                            <input type="checkbox" name="customDefaultSwitch" value="dark" id="customDefaultSwitch"
-                                class="absolute block w-5 h-5 transition duration-300 ease-linear border-2 rounded-full appearance-none cursor-pointer border-slate-200 bg-white/80 peer/published checked:bg-white checked:right-0 checked:border-custom-500 arrow-none dark:border-zink-500 dark:bg-zink-500 dark:checked:bg-zink-400 checked:bg-none">
-                            <label for="customDefaultSwitch"
-                                class="block h-5 overflow-hidden transition duration-300 ease-linear border rounded-full cursor-pointer border-slate-200 bg-slate-200 peer-checked/published:bg-custom-500 peer-checked/published:border-custom-500 dark:border-zink-500 dark:bg-zink-600"></label>
+    <!-- Switcher -->
+    <div class="switcher-wrapper">
+        <div class="demo_changer ">
+            <div class="form_holder sidebar-right1">
+                <div class="row">
+                    <div class="predefined_styles">
+                        <div class="text-center swichermainleft">
+                            <div class="gap-2 p-3 d-grid">
+                                <a href="https://php.spruko.com/azea/" class="mt-0 btn ripple btn-primary">View Demo</a>
+                                <a href="https://themeforest.net/item/azea-bootstrap-5-admin-dashboard-template/33518740"
+                                    class="btn ripple btn-success">Buy Now</a>
+                                <a href="https://themeforest.net/user/spruko/portfolio" class="btn ripple btn-red">Our
+                                    Portfolio</a>
+                            </div>
                         </div>
-                        <label for="customDefaultSwitch" class="inline-block text-base font-medium">Semi Dark
-                            (Sidebar & Header)</label>
+                        <div class="text-center swichermainleft">
+                            <div class="gap-2 p-3 d-grid">
+                                <a href="https://php.spruko.com/azea/azea/horizontal"
+                                    class="mt-0 btn ripple btn-primary">horizontal Menu</a>
+                            </div>
+                        </div>
+                        <div class="text-center swichermainleft">
+                            <h4>LTR AND RTL VERSIONS</h4>
+                            <div class="p-4 switch_section">
+                                <div class="mt-2 switch-toggle d-flex">
+                                    <span class="me-auto">LTR</span>
+                                    <a class="onoffswitch2"><input type="radio" name="onoffswitch25"
+                                            id="myonoffswitch54" class="onoffswitch2-checkbox" checked="">
+                                        <label for="myonoffswitch54" class="onoffswitch2-label"></label>
+                                    </a>
+                                </div>
+                                <div class="mt-2 switch-toggle d-flex">
+                                    <span class="me-auto">RTL</span>
+                                    <a class="onoffswitch2"><input type="radio" name="onoffswitch25"
+                                            id="myonoffswitch55" class="onoffswitch2-checkbox">
+                                        <label for="myonoffswitch55" class="onoffswitch2-label"></label>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Theme Style</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Light Theme</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch1"
+                                                id="myonoffswitch1" class="onoffswitch2-checkbox" checked="">
+                                            <label for="myonoffswitch1" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Dark Theme</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch1"
+                                                id="myonoffswitch2" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch2" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Leftmenu Styles</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Light Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
+                                                id="myonoffswitch3" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch3" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Color Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
+                                                id="myonoffswitch4" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch4" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Dark Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
+                                                id="myonoffswitch5" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch5" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Gradient Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
+                                                id="myonoffswitch25" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch25" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Header Styles</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Light Header</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
+                                                id="myonoffswitch6" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch6" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Color Header</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
+                                                id="myonoffswitch7" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch7" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Dark Header</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
+                                                id="myonoffswitch8" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch8" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Gradient Header</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
+                                                id="myonoffswitch26" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch26" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Layout Width Styles</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Full Width</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch4"
+                                                id="myonoffswitch9" class="onoffswitch2-checkbox" checked="">
+                                            <label for="myonoffswitch9" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Boxed</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch4"
+                                                id="myonoffswitch10" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch10" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Layout Positions</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Fixed</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch5"
+                                                id="myonoffswitch11" class="onoffswitch2-checkbox" checked="">
+                                            <label for="myonoffswitch11" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Scrollable</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch5"
+                                                id="myonoffswitch12" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch12" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swichermainleft">
+                            <h4>Sidemenu layout Styles</h4>
+                            <div class="skin-body">
+                                <div class="switch_section">
+                                    <div class="switch-toggle d-flex">
+                                        <span class="me-auto">Default Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
+                                                id="myonoffswitch13" class="onoffswitch2-checkbox default-menu"
+                                                checked="">
+                                            <label for="myonoffswitch13" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Closed Menu</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
+                                                id="myonoffswitch30" class="onoffswitch2-checkbox default-menu">
+                                            <label for="myonoffswitch30" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Icon with Text</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
+                                                id="myonoffswitch14" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch14" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 switch-toggle d-flex">
+                                        <span class="me-auto">Icon Overlay</span>
+                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
+                                                id="myonoffswitch15" class="onoffswitch2-checkbox">
+                                            <label for="myonoffswitch15" class="onoffswitch2-label"></label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-6">
-                <!-- data-skin="" -->
-                <h5 class="mb-3 underline capitalize text-15">Skin Layouts</h5>
-                <div class="grid grid-cols-1 mb-5 gap-7 sm:grid-cols-2">
-                    <div class="relative">
-                        <input id="layoutSkitOne" name="dataLayoutSkin"
-                            class="absolute w-4 h-4 border rounded-full appearance-none cursor-pointer ltr:right-2 rtl:left-2 top-2 vertical-menu-btn bg-slate-100 border-slate-300 checked:bg-custom-500 checked:border-custom-500 dark:bg-zink-400 dark:border-zink-500"
-                            type="radio" value="default">
-                        <label
-                            class="block w-full h-24 p-0 overflow-hidden border rounded-lg cursor-pointer border-slate-200 dark:border-zink-500 bg-slate-50 dark:bg-zink-600"
-                            for="layoutSkitOne">
-                            <span class="flex h-full gap-0">
-                                <span class="shrink-0">
-                                    <span
-                                        class="flex flex-col h-full gap-1 p-1 ltr:border-r rtl:border-l border-slate-200 dark:border-zink-500">
-                                        <span class="block p-1 px-2 mb-2 rounded bg-slate-100 dark:bg-zink-400"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                    </span>
-                                </span>
-                                <span class="grow">
-                                    <span class="flex flex-col h-full">
-                                        <span class="block h-3 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block h-3 mt-auto bg-slate-100 dark:bg-zink-500"></span>
-                                    </span>
-                                </span>
-                            </span>
-                        </label>
-                        <h5 class="mt-2 text-center text-15">Default</h5>
-                    </div>
-
-                    <div class="relative">
-                        <input id="layoutSkitTwo" name="dataLayoutSkin"
-                            class="absolute w-4 h-4 border rounded-full appearance-none cursor-pointer ltr:right-2 rtl:left-2 top-2 vertical-menu-btn bg-slate-100 border-slate-300 checked:bg-custom-500 checked:border-custom-500 dark:bg-zink-400 dark:border-zink-500"
-                            type="radio" value="bordered" checked="">
-                        <label
-                            class="block w-full h-24 p-0 overflow-hidden border rounded-lg cursor-pointer border-slate-200 dark:border-zink-500"
-                            for="layoutSkitTwo">
-                            <span class="flex h-full gap-0">
-                                <span class="shrink-0">
-                                    <span
-                                        class="flex flex-col h-full gap-1 p-1 ltr:border-r rtl:border-l border-slate-200 dark:border-zink-500">
-                                        <span class="block p-1 px-2 mb-2 rounded bg-slate-100 dark:bg-zink-400"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                        <span class="block p-1 px-2 pb-0 bg-slate-100 dark:bg-zink-500"></span>
-                                    </span>
-                                </span>
-                                <span class="grow">
-                                    <span class="flex flex-col h-full">
-                                        <span class="block h-3 border-b border-slate-200 dark:border-zink-500"></span>
-                                        <span
-                                            class="block h-3 mt-auto border-t border-slate-200 dark:border-zink-500"></span>
-                                    </span>
-                                </span>
-                            </span>
-                        </label>
-                        <h5 class="mt-2 text-center text-15">Bordered</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <!-- data-mode="" -->
-                <h5 class="mb-3 underline capitalize text-15">Light & Dark</h5>
-                <div class="flex gap-3">
-                    <button type="button" id="dataModeOne" name="dataMode" value="light"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500 active">Light
-                        Mode</button>
-                    <button type="button" id="dataModeTwo" name="dataMode" value="dark"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Dark
-                        Mode</button>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <!-- dir="ltr" -->
-                <h5 class="mb-3 underline capitalize text-15">LTR & RTL</h5>
-                <div class="flex flex-wrap gap-3">
-                    <button type="button" id="diractionOne" name="dir" value="ltr"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500 active">LTR
-                        Mode</button>
-                    <button type="button" id="diractionTwo" name="dir" value="rtl"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">RTL
-                        Mode</button>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <!-- data-content -->
-                <h5 class="mb-3 underline capitalize text-15">Content Width</h5>
-                <div class="flex gap-3">
-                    <button type="button" id="datawidthOne" name="datawidth" value="fluid"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500 active">Fluid</button>
-                    <button type="button" id="datawidthTwo" name="datawidth" value="boxed"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Boxed</button>
-                </div>
-            </div>
-
-            <div class="mt-6" id="sidebar-size">
-                <!-- data-sidebar-size="" -->
-                <h5 class="mb-3 underline capitalize text-15">Sidebar Size</h5>
-                <div class="flex flex-wrap gap-3">
-                    <button type="button" id="sidebarSizeOne" name="sidebarSize" value="lg"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500 active">Default</button>
-                    <button type="button" id="sidebarSizeTwo" name="sidebarSize" value="md"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Compact</button>
-                    <button type="button" id="sidebarSizeThree" name="sidebarSize" value="sm"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Small
-                        (Icon)</button>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <!-- data-navbar="" -->
-                <h5 class="mb-3 underline capitalize text-15">Navigation Type</h5>
-                <div class="flex flex-wrap gap-3">
-                    <button type="button" id="navbarTwo" name="navbar" value="sticky"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500 active">Sticky</button>
-                    <button type="button" id="navbarOne" name="navbar" value="scroll"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Scroll</button>
-                    <button type="button" id="navbarThree" name="navbar" value="bordered"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Bordered</button>
-                    <button type="button" id="navbarFour" name="navbar" value="hidden"
-                        class="transition-all duration-200 ease-linear bg-white border-dashed text-slate-500 btn border-slate-200 hover:text-slate-500 hover:bg-slate-50 hover:border-slate-200 [&.active]:text-custom-500 [&.active]:bg-custom-50 [&.active]:border-custom-200 dark:bg-zink-600 dark:text-zink-200 dark:border-zink-400 dark:hover:bg-zink-600 dark:hover:text-zink-100 dark:hover:border-zink-400 dark:[&.active]:bg-custom-500/10 dark:[&.active]:border-custom-500/30 dark:[&.active]:text-custom-500">Hidden</button>
-                </div>
-            </div>
-
-            <div class="mt-6" id="sidebar-color">
-                <!-- data-sidebar="" light, dark, brand, modern-->
-                <h5 class="mb-3 underline capitalize text-15">Sizebar Colors</h5>
-                <div class="flex flex-wrap gap-3">
-                    <button type="button" id="sidebarColorOne" name="sidebarColor" value="light"
-                        class="flex items-center justify-center w-10 h-10 bg-white border rounded-md border-slate-200 group active"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-slate-600"></i></button>
-                    <button type="button" id="sidebarColorTwo" name="sidebarColor" value="dark"
-                        class="flex items-center justify-center w-10 h-10 border rounded-md border-zink-900 bg-zink-900 group"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-white"></i></button>
-                    <button type="button" id="sidebarColorThree" name="sidebarColor" value="brand"
-                        class="flex items-center justify-center w-10 h-10 border rounded-md border-custom-800 bg-custom-800 group"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-white"></i></button>
-                    <button type="button" id="sidebarColorFour" name="sidebarColor" value="modern"
-                        class="flex items-center justify-center w-10 h-10 border rounded-md border-purple-950 bg-gradient-to-t from-red-400 to-purple-500 group"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-white"></i></button>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <!-- data-topbar="" light, dark, brand, modern-->
-                <h5 class="mb-3 underline capitalize text-15">Topbar Colors</h5>
-                <div class="flex flex-wrap gap-3">
-                    <button type="button" id="topbarColorOne" name="topbarColor" value="light"
-                        class="flex items-center justify-center w-10 h-10 bg-white border rounded-md border-slate-200 group active"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-slate-600"></i></button>
-                    <button type="button" id="topbarColorTwo" name="topbarColor" value="dark"
-                        class="flex items-center justify-center w-10 h-10 border rounded-md border-zink-900 bg-zink-900 group"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-white"></i></button>
-                    <button type="button" id="topbarColorThree" name="topbarColor" value="brand"
-                        class="flex items-center justify-center w-10 h-10 border rounded-md border-custom-800 bg-custom-800 group"><i
-                            data-lucide="check"
-                            class="w-5 h-5 hidden group-[.active]:inline-block text-white"></i></button>
-                </div>
-            </div>
-
-        </div>
-        <div class="flex items-center justify-between gap-3 p-4 border-t border-slate-200 dark:border-zink-500">
-            <button type="button" id="reset-layout"
-                class="w-full transition-all duration-200 ease-linear text-slate-500 btn bg-slate-200 border-slate-200 hover:text-slate-600 hover:bg-slate-300 hover:border-slate-300 focus:text-slate-600 focus:bg-slate-300 focus:border-slate-300 focus:ring focus:ring-slate-100">Reset</button>
-            <a href="#!"
-                class="w-full text-white transition-all duration-200 ease-linear bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100">Buy
-                Now</a>
         </div>
     </div>
-    <script src="{{ 'admin-assets/libs/choices.js/public/assets/scripts/choices.min.js' }}"></script>
-    <script src="{{ 'admin-assets/libs/%40popperjs/core/umd/popper.min.js' }}"></script>
-    <script src="{{ 'admin-assets/libs/tippy.js/tippy-bundle.umd.min.js' }}"></script>
-    <script src="{{ 'admin-assets/libs/simplebar/simplebar.min.js' }}"></script>
-    <script src="{{ 'admin-assets/libs/prismjs/prism.js' }}"></script>
-    <script src="{{ 'admin-assets/libs/lucide/umd/lucide.js' }}"></script>
-    <script src="{{ 'admin-assets/js/tailwick.bundle.js' }}"></script>
-    <!--apexchart js-->
-    <script src="{{ 'admin-assets/libs/apexcharts/apexcharts.min.js' }}"></script>
+    <!-- End Switcher -->
+    <!-- GLOBAL-LOADER -->
+    {{-- <div id="global-loader">
+        <img src="admin-assets/images/svgs/loader.svg" class="loader-img" alt="Loader">
+    </div> --}}
+    <!-- /GLOBAL-LOADER -->
 
-    <!--dashboard ecommerce init js-->
-    <script src="{{ 'admin-assets/js/pages/dashboards-ecommerce.init.js' }}"></script>
+    <!-- Page -->
+    <div class="page">
+        <div class="page-main">
 
-    <!--dashboard email init js-->
-    <script src="{{ 'admin-assets/js/pages/dashboards-email.init.js' }}"></script>
+            @livewire('navigation-menu')
 
-    <!-- App js -->
-    <script src="{{ 'admin-assets/js/app.js' }}"></script>
+            <!-- App-Content -->
+            <div class="app-content main-content">
+                <div class="side-app">
 
-    @stack('modals')
+                    @include('layouts.partials.header')
 
-    @livewireScripts
+                    <main>
+                        {{ $slot }}
+                    </main>
+                </div>
+            </div>
+            <!-- End app-content-->
+
+            <!--Footer-->
+            <footer class="footer">
+                <div class="container">
+                    <div class="flex-row-reverse row align-items-center">
+                        <div class="text-center col-md-12 col-sm-12">
+                            Copyright &copy; 2023 <a href="javascript:void(0);">Self Financing Library</a>. Designed
+                            with
+                            <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"> Pratik
+                            </a> & <a href="javascript:void(0);">Milind</a> All rights reserved
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer-->
+        </div>
+    </div>
+
+    <!-- End Page -->
+    <!-- Back to top -->
+    <a href="#top" id="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Jquery js-->
+    <script src="{{ 'admin-assets/js/jquery.min.js' }}"></script>
+
+    {{-- * csrf token generator * --}}
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    <!-- Bootstrap5 js-->
+    {{-- <script src="{{ 'admin-assets/plugins/bootstrap/popper.min.js' }}"></script>
+    <script src="{{ 'admin-assets/plugins/bootstrap/js/bootstrap.min.js' }}"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+    <!--Othercharts js-->
+    <script src="{{ 'admin-assets/plugins/othercharts/jquery.sparkline.min.js' }}"></script>
+
+    <!-- Circle-progress js-->
+    <script src="{{ 'admin-assets/js/circle-progress.min.js' }}"></script>
+
+    <!-- Jquery-rating js-->
+    <script src="{{ 'admin-assets/plugins/rating/jquery.rating-stars.js' }}"></script>
+
+    <!--Sidemenu js-->
+    <script src="{{ 'admin-assets/plugins/sidemenu/sidemenu.js' }}"></script>
+
+    <!-- P-scroll js-->
+    <script src="{{ 'admin-assets/plugins/p-scrollbar/p-scrollbar.js' }}"></script>
+    <script src="{{ 'admin-assets/plugins/p-scrollbar/p-scroll1.js' }}"></script>
+    <script src="{{ 'admin-assets/plugins/p-scrollbar/p-scroll.js' }}"></script>
+
+    <!-- Custom js-->
+    <script src="{{ 'admin-assets/js/custom.js' }}"></script>
+    <script src="{{ 'admin-assets/js/book.js' }}"></script>
+    <script src="{{ 'admin-assets/js/profile.js' }}"></script>
+    @yield('scripts')
+
+    <!-- Switcher js -->
+    <script src="{{ 'admin-assets/switcher/js/switcher.js' }}"></script>
+    <!--INTERNAL Flot Charts js-->
+    <script src="{{ 'admin-assets/plugins/flot/jquery.flot.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/flot/jquery.flot.fillbetween.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/flot/jquery.flot.pie.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/js/dashboard.sampledata.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/js/chart.flot.sampledata.js?v=1692028428' }}"></script>
+
+    <!-- INTERNAL Chart js -->
+    <script src="{{ 'admin-assets/plugins/chart/chart.bundle.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/chart/utils.js?v=1692028428' }}"></script>
+
+    <!-- INTERNAL Apexchart js -->
+    <script src="{{ 'admin-assets/js/apexcharts.js?v=1692028428' }}"></script>
+
+    <!--INTERNAL Moment js-->
+    <script src="{{ 'admin-assets/plugins/moment/moment.js?v=1692028428' }}"></script>
+
+    <!--INTERNAL Index js-->
+    <script src="{{ 'admin-assets/js/index1.js?v=1692028428' }}"></script>
+
+    <!-- INTERNAL Data tables -->
+    <script src="{{ 'admin-assets/plugins/datatables/DataTables/js/jquery.dataTables.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/datatables/DataTables/js/dataTables.bootstrap5.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/datatables/Responsive/js/dataTables.responsive.min.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/plugins/datatables/Responsive/js/responsive.bootstrap5.min.js?v=1692028428' }}"></script>
+
+    <!-- INTERNAL Select2 js -->
+    <script src="{{ 'admin-assets/plugins/select2/select2.full.min.js?v=1692028428' }}"></script>
+    <script src="{{ 'admin-assets/js/select2.js?v=1692028428' }}"></script>
+
 
 </body>
 

@@ -1,273 +1,730 @@
-<header id="page-topbar"
-    class="ltr:md:left-vertical-menu rtl:md:right-vertical-menu group-data-[sidebar-size=md]:ltr:md:left-vertical-menu-md group-data-[sidebar-size=md]:rtl:md:right-vertical-menu-md group-data-[sidebar-size=sm]:ltr:md:left-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:md:right-vertical-menu-sm group-data-[layout=horizontal]:ltr:left-0 group-data-[layout=horizontal]:rtl:right-0 fixed right-0 z-[1000] left-0 print:hidden group-data-[navbar=bordered]:m-4 group-data-[navbar=bordered]:[&.is-sticky]:mt-0 transition-all ease-linear duration-300 group-data-[navbar=hidden]:hidden group-data-[navbar=scroll]:absolute group/topbar group-data-[layout=horizontal]:z-[1004]">
-    <div class="layout-width">
-        <div
-            class="flex items-center px-4 mx-auto bg-topbar border-b-2 border-topbar group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:border-topbar-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:border-topbar-brand shadow-md h-header shadow-slate-200/50 group-data-[navbar=bordered]:rounded-md group-data-[navbar=bordered]:group-[.is-sticky]/topbar:rounded-t-none group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:border-zink-700 dark:shadow-none group-data-[topbar=dark]:group-[.is-sticky]/topbar:dark:shadow-zink-500 group-data-[topbar=dark]:group-[.is-sticky]/topbar:dark:shadow-md group-data-[navbar=bordered]:shadow-none group-data-[layout=horizontal]:group-data-[navbar=bordered]:rounded-b-none group-data-[layout=horizontal]:shadow-none group-data-[layout=horizontal]:dark:group-[.is-sticky]/topbar:shadow-none">
-            <div
-                class="flex items-center w-full group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl navbar-header group-data-[layout=horizontal]:ltr:xl:pr-3 group-data-[layout=horizontal]:rtl:xl:pl-3">
-                <!-- LOGO -->
-                <div
-                    class="items-center justify-center hidden px-5 text-center h-header group-data-[layout=horizontal]:md:flex group-data-[layout=horizontal]:ltr::pl-0 group-data-[layout=horizontal]:rtl:pr-0">
-                    <a href="index.html">
-                        <span class="hidden">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMi41IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGMDk0N0MyMDY4QjcxMUVFOTYxN0Q1OTIxQkQxNzgwRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGMDk0N0MyMTY4QjcxMUVFOTYxN0Q1OTIxQkQxNzgwRCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkYwOTQ3QzFFNjhCNzExRUU5NjE3RDU5MjFCRDE3ODBEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkYwOTQ3QzFGNjhCNzExRUU5NjE3RDU5MjFCRDE3ODBEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+iIlVCAAACB1JREFUeNrsXGts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"
-                                alt="" class="h-6 mx-auto">
-                        </span>
-                        <span class="group-data-[topbar=dark]:hidden group-data-[topbar=brand]:hidden">
-                            <img src="{{ 'admin-assets/images/logo-dark.png' }}" alt="" class="h-6 mx-auto">
-                        </span>
-                    </a>
-                    <a href="index.html" class="hidden group-data-[topbar=dark]:block group-data-[topbar=brand]:block">
-                        <span class="group-data-[topbar=dark]:hidden group-data-[topbar=brand]:hidden">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMi41IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGMDk0N0MyMDY4QjcxMUVFOTYxN0Q1OTIxQkQxNzgwRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGMDk0N0MyMTY4QjcxMUVFOTYxN0Q1OTIxQkQxNzgwRCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkYwOTQ3QzFFNjhCNzExRUU5NjE3RDU5MjFCRDE3ODBEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkYwOTQ3QzFGNjhCNzExRUU5NjE3RDU5MjFCRDE3ODBEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+iIlVCAAACB1JREFUeNrsXGts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"
-                                alt="" class="h-6 mx-auto">
-                        </span>
-                        <span class="group-data-[topbar=dark]:block group-data-[topbar=brand]:block">
-                            <img src="{{ 'admin-assets/images/logo-light.png' }}" alt="" class="h-6 mx-auto">
-                        </span>
-                    </a>
-                </div>
-
-                <button type="button"
-                    class="inline-flex relative justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-75 ease-linear bg-topbar rounded-md btn hover:bg-slate-100 group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:border-topbar-dark group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:border-topbar-brand group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:dark:border-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[layout=horizontal]:flex group-data-[layout=horizontal]:md:hidden hamburger-icon"
-                    id="topnav-hamburger-icon">
-                    <i data-lucide="chevrons-left" class="w-5 h-5"></i>
-                    <i data-lucide="chevrons-right" class="hidden w-5 h-5"></i>
+<!--app header-->
+<div class="app-header header main-header1">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a class="header-brand" href="index.php.html">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img mobile-logo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-darkmobile-logo"
+                    alt="Azea logo">
+            </a>
+            <div class="app-sidebar__toggle d-flex" data-bs-toggle="sidebar">
+                <a class="open-toggle" href="javascript:void(0);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-align-left header-icon"
+                        width="24" height="24" viewbox="0 0 24 24">
+                        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="d-flex order-lg-2 ms-auto main-header-end">
+                <button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
+                    aria-controls="navbarSupportedContent-4" aria-expanded="true" aria-label="Toggle navigation">
+                    <i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
                 </button>
-
-                <div
-                    class="relative hidden ltr:ml-3 rtl:mr-3 lg:block group-data-[layout=horizontal]:hidden group-data-[layout=horizontal]:lg:block">
-                    <input type="text"
-                        class="py-2 pr-4 text-sm text-topbar-item bg-topbar border border-topbar-border rounded pl-8 placeholder:text-slate-400 form-control focus-visible:outline-0 min-w-[300px] focus:border-blue-400 group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:border-topbar-border-dark group-data-[topbar=dark]:placeholder:text-slate-500 group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:border-topbar-border-brand group-data-[topbar=brand]:placeholder:text-blue-300 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:border-zink-500 group-data-[topbar=dark]:dark:text-zink-100"
-                        placeholder="Search for ..." autocomplete="off">
-                    <i data-lucide="search"
-                        class="inline-block w-4 h-4 absolute left-2.5 top-2.5 text-topbar-item fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:dark:fill-zink-600"></i>
-                </div>
-
-                <div class="flex gap-3 ms-auto">
-
-                    <div class="relative flex items-center h-header">
-                        <button type="button"
-                            class="inline-flex relative justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:text-topbar-item-dark"
-                            id="light-dark-mode">
-                            <i data-lucide="sun"
-                                class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
-                        </button>
-                    </div>
-
-                    <div class="relative flex items-center dropdown h-header">
-                        <button type="button"
-                            class="inline-flex justify-center relative items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:text-topbar-item-dark"
-                            id="notificationDropdown" data-bs-toggle="dropdown">
-                            <i data-lucide="bell-ring"
-                                class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
-                            <span class="absolute top-0 right-0 flex w-1.5 h-1.5">
-                                <span
-                                    class="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-sky-400"></span>
-                                <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                            </span>
-                        </button>
-                        <div class="absolute z-50 hidden ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[20rem] lg:min-w-[26rem] dark:bg-zink-600"
-                            aria-labelledby="notificationDropdown">
-                            <div class="p-4">
-                                <h6 class="mb-4 text-16">Notifications <span
-                                        class="inline-flex items-center justify-center w-5 h-5 ml-1 text-[11px] font-medium border rounded-full text-white bg-orange-500 border-orange-500">15</span>
-                                </h6>
-                                <ul class="flex flex-wrap w-full p-1 mb-2 text-sm font-medium text-center rounded-md filter-btns text-slate-500 bg-slate-100 nav-tabs dark:bg-zink-500 dark:text-zink-200"
-                                    data-filter-target="notification-list">
-                                    <li class="grow">
-                                        <a href="javascript:void(0);" data-filter="all"
-                                            class="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent [&.active]:bg-white [&.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:[&.active]:bg-zink-600 -mb-[1px] active">View
-                                            All</a>
-                                    </li>
-                                    <li class="grow">
-                                        <a href="javascript:void(0);" data-filter="mention"
-                                            class="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent [&.active]:bg-white [&.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:[&.active]:bg-zink-600 -mb-[1px]">Mentions</a>
-                                    </li>
-                                    <li class="grow">
-                                        <a href="javascript:void(0);" data-filter="follower"
-                                            class="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent [&.active]:bg-white [&.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:[&.active]:bg-zink-600 -mb-[1px]">Followers</a>
-                                    </li>
-                                    <li class="grow">
-                                        <a href="javascript:void(0);" data-filter="invite"
-                                            class="inline-block nav-link px-1.5 w-full py-1 text-xs transition-all duration-300 ease-linear rounded-md text-slate-500 border border-transparent [&.active]:bg-white [&.active]:text-custom-500 hover:text-custom-500 active:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:[&.active]:bg-zink-600 -mb-[1px]">Invites</a>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <div data-simplebar="" class="max-h-[350px]">
-                                <div class="flex flex-col gap-1" id="notification-list">
-                                    <a href="#!"
-                                        class="flex gap-3 p-4 product-item hover:bg-slate-50 dark:hover:bg-zink-500 follower">
-                                        <div class="w-10 h-10 rounded-md shrink-0 bg-slate-100">
-                                            <img src="{{ 'admin-assets/images/avatar-3.png' }}" alt=""
-                                                class="rounded-md">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1 font-medium"><b>@willie_passem</b> followed you
-                                            </h6>
-                                            <p class="mb-0 text-sm text-slate-500 dark:text-zink-300"><i
-                                                    data-lucide="clock" class="inline-block w-3.5 h-3.5 mr-1"></i>
-                                                <span class="align-middle">Wednesday 03:42 PM</span>
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="flex items-center self-start gap-2 text-xs text-slate-500 shrink-0 dark:text-zink-300">
-                                            <div class="w-1.5 h-1.5 bg-custom-500 rounded-full"></div> 4 sec
-                                        </div>
-                                    </a>
-                                    <a href="#!"
-                                        class="flex gap-3 p-4 product-item hover:bg-slate-50 dark:hover:bg-zink-500 mention">
-                                        <div class="w-10 h-10 bg-yellow-100 rounded-md shrink-0">
-                                            <img src="{{ 'admin-assets/images/avatar-5.png' }}" alt=""
-                                                class="rounded-md">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1 font-medium"><b>@caroline_jessica</b> commented on
-                                                your post</h6>
-                                            <p class="mb-3 text-sm text-slate-500 dark:text-zink-300"><i
-                                                    data-lucide="clock" class="inline-block w-3.5 h-3.5 mr-1"></i>
-                                                <span class="align-middle">Wednesday 03:42 PM</span>
-                                            </p>
-                                            <div
-                                                class="p-2 rounded bg-slate-100 text-slate-500 dark:bg-zink-500 dark:text-zink-300">
-                                                Amazing! Fast, to the point, professional and really amazing to
-                                                work with them!!!</div>
-                                        </div>
-                                        <div
-                                            class="flex items-center self-start gap-2 text-xs text-slate-500 shrink-0 dark:text-zink-300">
-                                            <div class="w-1.5 h-1.5 bg-custom-500 rounded-full"></div> 15 min
-                                        </div>
-                                    </a>
-                                    <a href="#!"
-                                        class="flex gap-3 p-4 product-item hover:bg-slate-50 dark:hover:bg-zink-500 invite">
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-md shrink-0">
-                                            <i data-lucide="shopping-bag"
-                                                class="w-5 h-5 text-red-500 fill-red-200"></i>
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1 font-medium">Successfully purchased a business
-                                                plan for <span class="text-red-500">$199.99</span></h6>
-                                            <p class="mb-0 text-sm text-slate-500 dark:text-zink-300"><i
-                                                    data-lucide="clock" class="inline-block w-3.5 h-3.5 mr-1"></i>
-                                                <span class="align-middle">Monday 11:26 AM</span>
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="flex items-center self-start gap-2 text-xs text-slate-500 shrink-0 dark:text-zink-300">
-                                            <div class="w-1.5 h-1.5 bg-custom-500 rounded-full"></div>
-                                            Yesterday
-                                        </div>
-                                    </a>
-                                    <a href="#!"
-                                        class="flex gap-3 p-4 product-item hover:bg-slate-50 dark:hover:bg-zink-500 mention">
-                                        <div class="relative shrink-0">
-                                            <div class="w-10 h-10 bg-pink-100 rounded-md">
-                                                <img src="{{ 'admin-assets/images/avatar-7.png' }}" alt=""
-                                                    class="rounded-md">
-                                            </div>
-                                            <div class="absolute text-orange-500 -bottom-0.5 -right-0.5 text-16">
-                                                <i class="ri-heart-fill"></i>
-                                            </div>
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1 font-medium"><b>@scott</b> liked your post</h6>
-                                            <p class="mb-0 text-sm text-slate-500 dark:text-zink-300"><i
-                                                    data-lucide="clock" class="inline-block w-3.5 h-3.5 mr-1"></i>
-                                                <span class="align-middle">Thursday 06:59 AM</span>
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="flex items-center self-start gap-2 text-xs text-slate-500 shrink-0 dark:text-zink-300">
-                                            <div class="w-1.5 h-1.5 bg-custom-500 rounded-full"></div> 1 Week
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2 p-4 border-t border-slate-200 dark:border-zink-500">
-                                <div class="grow">
-                                    <a href="#!">Manage Notification</a>
-                                </div>
-                                <div class="shrink-0">
-                                    <button type="button"
-                                        class="px-2 py-1.5 text-xs text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100">View
-                                        All Notification <i data-lucide="move-right"
-                                            class="inline-block w-3.5 h-3.5 ml-1"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative items-center hidden h-header md:flex">
-                        <button data-drawer-target="customizerButton" type="button"
-                            class="inline-flex justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar group-data-[topbar=dark]:text-topbar-item-dark rounded-md btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200">
-                            <i data-lucide="settings"
-                                class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
-                        </button>
-                    </div>
-
-                    <div class="relative flex items-center dropdown h-header">
-                        <button type="button"
-                            class="inline-block p-0 transition-all duration-200 ease-linear bg-topbar rounded-full text-topbar-item dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200"
-                            id="dropdownMenuButton" data-bs-toggle="dropdown">
-                            <div class="bg-pink-100 rounded-full">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDM1MiwgMjAyMC8wMS8zMC0xNTo1MDozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdEM0Q3M0Q0OEE3MjExRUU5QzY1Qjg0RTZGNUJCMkJGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdEM0Q3M0Q1OEE3MjExRUU5QzY1Qjg0RTZGNUJCMkJGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0QzRDczRDI4QTcyMTFFRTlDNjVCODRFNkY1QkIyQkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0QzRDczRDM4QTcyMTFFRTlDNjVCODRFNkY1QkIyQkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz70YlHmAAAK6UlEQVR42sxYaWxc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"
-                                    alt="" class="w-[37.5px] h-[37.5px] rounded-full">
-                            </div>
-                        </button>
-                        <div class="absolute z-50 hidden p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[14rem] dark:bg-zink-600"
-                            aria-labelledby="dropdownMenuButton">
-                            <h6 class="mb-2 text-sm font-normal text-slate-500 dark:text-zink-300">Welcome to
-                                Self financing library</h6>
-                            <a href="#!" class="flex gap-3 mb-3">
-                                <div class="relative inline-block shrink-0">
-                                    <div class="rounded bg-slate-100 dark:bg-zink-500">
-                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDM1MiwgMjAyMC8wMS8zMC0xNTo1MDozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdEM0Q3M0Q0OEE3MjExRUU5QzY1Qjg0RTZGNUJCMkJGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdEM0Q3M0Q1OEE3MjExRUU5QzY1Qjg0RTZGNUJCMkJGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0QzRDczRDI4QTcyMTFFRTlDNjVCODRFNkY1QkIyQkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0QzRDczRDM4QTcyMTFFRTlDNjVCODRFNkY1QkIyQkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz70YlHmAAAK6UlEQVR42sxYaWxc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"
-                                            alt="" class="w-12 h-12 rounded">
+                <div class="p-0 navbar navbar-expand-lg navbar-collapse responsive-navbar">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                        <div class="d-flex order-lg-2">
+                            <div class="dropdown d-lg-none d-flex responsive-search">
+                                <a href="javascript:void(0);" class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon search-icon"
+                                        width="24" height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                    <div class="p-2 input-group w-100">
+                                        <input type="text" class="form-control" placeholder="Search....">
+                                        <button class="btn btn-primary-color" type="submit">
+                                            <svg class="p-1 mt-1 header-icon search-icon"
+                                                xmlns="http://www.w3.org/2000/svg" height="24" viewbox="0 0 24 24"
+                                                width="24">
+                                                <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                <path
+                                                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                                </path>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <span
-                                        class="-top-1 ltr:-right-1 rtl:-left-1 absolute w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full dark:border-zink-600"></span>
                                 </div>
-                                <div>
-                                    <h6 class="mb-1 text-15">{{ auth()->user()->name }}</h6>
-                                    <p class="text-slate-500 dark:text-zink-300">Super Admin</p>
+                            </div><!-- SEARCH -->
+                            <div class="dropdown d-flex">
+                                <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                    <span class="light-layout">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                            height="24" viewbox="0 0 24 24">
+                                            <path
+                                                d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span class="dark-layout">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                            height="24" viewbox="0 0 24 24">
+                                            <path
+                                                d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div><!-- Theme-Layout -->
+                            <div class="dropdown header-fullscreen d-flex">
+                                <a class="p-0 nav-link icon full-screen-link" id="fullscreen-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="dropdown header-message d-flex">
+                                <a class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z">
+                                        </path>
+                                    </svg>
+                                    <span class="badge bg-success side-badge">5</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
+                                    <div class="dropdown-header">
+                                        <h6 class="mb-0">Messages</h6>
+                                        <span class="badge fs-10 bg-secondary br-7 ms-auto">New</span>
+                                    </div>
+                                    <div class="header-dropdown-list message-menu">
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/1.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Joan
+                                                            Powell</span>
+                                                        <p class="mb-1 fs-12">All the best your
+                                                            template awesome</p>
+                                                        <div class="fs-11 text-muted">
+                                                            3 hours ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/2.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 s-13">Gavin
+                                                            Sibson</span>
+                                                        <p class="mb-1 fs-12">Hey! there I'm
+                                                            available</p>
+                                                        <div class="fs-11 text-muted">
+                                                            5 hour ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/3.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1">Julian Kerr</span>
+                                                        <p class="mb-1 fs-12">Just created a new
+                                                            blog post</p>
+                                                        <div class="fs-11 text-muted">
+                                                            45 mintues ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/4.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Cedric
+                                                            Kelly</span>
+                                                        <p class="mb-1 fs-12">Added new comment on
+                                                            your photo</p>
+                                                        <div class="fs-11 text-muted">
+                                                            2 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/6.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Julian
+                                                            Kerr</span>
+                                                        <p class="mb-1 fs-12">Your payment invoice
+                                                            is generated</p>
+                                                        <div class="fs-11 text-muted">
+                                                            3 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/7.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Faith
+                                                            Dickens</span>
+                                                        <p class="mb-1 fs-12">Please check your
+                                                            mail....</p>
+                                                        <div class="fs-11 text-muted">
+                                                            4 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="p-2 pt-3 text-center border-top">
+                                        <a href="chat.php.html" class="fs-13 btn btn-primary btn-md btn-block">See
+                                            More</a>
+                                    </div>
                                 </div>
-                            </a>
-                            <ul>
-                                <li>
-                                    <x-nav-link href="{{ route('profile.show') }}">
-                                        <i data-lucide="user-2" class="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"></i>
-                                        Profile
-                                    </x-nav-link>
-                                </li>
-                                <li>
-                                    <x-nav-link href="#!"><i data-lucide="mail"
-                                            class="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"></i> Inbox <span
-                                            class="inline-flex items-center justify-center w-5 h-5 ltr:ml-2 rtl:mr-2 text-[11px] font-medium border rounded-full text-white bg-red-500 border-red-500">15</span>
-                                    </x-nav-link>
-                                </li>
-                                <li>
-                                    <x-nav-link href="#!"><i data-lucide="messages-square"
-                                            class="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"></i> Chat
-                                    </x-nav-link>
-                                </li>
-                                <li>
-                                    <x-nav-link href="#!"><i data-lucide="gem"
-                                            class="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"></i> Upgrade <span
-                                            class="inline-flex items-center justify-center w-auto h-5 ltr:ml-2 rtl:mr-2 px-1 text-[12px] font-medium border rounded text-white bg-sky-500 border-sky-500">Pro</span>
-                                    </x-nav-link>
-                                </li>
-                                <li class="pt-2 mt-2 border-t border-slate-200 dark:border-zink-500">
-                                    <x-nav-link href="#!"><i data-lucide="log-out"
-                                            class="inline-block w-4 h-4 ltr:mr-2 rtl:ml-2"></i> Sign Out
-                                    </x-nav-link>
-                                </li>
-                            </ul>
+                            </div>
+                            <div class="dropdown header-notify d-flex">
+                                <a class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17H5v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z">
+                                        </path>
+                                    </svg><span class="pulse "></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
+                                    <div class="dropdown-header">
+                                        <h6 class="mb-0">Notifications</h6>
+                                        <span class="badge fs-10 bg-secondary br-7 ms-auto">New</span>
+                                    </div>
+                                    <div class="notify-menu">
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-primary bg-primary-transparent border-primary">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Message Sent.</span>
+                                                <div class="small text-muted">3 hours ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div
+                                                class="notifyimg text-secondary bg-secondary-transparent border-secondary">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Order Placed</span>
+                                                <div class="small text-muted">5 hour ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-danger bg-danger-transparent border-danger">
+                                                <i class="fa fa-gift"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Event Started</span>
+                                                <div class="small text-muted">45 mintues ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="mb-2 dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-success bg-success-transparent border-success">
+                                                <i class="fa fa-windows"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Your Admin lanuched</span>
+                                                <div class="small text-muted">1 daya ago</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="p-2 text-center ">
+                                        <a href="email-inbox.php.html"
+                                            class="btn btn-primary btn-md fs-13 btn-block">View
+                                            All</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown profile-dropdown d-flex">
+                                <a href="javascript:void(0);" class="leading-none nav-link pe-0"
+                                    data-bs-toggle="dropdown">
+                                    <span class="header-avatar1">
+                                        <img src="{{ 'admin-assets/images/users/2.jpg' }}" alt="img"
+                                            class="avatar avatar-md brround">
+                                    </span>
+                                </a>
+                                <div
+                                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated dropdown-profile-settings">
+                                    <div class="text-center">
+                                        <div class="pb-0 text-center user font-weight-bold">
+                                            {{ auth()->user()->name }}
+                                        </div>
+                                        <span class="text-center user-semi-title">
+                                            {{ auth()->user()->role }}
+                                        </span>
+                                        <div class="dropdown-divider"></div>
+                                    </div>
+                                    <a class="dropdown-item d-flex" href="">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Profile</div>
+                                    </a>
+                                    {{-- <a class="dropdown-item d-flex" href="search.php.html">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Settings</div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.php.html">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M4 4h16v12H5.17L4 17.17V4m0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm2 10h12v2H6v-2zm0-3h12v2H6V9zm0-3h12v2H6V6z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Messages</div>
+                                    </a> --}}
+                                    <a class="dropdown-item d-flex" href="">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            enable-background="new 0 0 24 24" height="24" viewbox="0 0 24 24"
+                                            width="24">
+                                            <g>
+                                                <rect fill="none" height="24" width="24"></rect>
+                                            </g>
+                                            <g>
+                                                <path
+                                                    d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                        <div class="fs-13">Sign Out</div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
+</div>
+<!--/app header-->
+<!--app header-->
+<div class="app-header header main-header1">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a class="header-brand" href="index.php.html">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img mobile-logo"
+                    alt="Azea logo">
+                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-darkmobile-logo"
+                    alt="Azea logo">
+            </a>
+            <div class="app-sidebar__toggle d-flex" data-bs-toggle="sidebar">
+                <a class="open-toggle" href="javascript:void(0);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-align-left header-icon"
+                        width="24" height="24" viewbox="0 0 24 24">
+                        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="d-flex order-lg-2 ms-auto main-header-end">
+                <button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
+                    aria-controls="navbarSupportedContent-4" aria-expanded="true" aria-label="Toggle navigation">
+                    <i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
+                </button>
+                <div class="p-0 navbar navbar-expand-lg navbar-collapse responsive-navbar">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                        <div class="d-flex order-lg-2">
+                            <div class="dropdown d-lg-none d-flex responsive-search">
+                                <a href="javascript:void(0);" class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon search-icon"
+                                        width="24" height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                    <div class="p-2 input-group w-100">
+                                        <input type="text" class="form-control" placeholder="Search....">
+                                        <button class="btn btn-primary-color" type="submit">
+                                            <svg class="p-1 mt-1 header-icon search-icon"
+                                                xmlns="http://www.w3.org/2000/svg" height="24" viewbox="0 0 24 24"
+                                                width="24">
+                                                <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                <path
+                                                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- SEARCH -->
+                            <div class="dropdown d-flex">
+                                <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                    <span class="light-layout">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                            height="24" viewbox="0 0 24 24">
+                                            <path
+                                                d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span class="dark-layout">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                            height="24" viewbox="0 0 24 24">
+                                            <path
+                                                d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div><!-- Theme-Layout -->
+                            <div class="dropdown header-fullscreen d-flex">
+                                <a class="p-0 nav-link icon full-screen-link" id="fullscreen-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="dropdown header-message d-flex">
+                                <a class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z">
+                                        </path>
+                                    </svg>
+                                    <span class="badge bg-success side-badge">5</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
+                                    <div class="dropdown-header">
+                                        <h6 class="mb-0">Messages</h6>
+                                        <span class="badge fs-10 bg-secondary br-7 ms-auto">New</span>
+                                    </div>
+                                    <div class="header-dropdown-list message-menu">
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/1.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Joan
+                                                            Powell</span>
+                                                        <p class="mb-1 fs-12">All the best your
+                                                            template awesome</p>
+                                                        <div class="fs-11 text-muted">
+                                                            3 hours ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/2.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 s-13">Gavin
+                                                            Sibson</span>
+                                                        <p class="mb-1 fs-12">Hey! there I'm
+                                                            available</p>
+                                                        <div class="fs-11 text-muted">
+                                                            5 hour ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/3.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1">Julian Kerr</span>
+                                                        <p class="mb-1 fs-12">Just created a new
+                                                            blog post</p>
+                                                        <div class="fs-11 text-muted">
+                                                            45 mintues ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/4.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Cedric
+                                                            Kelly</span>
+                                                        <p class="mb-1 fs-12">Added new comment on
+                                                            your photo</p>
+                                                        <div class="fs-11 text-muted">
+                                                            2 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item border-bottom" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/6.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Julian
+                                                            Kerr</span>
+                                                        <p class="mb-1 fs-12">Your payment invoice
+                                                            is generated</p>
+                                                        <div class="fs-11 text-muted">
+                                                            3 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="chat.php.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <span
+                                                        class="avatar avatar-md brround align-self-center cover-image"
+                                                        data-image-src="{{ 'admin-assets/images/users/7.jpg' }}"></span>
+                                                </div>
+                                                <div class="mt-1 mb-1 d-flex">
+                                                    <div class="ps-3">
+                                                        <span class="mb-1 fs-13">Faith
+                                                            Dickens</span>
+                                                        <p class="mb-1 fs-12">Please check your
+                                                            mail....</p>
+                                                        <div class="fs-11 text-muted">
+                                                            4 days ago
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="p-2 pt-3 text-center border-top">
+                                        <a href="chat.php.html" class="fs-13 btn btn-primary btn-md btn-block">See
+                                            More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown header-notify d-flex">
+                                <a class="nav-link icon" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24"
+                                        height="24" viewbox="0 0 24 24">
+                                        <path
+                                            d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17H5v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z">
+                                        </path>
+                                    </svg><span class="pulse "></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
+                                    <div class="dropdown-header">
+                                        <h6 class="mb-0">Notifications</h6>
+                                        <span class="badge fs-10 bg-secondary br-7 ms-auto">New</span>
+                                    </div>
+                                    <div class="notify-menu">
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-primary bg-primary-transparent border-primary">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Message Sent.</span>
+                                                <div class="small text-muted">3 hours ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div
+                                                class="notifyimg text-secondary bg-secondary-transparent border-secondary">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Order Placed</span>
+                                                <div class="small text-muted">5 hour ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-danger bg-danger-transparent border-danger">
+                                                <i class="fa fa-gift"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Event Started</span>
+                                                <div class="small text-muted">45 mintues ago</div>
+                                            </div>
+                                        </a>
+                                        <a href="email-inbox.php.html"
+                                            class="mb-2 dropdown-item border-bottom d-flex ps-4">
+                                            <div class="notifyimg text-success bg-success-transparent border-success">
+                                                <i class="fa fa-windows"></i>
+                                            </div>
+                                            <div>
+                                                <span class="fs-13">Your Admin lanuched</span>
+                                                <div class="small text-muted">1 daya ago</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="p-2 text-center ">
+                                        <a href="email-inbox.php.html"
+                                            class="btn btn-primary btn-md fs-13 btn-block">View
+                                            All</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown profile-dropdown d-flex">
+                                <a href="javascript:void(0);" class="leading-none nav-link pe-0"
+                                    data-bs-toggle="dropdown">
+                                    <span class="header-avatar1">
+                                        <img src="{{ 'admin-assets/images/users/2.jpg' }}" alt="img"
+                                            class="avatar avatar-md brround">
+                                    </span>
+                                </a>
+                                <div
+                                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated dropdown-profile-settings">
+                                    <div class="text-center">
+                                        <div class="pb-0 text-center user font-weight-bold">
+                                            {{ auth()->user()->name }}
+                                        </div>
+                                        <span class="text-center user-semi-title">
+                                            {{ auth()->user()->role }}
+                                        </span>
+                                        <div class="dropdown-divider"></div>
+                                    </div>
+                                    <a class="dropdown-item d-flex" href="">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Profile</div>
+                                    </a>
+                                    {{-- <a class="dropdown-item d-flex" href="search.php.html">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Settings</div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.php.html">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewbox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path
+                                                d="M4 4h16v12H5.17L4 17.17V4m0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm2 10h12v2H6v-2zm0-3h12v2H6V9zm0-3h12v2H6V6z">
+                                            </path>
+                                        </svg>
+                                        <div class="fs-13">Messages</div>
+                                    </a> --}}
+                                    <a class="dropdown-item d-flex" href="">
+                                        <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
+                                            enable-background="new 0 0 24 24" height="24" viewbox="0 0 24 24"
+                                            width="24">
+                                            <g>
+                                                <rect fill="none" height="24" width="24"></rect>
+                                            </g>
+                                            <g>
+                                                <path
+                                                    d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                        <div class="fs-13">Sign Out</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/app header-->
