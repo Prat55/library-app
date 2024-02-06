@@ -54,230 +54,12 @@
 
     <!-- Color Skin css -->
     <link id="theme" href="{{ 'admin-assets/colors/color1-1.css?v=1692028428' }}" rel="stylesheet" type="text/css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @livewireStyles
 </head>
 
 <body class="app sidebar-mini {{ auth()->user()->mode === 'dark' ? 'dark-mode' : '' }}">
-
-    <!-- Switcher -->
-    <div class="switcher-wrapper">
-        <div class="demo_changer ">
-            <div class="form_holder sidebar-right1">
-                <div class="row">
-                    <div class="predefined_styles">
-                        <div class="text-center swichermainleft">
-                            <div class="gap-2 p-3 d-grid">
-                                <a href="https://php.spruko.com/azea/" class="mt-0 btn ripple btn-primary">View Demo</a>
-                                <a href="https://themeforest.net/item/azea-bootstrap-5-admin-dashboard-template/33518740"
-                                    class="btn ripple btn-success">Buy Now</a>
-                                <a href="https://themeforest.net/user/spruko/portfolio" class="btn ripple btn-red">Our
-                                    Portfolio</a>
-                            </div>
-                        </div>
-                        <div class="text-center swichermainleft">
-                            <div class="gap-2 p-3 d-grid">
-                                <a href="https://php.spruko.com/azea/azea/horizontal"
-                                    class="mt-0 btn ripple btn-primary">horizontal Menu</a>
-                            </div>
-                        </div>
-                        <div class="text-center swichermainleft">
-                            <h4>LTR AND RTL VERSIONS</h4>
-                            <div class="p-4 switch_section">
-                                <div class="mt-2 switch-toggle d-flex">
-                                    <span class="me-auto">LTR</span>
-                                    <a class="onoffswitch2"><input type="radio" name="onoffswitch25"
-                                            id="myonoffswitch54" class="onoffswitch2-checkbox" checked="">
-                                        <label for="myonoffswitch54" class="onoffswitch2-label"></label>
-                                    </a>
-                                </div>
-                                <div class="mt-2 switch-toggle d-flex">
-                                    <span class="me-auto">RTL</span>
-                                    <a class="onoffswitch2"><input type="radio" name="onoffswitch25"
-                                            id="myonoffswitch55" class="onoffswitch2-checkbox">
-                                        <label for="myonoffswitch55" class="onoffswitch2-label"></label>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Theme Style</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Light Theme</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch1"
-                                                id="myonoffswitch1" class="onoffswitch2-checkbox" checked="">
-                                            <label for="myonoffswitch1" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Dark Theme</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch1"
-                                                id="myonoffswitch2" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch2" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Leftmenu Styles</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Light Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
-                                                id="myonoffswitch3" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch3" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Color Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
-                                                id="myonoffswitch4" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch4" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Dark Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
-                                                id="myonoffswitch5" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch5" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Gradient Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch2"
-                                                id="myonoffswitch25" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch25" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Header Styles</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Light Header</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
-                                                id="myonoffswitch6" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch6" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Color Header</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
-                                                id="myonoffswitch7" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch7" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Dark Header</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
-                                                id="myonoffswitch8" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch8" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Gradient Header</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch3"
-                                                id="myonoffswitch26" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch26" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Layout Width Styles</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Full Width</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch4"
-                                                id="myonoffswitch9" class="onoffswitch2-checkbox" checked="">
-                                            <label for="myonoffswitch9" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Boxed</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch4"
-                                                id="myonoffswitch10" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch10" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Layout Positions</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Fixed</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch5"
-                                                id="myonoffswitch11" class="onoffswitch2-checkbox" checked="">
-                                            <label for="myonoffswitch11" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Scrollable</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch5"
-                                                id="myonoffswitch12" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch12" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swichermainleft">
-                            <h4>Sidemenu layout Styles</h4>
-                            <div class="skin-body">
-                                <div class="switch_section">
-                                    <div class="switch-toggle d-flex">
-                                        <span class="me-auto">Default Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
-                                                id="myonoffswitch13" class="onoffswitch2-checkbox default-menu"
-                                                checked="">
-                                            <label for="myonoffswitch13" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Closed Menu</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
-                                                id="myonoffswitch30" class="onoffswitch2-checkbox default-menu">
-                                            <label for="myonoffswitch30" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Icon with Text</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
-                                                id="myonoffswitch14" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch14" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                    <div class="mt-2 switch-toggle d-flex">
-                                        <span class="me-auto">Icon Overlay</span>
-                                        <a class="onoffswitch2"><input type="radio" name="onoffswitch6"
-                                                id="myonoffswitch15" class="onoffswitch2-checkbox">
-                                            <label for="myonoffswitch15" class="onoffswitch2-label"></label>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Switcher -->
-    <!-- GLOBAL-LOADER -->
-    {{-- <div id="global-loader">
-        <img src="admin-assets/images/svgs/loader.svg" class="loader-img" alt="Loader">
-    </div> --}}
-    <!-- /GLOBAL-LOADER -->
 
     <!-- Page -->
     <div class="page">
@@ -331,18 +113,14 @@
         });
     </script>
 
-    <!-- Bootstrap5 js-->
-    {{-- <script src="{{ 'admin-assets/plugins/bootstrap/popper.min.js' }}"></script>
-    <script src="{{ 'admin-assets/plugins/bootstrap/js/bootstrap.min.js' }}"></script> --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
+
+    <script src="{{ 'admin-assets/plugins/bootstrap/js/bootstrap.min.js' }}"></script>
 
     <!--Othercharts js-->
     <script src="{{ 'admin-assets/plugins/othercharts/jquery.sparkline.min.js' }}"></script>
@@ -399,7 +177,8 @@
     <script src="{{ 'admin-assets/plugins/select2/select2.full.min.js?v=1692028428' }}"></script>
     <script src="{{ 'admin-assets/js/select2.js?v=1692028428' }}"></script>
 
-
+    @stack('modal')
+    @livewireScripts
 </body>
 
 </html>

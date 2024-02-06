@@ -15,11 +15,15 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
 
+            $table->string('book_token');
             $table->string('book_name');
             $table->string('book_author');
             $table->string('book_serial_number')->unique();
-            $table->text('book_description');
+            $table->text('book_description')->nullable();
             $table->integer('book_quantity');
+            $table->text('book_image_path');
+            $table->text('book_pdf_path')->nullable();
+            $table->timestamp('published_at');
 
             $table->foreignIdFor(Faculty::class);
 

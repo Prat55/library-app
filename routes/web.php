@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeCotroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+});
+
+Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('backend.index');
     })->name('dashboard');
 
+    // ?Books CRUD routes
     Route::get('/add-book', [BookController::class, 'index'])->name('add-book');
+    Route::get('/manage-books', [BookController::class, 'manage_books'])->name('manage-books');
+    Route::post('/quick-view/{id}', [BookController::class, 'quick_view']);
+
+    Route::post('theme', [HomeCotroller::class, 'theme'])->name('theme');
 });

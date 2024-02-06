@@ -2,11 +2,11 @@
  <aside class="app-sidebar">
      <div class="app-sidebar__logo">
          <a class="header-brand" href="{{ route('dashboard') }}">
-             <img src="{{ 'user-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo" alt="Azea logo">
-             <img src="{{ 'user-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo" alt="Azea logo">
-             <img src="{{ 'user-assets/images/logo/lms_logo.png' }}" class="header-brand-img mobile-logo"
+             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo" alt="Azea logo">
+             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo" alt="Azea logo">
+             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img mobile-logo"
                  alt="Azea logo">
-             <img src="{{ 'user-assets/images/logo/lms_logo.png' }}" class="header-brand-img darkmobile-logo"
+             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img darkmobile-logo"
                  alt="Azea logo">
          </a>
      </div>
@@ -14,7 +14,7 @@
      <ul class="side-menu app-sidebar3">
          <li class="side-item side-item-category">Dashboard</li>
          <li class="slide">
-             <a class="side-menu__item" href="{{ route('dashboard') }}">
+             <a wire:navigate class="side-menu__item" href="{{ route('dashboard') }}">
                  <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24"
                      viewbox="0 0 24 24">
                      <path
@@ -25,7 +25,7 @@
          </li>
          <li class="side-item side-item-category">Books & Faculty</li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('add-book') }}">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('add-book') }}">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24" style="transform: rotate(45deg)">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -37,7 +37,7 @@
              </a>
          </li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('manage-books') }}">
                  <svg class="side-menu__icon " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -49,7 +49,7 @@
              </a>
          </li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                  <svg class="side-menu__icon " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -61,7 +61,7 @@
              </a>
          </li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                  <svg class="side-menu__icon " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -74,7 +74,7 @@
          </li>
          @if (auth()->user()->role === 'super-admin')
              <li class="slide">
-                 <a class="side-menu__item" data-bs-toggle="slide" href="">
+                 <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                      <svg class="side-menu__icon " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                          width="24">
                          <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -88,7 +88,7 @@
          @endif
          <li class="side-item side-item-category">Profile & Account Information</li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('profile.show') }}">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -103,7 +103,7 @@
          </li>
          <li class="side-item side-item-category">User Management</li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -115,7 +115,7 @@
              </a>
          </li>
          <li class="slide">
-             <a class="side-menu__item" data-bs-toggle="slide" href="">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -128,7 +128,7 @@
          </li>
          @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
              <li class="slide">
-                 <a class="side-menu__item" data-bs-toggle="slide" href="">
+                 <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
                      <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24"
                          viewBox="0 0 24 24" width="24">
                          <path d="M0 0h24v24H0V0z" fill="none"></path>

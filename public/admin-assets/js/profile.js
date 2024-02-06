@@ -45,6 +45,6 @@
 //     });
 // });
 
-$(".profile-dropdown").click(function () {
-    $(".dropdown-profile-settings").toggleClass("d-block");
-});
+// $(".profile-dropdown").click(function () {
+//     $(".dropdown-profile-settings").toggleClass("d-block");
+// });
