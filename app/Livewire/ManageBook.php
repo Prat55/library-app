@@ -90,7 +90,7 @@ class ManageBook extends Component
             $book->book_pdf_path = $this->new_pdf_path ?: $this->oldPdf;
             $book->update();
 
-            return redirect()->to('/manage-books');
+            return redirect()->to('/manage-books')->with('success', 'Book updated successfully');
         } else {
             abort(404);
         }
@@ -107,6 +107,35 @@ class ManageBook extends Component
             $book->delete();
 
             return redirect()->to('/manage-books')->with("success", "Book deleted successfully");
+        } else {
+            abort(404);
+        }
+    }
+
+    public function featuredBook(int $book_id)
+    {
+        $book = Book::find($book_id);
+
+        if ($book) {
+            $book->featured = 1;
+            $book->update();
+
+            return redirect()->to('/manage-books')->with('success', 'Book is now featured');
+        } else {
+            abort(404);
+        }
+    }
+
+    public function rmfeaturedBook(int $book_id)
+    {
+        $book = Book::find($book_id);
+
+        if ($book) {
+
+            $book->featured = 0;
+            $book->update();
+
+            return redirect()->to('/manage-books')->with('success', 'Book is removed from featured');
         } else {
             abort(404);
         }

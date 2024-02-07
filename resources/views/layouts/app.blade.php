@@ -26,21 +26,21 @@
     <link href="{{ 'admin-assets/css/skin-modes.css' }}" rel="stylesheet">
 
     <!-- Animate css -->
-    <link href="{{ 'admin-assets/css/animated.css' }}" rel="stylesheet">
+    {{-- <link href="{{ 'admin-assets/css/animated.css' }}" rel="stylesheet"> --}}
 
 
     <!-- P-scroll bar css-->
     <link href="{{ 'admin-assets/plugins/p-scrollbar/p-scrollbar.css' }}" rel="stylesheet">
 
     <!---Icons css-->
-    <link href="{{ 'admin-assets/css/icons.css' }}" rel="stylesheet">
+    {{-- <link href="{{ 'admin-assets/css/icons.css' }}" rel="stylesheet"> --}}
 
     <!-- Color Skin css -->
     <link id="theme" href="{{ 'admin-assets/colors/color1.css' }}" rel="stylesheet" type="text/css">
 
     <!-- INTERNAL Switcher css -->
-    <link href="{{ 'admin-assets/switcher/css/switcher.css' }}" rel="stylesheet">
-    <link href="{{ 'admin-assets/switcher/demo.css' }}" rel="stylesheet">
+    {{-- <link href="{{ 'admin-assets/switcher/css/switcher.css' }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ 'admin-assets/switcher/demo.css' }}" rel="stylesheet"> --}}
     <!-- INTERNAL Morris Charts css -->
     <link href="{{ 'admin-assets/plugins/morris/morris.css?v=1692028428' }}" rel="stylesheet">
 
@@ -71,7 +71,7 @@
             <div class="app-content main-content">
                 <div class="side-app">
 
-                    @include('layouts.partials.header')
+                    @livewire('header')
 
                     <main>
                         {{ $slot }}

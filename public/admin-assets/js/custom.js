@@ -419,33 +419,23 @@
         }
     });
 
-    $(".dark-layout").on("click", function () {
-        $.ajax({
-            type: "post",
-            url: "theme",
-            data: { mode: "light" },
-            dataType: "json",
-            success: function (response) {
-                // if (response.success == 200) {
-                //     location.reload();
-                // }
-            },
-        });
-    });
+    // $(".dark-layout").on("click", function () {
+    //     $.ajax({
+    //         type: "post",
+    //         url: "theme",
+    //         data: { mode: "light" },
+    //         dataType: "json",
+    //     });
+    // });
 
-    $(".light-layout").on("click", function () {
-        $.ajax({
-            type: "post",
-            url: "theme",
-            data: { mode: "dark" },
-            dataType: "json",
-            success: function (response) {
-                // if (response.success == 200) {
-                //     location.reload();
-                // }
-            },
-        });
-    });
+    // $(".light-layout").on("click", function () {
+    //     $.ajax({
+    //         type: "post",
+    //         url: "theme",
+    //         data: { mode: "dark" },
+    //         dataType: "json",
+    //     });
+    // });
 
     $(".default-menu").on("click", function () {
         var ww = document.body.clientWidth;
@@ -853,4 +843,3 @@
 })(jQuery);
 
 //? Books Jquery
-

@@ -75,7 +75,17 @@
                            <input type="file" name="book_pdf" id="book_pdf" wire:model='pdf' />
                        </div>
 
-                       <img id="image-preview" src="" width="150px" height="200px" />
+                       <div style="width: 150px;height:200px;" class="d-flex justify-content-center align-items-center">
+                           <div wire:loading wire:target="image" class="text-center">
+                               Uploading...
+                           </div>
+
+                           @if ($image)
+                               <img src="{{ $image->temporaryUrl() }}" width="150px" height="200px" />
+                           @endif
+                       </div>
+
+
                    </div>
 
                    @error('book_image_path')
@@ -111,9 +121,14 @@
            <div class="pt-2 pb-4 col-md-12">
                {{-- <button type="button" class="btn btn-primary addBook">Add</button> --}}
 
-               <input type="submit" value="Add" class="btn btn-primary">
+               <button type="submit" class="btn btn-primary">
+                   Add
+               </button>
 
                <input type="button" value="Clear" class="btn btn-primary" wire:click='clear'>
+
+               <span wire:loading wire:target='add_book'
+                   class="fs-6 ps-5 text-warning">Adding&nbsp;.&nbsp;.&nbsp;.</span>
            </div>
 
            <div class="col-md-12">

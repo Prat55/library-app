@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('book_quantity');
             $table->text('book_image_path');
             $table->text('book_pdf_path')->nullable();
+            $table->boolean('featured')->default('0');
             $table->timestamp('published_at');
 
             $table->foreignIdFor(Faculty::class);

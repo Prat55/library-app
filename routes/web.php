@@ -34,7 +34,9 @@ Route::middleware(['admin'])->group(function () {
     // ?Books CRUD routes
     Route::get('/add-book', [BookController::class, 'index'])->name('add-book');
     Route::get('/manage-books', [BookController::class, 'manage_books'])->name('manage-books');
-    Route::post('/quick-view/{id}', [BookController::class, 'quick_view']);
 
-    Route::post('theme', [HomeCotroller::class, 'theme'])->name('theme');
+
+    // Route::post('theme', [HomeCotroller::class, 'theme'])->name('theme');
+
+
 });

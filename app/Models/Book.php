@@ -20,6 +20,7 @@ class Book extends Model
         'book_quantity',
         'book_description',
         'faculty_id',
+        'featured',
         'published_at',
     ];
 

@@ -63,10 +63,10 @@ class AddBook extends Component
         $validated = $this->validate();
 
         if ($this->image) {
-            $validated['book_image_path'] = $this->image->store('book_images', 'public');
+            $validated['book_image_path'] = $this->image->store('book-images', 'public');
 
             if ($this->pdf) {
-                $validated['book_pdf_path'] = $this->pdf->store('book_pdfs', 'public');
+                $validated['book_pdf_path'] = $this->pdf->store('book-pdfs', 'public');
             }
 
             $validated['book_token'] = $this->book_token = $this->book_token();

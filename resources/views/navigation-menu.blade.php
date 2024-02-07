@@ -4,9 +4,9 @@
          <a class="header-brand" href="{{ route('dashboard') }}">
              <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo" alt="Azea logo">
              <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo" alt="Azea logo">
-             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img mobile-logo"
+             <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-img mobile-logo"
                  alt="Azea logo">
-             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img darkmobile-logo"
+             <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-img darkmobile-logo"
                  alt="Azea logo">
          </a>
      </div>
@@ -57,7 +57,7 @@
                          d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z">
                      </path>
                  </svg>
-                 <span class="side-menu__label">Assign a Book</span>
+                 <span class="side-menu__label">Assign requests</span>
              </a>
          </li>
          <li class="slide">

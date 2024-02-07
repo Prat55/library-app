@@ -5,16 +5,11 @@
                 <div class="card item-card">
                     <div class="pb-0 card-body">
                         <div class="text-center zoom">
-                            <img src="{{ $book->book_image_path }}" alt="{{ $book->book_name }}"
+                            <img src="{{ asset('storage/' . $book->book_image_path) }}" alt="{{ $book->book_name }}"
                                 class="img-fluid w-100 br-7" style="height: 350px!important; width:100%!important">
                         </div>
                     </div>
                     <div class="pt-2 pb-4 text-center ps-2 pe-2">
-                        <button type="button"
-                            class="mb-2 btn btn-md bg-primary-transparent text-primary border-primary quick-view quick-view-btn"
-                            value="{{ $book->id }}" title="Quick View">
-                            <i class="fa fa-eye font-weight-bold"></i>
-                        </button>
                         @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
                             <button type="button" class="mb-2 btn btn-md btn-danger ms-2 fs-14" data-toggle="modal"
                                 data-target="#rmbook{{ $book->book_token }}" title="Remove Book">
@@ -22,25 +17,22 @@
                             </button>
                         @endif
                         @if ($book->featured == 1)
-                            <button type="button" class="mb-2 btn btn-md btn-secondary ms-2 fs-14 featured_book"
-                                title="Featured Book" value="{{ $book->id }}">
+                            <button type="button" class="mb-2 btn btn-md btn-secondary ms-2 fs-14"
+                                title="Featured Book" wire:click='rmfeaturedBook({{ $book->id }})'>
                                 <i class="fa fa-star"></i>
                             </button>
                         @else
-                            <button type="button" class="mb-2 btn btn-md btn-outline-secondary ms-2 fs-14 feature_book"
-                                title="Featured Book" value="{{ $book->id }}">
+                            <button type="button" class="mb-2 btn btn-md btn-outline-secondary ms-2 fs-14"
+                                title="Featured Book" wire:click='featuredBook({{ $book->id }})'>
                                 <i class="fa fa-star"></i>
                             </button>
                         @endif
-                        <button type="button" class="mb-2 edit-btn btn btn-md btn-outline-primary ms-2 fs-14"
-                            value="{{ $book->id }}" title="Edit Book" data-toggle="modal"
-                            data-target="#editBook{{ $book->token }}" wire:click='editBook({{ $book->id }})'>
+                        <button type="button" class="mb-2 btn btn-md btn-outline-primary ms-2 fs-14" title="Edit Book"
+                            data-toggle="modal" data-target="#editBook{{ $book->book_token }}"
+                            wire:click='editBook({{ $book->id }})'>
                             <i class="fa fa-edit"></i>
                         </button>
-                    </div>
-
-                    <div class="items-center justify-center px-5 overflow-hidden w-100 d-flex">
-                        <button type="button" class="mb-2 assign-btn btn btn-md btn-outline-primary ms-2 fs-14 w-100"
+                        <button type="button" class="mb-2 assign-btn btn btn-md btn-outline-primary ms-2 fs-14"
                             value="{{ $book->id }}" title="Assign Book">
                             <i class="fa fa-user-plus"></i>
                         </button>
@@ -69,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="editBook{{ $book->token }}" tabindex="-1" role="dialog"
+            <div class="modal fade" id="editBook{{ $book->book_token }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -95,9 +87,8 @@
                                     @enderror
 
                                     <label for="serial_number" class="mt-2">Serial Number</label>
-                                    <input type="text" class="form-control" name="serial_number"
-                                        id="serial_number" value="{{ $this->book_serial_number }}"
-                                        wire:model='book_serial_number'>
+                                    <input type="text" class="form-control" name="serial_number" id="serial_number"
+                                        value="{{ $this->book_serial_number }}" wire:model='book_serial_number'>
                                     @error('serial_number')
                                         <span class="text-danger">{{ $message }}</span><br>
                                     @enderror
