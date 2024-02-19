@@ -87,7 +87,9 @@
                         <div class="text-center col-md-12 col-sm-12">
                             Copyright &copy; 2023 <a href="javascript:void(0);">Self Financing Library</a>. Designed
                             with
-                            <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"> Pratik
+                            <span class="fa fa-heart text-danger"></span> by <a
+                                href="https://myportfolio-pratik.vercel.app" target="_blank">
+                                Pratik
                             </a> & <a href="javascript:void(0);">Milind</a> All rights reserved
                         </div>
                     </div>

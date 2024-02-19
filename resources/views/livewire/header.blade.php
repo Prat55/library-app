@@ -90,138 +90,53 @@
                                             d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z">
                                         </path>
                                     </svg>
-                                    <span class="badge bg-success side-badge">5</span>
+                                    @if ($messages->count() > 0)
+                                        <span class="badge bg-success side-badge">{{ $messages->count() }}</span>
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
                                     <div class="dropdown-header">
                                         <h6 class="mb-0">Messages</h6>
-                                        <span class="badge fs-10 bg-secondary br-7 ms-auto">New</span>
+                                        @if ($messages->count() > 0)
+                                            <span class="badge fs-10 bg-secondary br-7 ms-auto">
+                                                New
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="header-dropdown-list message-menu">
-                                        <a class="dropdown-item border-bottom" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/1.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1 fs-13">Joan
-                                                            Powell</span>
-                                                        <p class="mb-1 fs-12">All the best your
-                                                            template awesome</p>
-                                                        <div class="fs-11 text-muted">
-                                                            3 hours ago
+                                        @forelse ($messages as $message)
+                                            <a class="dropdown-item border-bottom" href="">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="">
+                                                        <span
+                                                            class="avatar avatar-md brround align-self-center cover-image">
+                                                            {{ $message->name[0] }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="mt-1 mb-1 d-flex">
+                                                        <div class="ps-3">
+                                                            <span class="mb-1 fs-13">
+                                                                {{ $message->name }}
+                                                            </span>
+                                                            <p class="mb-1 fs-12">
+                                                                {{ $message->message->getShortmessage() }}</p>
+                                                            <div class="fs-11 text-muted">
+                                                                {{ $message->created_at->diffForHumans() }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item border-bottom" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/2.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1 s-13">Gavin
-                                                            Sibson</span>
-                                                        <p class="mb-1 fs-12">Hey! there I'm
-                                                            available</p>
-                                                        <div class="fs-11 text-muted">
-                                                            5 hour ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item border-bottom" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/3.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1">Julian Kerr</span>
-                                                        <p class="mb-1 fs-12">Just created a new
-                                                            blog post</p>
-                                                        <div class="fs-11 text-muted">
-                                                            45 mintues ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item border-bottom" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/4.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1 fs-13">Cedric
-                                                            Kelly</span>
-                                                        <p class="mb-1 fs-12">Added new comment on
-                                                            your photo</p>
-                                                        <div class="fs-11 text-muted">
-                                                            2 days ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item border-bottom" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/6.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1 fs-13">Julian
-                                                            Kerr</span>
-                                                        <p class="mb-1 fs-12">Your payment invoice
-                                                            is generated</p>
-                                                        <div class="fs-11 text-muted">
-                                                            3 days ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item" href="">
-                                            <div class="d-flex align-items-center">
-                                                <div class="">
-                                                    <span
-                                                        class="avatar avatar-md brround align-self-center cover-image"
-                                                        data-image-src="{{ 'admin-assets/images/users/7.jpg' }}"></span>
-                                                </div>
-                                                <div class="mt-1 mb-1 d-flex">
-                                                    <div class="ps-3">
-                                                        <span class="mb-1 fs-13">Faith
-                                                            Dickens</span>
-                                                        <p class="mb-1 fs-12">Please check your
-                                                            mail....</p>
-                                                        <div class="fs-11 text-muted">
-                                                            4 days ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        @empty
+                                            <div class="mt-3 text-center">No recent messages found!</div>
+                                        @endforelse
                                     </div>
-                                    <div class="p-2 pt-3 text-center border-top">
-                                        <a href="" class="fs-13 btn btn-primary btn-md btn-block">See
-                                            More</a>
-                                    </div>
+                                    @if ($messages->count() > 0)
+                                        <div class="p-2 pt-3 text-center border-top">
+                                            <a href="" class="fs-13 btn btn-primary btn-md btn-block">See
+                                                More</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="dropdown header-notify d-flex">

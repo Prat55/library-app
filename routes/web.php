@@ -34,9 +34,6 @@ Route::middleware(['admin'])->group(function () {
     // ?Books CRUD routes
     Route::get('/add-book', [BookController::class, 'index'])->name('add-book');
     Route::get('/manage-books', [BookController::class, 'manage_books'])->name('manage-books');
-
-
-    // Route::post('theme', [HomeCotroller::class, 'theme'])->name('theme');
-
-
+    Route::get('/book-assign-requests', [BookController::class, 'assign_request'])->name('assign-book-request');
+    Route::get('/issued-books', [BookController::class, 'issued_books'])->name('issued-books');
 });

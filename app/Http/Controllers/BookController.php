@@ -17,20 +17,13 @@ class BookController extends Controller
         return view('backend.books.manage-books');
     }
 
-    protected function quick_view($id)
+    protected function assign_request()
     {
-        $book = Book::find($id);
+        return view('backend.books.assign-book-request');
+    }
 
-        if ($book) {
-            return response()->json([
-                'status' => 200,
-                'book' => $book
-            ]);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Book not found!'
-            ]);
-        }
+    protected function issued_books()
+    {
+        return view('backend.books.issued-books');
     }
 }
