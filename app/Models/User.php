@@ -18,6 +18,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function scopeStudents($query)
+    {
+        $query->where('role', 'user');
+    }
+
+    public function scopeTeachers($query)
+    {
+        $query->where('role', 'teacher');
+    }
     /**
      * The attributes that are mass assignable.
      *

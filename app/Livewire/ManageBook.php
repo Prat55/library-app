@@ -90,7 +90,7 @@ class ManageBook extends Component
             $book->book_pdf_path = $this->new_pdf_path ?: $this->oldPdf;
             $book->update();
 
-            return redirect()->to('/manage-books')->with('success', 'Book updated successfully');
+            return redirect()->back()->with('success', 'Book updated successfully');
         } else {
             abort(404);
         }
@@ -106,7 +106,7 @@ class ManageBook extends Component
 
             $book->delete();
 
-            return redirect()->to('/manage-books')->with("success", "Book deleted successfully");
+            return redirect()->back()->with("success", "Book deleted successfully");
         } else {
             abort(404);
         }
@@ -120,7 +120,7 @@ class ManageBook extends Component
             $book->featured = 1;
             $book->update();
 
-            return redirect()->to('/manage-books')->with('success', 'Book is now featured');
+            return redirect()->back()->with('success', 'Book is now featured');
         } else {
             abort(404);
         }
@@ -135,7 +135,7 @@ class ManageBook extends Component
             $book->featured = 0;
             $book->update();
 
-            return redirect()->to('/manage-books')->with('success', 'Book is removed from featured');
+            return redirect()->back()->with('success', 'Book is removed from featured');
         } else {
             abort(404);
         }
