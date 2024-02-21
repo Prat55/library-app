@@ -74,15 +74,9 @@ class AddBook extends Component
             Book::create($validated);
 
             $this->clear();
-            return $this->message = [
-                'status' => '200',
-                'message' => 'Book added'
-            ];
+            return redirect()->back()->with('success', 'Book added successfully.');
         } else {
-            return $this->message = [
-                'status' => '404',
-                'message' => 'Please select book image'
-            ];
+            return redirect()->back()->with('error', 'Please select a book image!');
         }
     }
 

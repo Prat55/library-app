@@ -36,4 +36,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/manage-books', [BookController::class, 'manage_books'])->name('manage-books');
     Route::get('/book-assign-requests', [BookController::class, 'assign_request'])->name('assign-book-request');
     Route::get('/issued-books', [BookController::class, 'issued_books'])->name('issued-books');
+
+    // ? Users management routes
+    Route::get('/students', [BookController::class, 'students'])->name('students');
 });

@@ -19,11 +19,11 @@ class Message extends Model
 
     public function getShortMessage()
     {
-        return Str::limit(strip_tags($this->body), 10);
+        return Str::limit(strip_tags($this->message), 10);
     }
 
     public function scopeUnseen($query)
     {
-        $query->where('status', '=', 'unseen');
+        $query->where('status', 'unseen');
     }
 }

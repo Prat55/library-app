@@ -26,4 +26,9 @@ class BookController extends Controller
     {
         return view('backend.books.issued-books');
     }
+
+    protected function students()
+    {
+        return view("backend.user-management.students");
+    }
 }

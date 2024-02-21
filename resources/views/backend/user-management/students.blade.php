@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title')
-        Add Book
+        Student Management
     @endsection
 
-    @livewire('add-book')
+    @livewire('students')
 </x-app-layout>

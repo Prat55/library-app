@@ -27,8 +27,9 @@ class Header extends Component
 
     public function render()
     {
-        return view('livewire.header',
-            ['messages' => Message::unseen()->latest()]
+        return view(
+            'livewire.header',
+            ['messages' => Message::unseen()->latest()->paginate(6)]
         );
     }
 }
