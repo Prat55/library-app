@@ -74,7 +74,7 @@
          </li>
          @if (auth()->user()->role === 'super-admin')
              <li class="slide">
-                 <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
+                 <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('faculty') }}">
                      <svg class="side-menu__icon " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                          width="24">
                          <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -115,7 +115,7 @@
              </a>
          </li>
          <li class="slide">
-             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="#0">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('teachers') }}">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>

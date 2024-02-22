@@ -24,6 +24,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    
 });
 
 Route::middleware(['admin'])->group(function () {
@@ -39,4 +41,8 @@ Route::middleware(['admin'])->group(function () {
 
     // ? Users management routes
     Route::get('/students', [BookController::class, 'students'])->name('students');
+    Route::get('/teachers', [BookController::class, 'teachers'])->name('teachers');
+
+    // ? Faculty route
+    Route::get('/faculty', [BookController::class, 'faculty'])->name('faculty');
 });

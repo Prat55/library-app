@@ -71,31 +71,32 @@
                                      <tbody>
                                          @forelse ($students as $stu)
                                              <tr class="odd">
-                                                 <td>{{ $stu->uid }}</td>
+                                                 <td>{{ $stu->id }}</td>
                                                  @php
                                                      $flName = explode(' ', $stu->name);
                                                  @endphp
                                                  <td class="sorting_1">{{ $flName[0] }}</td>
                                                  <td>{{ $flName[1] }}</td>
-                                                 <td>{{ $stu->faculty->faculty_name }}</td>
+                                                 <td>
+                                                     @if ($stu->faculty_id)
+                                                         {{ $stu->faculty->faculty_name }}
+                                                     @else
+                                                         Not Selected
+                                                     @endif
+                                                 </td>
                                                  <td>{{ $stu->email }}</td>
                                                  <td>{{ $stu->phone }}</td>
                                                  <td class="gap-2 d-flex">
                                                      @if ($stu->status == 'active')
-                                                         <form action="/ban/student/{{ $stu->id }}" method="post">
-                                                             @csrf
-                                                             <button type="submit" class="btn btn-sm btn-danger">
-                                                                 Ban
-                                                             </button>
-                                                         </form>
+                                                         <button type="button" class="btn btn-sm btn-danger"
+                                                             wire:click="ban({{ $stu->id }})">
+                                                             Ban
+                                                         </button>
                                                      @else
-                                                         <form action="/unban/student/{{ $stu->id }}"
-                                                             method="post">
-                                                             @csrf
-                                                             <button type="submit" class="btn btn-sm btn-danger">
-                                                                 Unban
-                                                             </button>
-                                                         </form>
+                                                         <button type="button" class="btn btn-sm btn-danger"
+                                                             wire:click="unban({{ $stu->id }})">
+                                                             Unban
+                                                         </button>
                                                      @endif
 
                                                      @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
@@ -166,7 +167,7 @@
                                      <div class="modal-body">
                                          <div class="col-md-12">
                                              <form wire:submit.prevent="addStudent" method="post">
-                                                 @csrf
+
                                                  <label for="name">Student Name</label>
                                                  <input type="text" name="name" id="name"
                                                      class="form-control" required value="{{ old('name') }}"
@@ -183,15 +184,15 @@
                                                      <span class="text-danger">{{ $message }}</span><br>
                                                  @enderror
 
-                                                 <label for="faculty" class="mt-2">Faculty</label>
-                                                 <select name="faculty" id="faculty" class="form-control"
+                                                 <label for="faculty_id" class="mt-2">Faculty</label>
+                                                 <select name="faculty_id" id="faculty_id" class="form-control"
                                                      wire:model.change="faculty_id">
                                                      @foreach ($faculties as $faculty)
                                                          <option value="{{ $faculty->id }}">
                                                              {{ $faculty->faculty_name }}</option>
                                                      @endforeach
                                                  </select>
-                                                 @error('faculty')
+                                                 @error('faculty_id')
                                                      <span class="text-danger">{{ $message }}</span><br>
                                                  @enderror
 
@@ -206,7 +207,7 @@
                                                  <label for="pass" class="mt-2">Password</label>
                                                  <input type="password" name="password" id="password"
                                                      class="form-control" required wire:model="pass">
-                                                 @error('password')
+                                                 @error('pass')
                                                      <span class="text-danger">{{ $message }}</span><br>
                                                  @enderror
 

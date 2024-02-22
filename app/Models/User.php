@@ -27,6 +27,11 @@ class User extends Authenticatable
     {
         $query->where('role', 'teacher');
     }
+
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -37,7 +42,10 @@ class User extends Authenticatable
         'email',
         'password',
         'faculty_id',
-        'phone'
+        'phone',
+        'role',
+        'status',
+        'mode'
     ];
 
     /**

@@ -7,9 +7,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
-class Students extends Component
+class Teachers extends Component
 {
+    use WithPagination;
+
     #[Rule('required|min:3')]
     public $name;
     #[Rule('required|unique:' . User::class)]
@@ -19,14 +22,16 @@ class Students extends Component
     public $phone;
     #[Rule('required')]
     public $faculty_id;
+    #[Rule('required')]
+    public $role = 'teacher';
 
-    public function addStudent()
+    public function addTeacher()
     {
         $validated = $this->validate();
         $validated['password'] = Hash::make($this->pass);
 
         User::create($validated);
-        return redirect()->to('/students')->with('success', 'Student has been added successfully');
+        return redirect()->to('/teachers')->with('success', 'Student has been added successfully');
     }
 
     public function removeUser(int $user_id)
@@ -34,7 +39,7 @@ class Students extends Component
         $user = User::findOrFail($user_id);
 
         $user->delete();
-        return redirect()->to('/students')->with('success', 'Student account has been removed');
+        return redirect()->to('/teachers')->with('success', 'Student account has been removed');
     }
 
     public function ban(int $user_id)
@@ -59,8 +64,8 @@ class Students extends Component
 
     public function render()
     {
-        return view('livewire.students', [
-            'students' => User::students()->latest()->paginate(10),
+        return view('livewire.teachers', [
+            'teachers' => User::teachers()->latest()->paginate(10),
             'faculties' => Faculty::private()->latest()->get()
         ]);
     }

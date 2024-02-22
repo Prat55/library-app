@@ -31,4 +31,14 @@ class BookController extends Controller
     {
         return view("backend.user-management.students");
     }
+
+    protected function teachers()
+    {
+        return view("backend.user-management.teachers");
+    }
+
+    protected function faculty()
+    {
+        return view("backend.faculty.faculty");
+    }
 }
