@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Faculty as ModelsFaculty;
+use App\Models\Faculty as MFaculty;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ class Faculty extends Component
 {
     use WithPagination;
 
-    #[Rule('required')]
+    #[Rule('required|unique:faculties')]
     public $faculty_name;
     public $f_name;
 
@@ -22,15 +22,23 @@ class Faculty extends Component
 
         $validated['f_name'] = Str::replace(' ', '_', Str::lower($this->faculty_name));
 
-        ModelsFaculty::create($validated);
+        MFaculty::create($validated);
 
         return redirect()->to('/faculty')->with('success', 'Faculty added successfully');
+    }
+
+    public function removeFaculty(int $id)
+    {
+        $faculty = MFaculty::findOrFail($id);
+        $faculty->delete();
+
+        return redirect()->to('/faculty')->with('success', 'Faculty removed successfully');
     }
 
     public function render()
     {
         return view('livewire.faculty', [
-            'faculty' => ModelsFaculty::latest()->paginate(10)
+            'faculty' => MFaculty::latest()->paginate(10)
         ]);
     }
 }

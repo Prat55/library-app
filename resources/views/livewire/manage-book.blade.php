@@ -9,7 +9,7 @@
         </ul>
 
         <div class="d-flex justify-content-center align-items-center">
-            <input type="text" class="rounded form-control" placeholder="Serach here...">
+            <input type="text" class="rounded form-control" placeholder="Serach books here...">
             <i class="cursor-pointer fa-solid fa-magnifying-glass ps-3"></i>
         </div>
     </div>

@@ -144,7 +144,7 @@ class ManageBook extends Component
     public function render()
     {
         return view('livewire.manage-book', [
-            'books' => Book::published()->latest()->paginate(8),
+            'books' => Book::latest()->paginate(8),
         ]);
     }
 }

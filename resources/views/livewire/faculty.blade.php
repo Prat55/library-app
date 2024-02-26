@@ -31,7 +31,7 @@
                                             <th class="wd-10p border-bottom-0 sorting" tabindex="0"
                                                 aria-controls="example1" rowspan="1" colspan="1"
                                                 aria-label="Salary: activate to sort column ascending"
-                                                style="width: 30px;">Uid</th>
+                                                style="width: 30px;">Fid</th>
                                             <th class="wd-15p border-bottom-0 sorting sorting_asc" tabindex="0"
                                                 aria-controls="example1" rowspan="1" colspan="1"
                                                 aria-sort="ascending"
@@ -61,25 +61,25 @@
                                             <div class="modal fade" id="rmFaculty" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <form action="/remove/faculty/{{ $fact->id }}" method="post">
-                                                        @csrf
-                                                        <div class="modal-content">
-                                                            <div class="modal-body">
-                                                                <h3 class="text-center">Are you sure?</h3>
-                                                                <span class="text-center text-danger">
-                                                                    It will removed faculty permanently. Make sure
-                                                                    while removing anything.
-                                                                </span>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-danger">
-                                                                    Delete
-                                                                </button>
-                                                            </div>
+
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <h3 class="text-center">Are you sure?</h3>
+                                                            <span class="text-center text-danger">
+                                                                It will removed faculty permanently. Make sure
+                                                                while removing anything.
+                                                            </span>
                                                         </div>
-                                                    </form>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancel</button>
+                                                            <button type="button"
+                                                                wire:click="removeFaculty({{ $fact->id }})"
+                                                                class="btn btn-danger">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @empty
@@ -118,8 +118,9 @@
                         <div class="col-md-12">
                             <form wire:submit.prevent="add_faculty" method="post">
                                 <label for="faculty_name">Faculty Name</label>
-                                <input type="text" name="faculty_name" id="faculty_name" class="form-control"
-                                    required value="{{ old('faculty_name') }}" wire:model="faculty_name">
+                                <input type="text" name="faculty_name" id="faculty_name"
+                                    class="form-control @error('faculty_name') is-invalid @enderror" required
+                                    value="{{ old('faculty_name') }}" wire:model="faculty_name" autofocus>
                                 @error('faculty_name')
                                     <span class="text-danger">{{ $message }}</span><br>
                                 @enderror
@@ -129,6 +130,11 @@
                                     aria-label="Close">
                                     Cancel
                                 </button>
+
+                                <div class="d-flex judtify-content-center align-items-center">
+                                    <span class="text-success" wire:loading
+                                        wire:target="add_faculty">Adding&nbsp;please&nbsp;wait&nbsp;.&nbsp;.&nbsp;.&nbsp;.</span>
+                                </div>
                             </form>
                         </div>
                     </div>
