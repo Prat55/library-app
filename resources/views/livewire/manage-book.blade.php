@@ -21,10 +21,23 @@
                     <div class="overflow-hidden col-xl-3 col-lg-3 alert">
                         <div class="card item-card">
                             <div class="pb-0 card-body">
-                                <div class="text-center zoom">
+                                <div class="text-center zoom position-relative" id="book-info">
                                     <img src="{{ asset('storage/' . $book->book_image_path) }}"
                                         alt="{{ $book->book_name }}" class="img-fluid w-100 br-7"
                                         style="height: 350px!important; width:100%!important">
+                                    <div id="cover-info" class="top-0 position-absolute"
+                                        style="backdrop-filter: blur(1px);height:100%;width:100%">
+                                        <h2 class="pt-2 text-center">{{ $book->book_name }}</h2>
+
+                                        <h3 class="pt-2 text-center">{{ $book->book_author }}</h3>
+
+                                        <span
+                                            class="pt-2">Faculty:&nbsp;<span>{{ $book->faculty->faculty_name }}</span>
+                                        </span><br>
+
+                                        <span>Quantity:&nbsp;{{ $book->book_quantity }}</span>
+                                        <h3>#{{ $book->book_serial_number }}</h3>
+                                    </div>
                                 </div>
                             </div>
                             <div class="pt-2 pb-4 text-center ps-2 pe-2">
@@ -47,7 +60,8 @@
                                     </button>
                                 @endif
                                 <button type="button" class="mb-2 btn btn-md btn-outline-primary ms-2 fs-14"
-                                    title="Edit Book" data-toggle="modal" data-target="#editBook{{ $book->book_token }}"
+                                    title="Edit Book" data-toggle="modal"
+                                    data-target="#editBook{{ $book->book_token }}"
                                     wire:click='editBook({{ $book->id }})'>
                                     <i class="fa fa-edit"></i>
                                 </button>

@@ -24,6 +24,11 @@ class Book extends Model
         'published_at',
     ];
 
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
+    }
+
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());

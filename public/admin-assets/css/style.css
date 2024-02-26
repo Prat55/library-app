@@ -52424,3 +52424,33 @@ Dimmer
     text-align: justify !important;
     overflow: hidden;
 }
+
+/* Cover blur info */
+#cover-info {
+    display: none;
+    cursor: pointer;
+    transition: 1s linear;
+    padding: 10px;
+}
+
+#cover-info h2 {
+    color: #000;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+#cover-info h3 {
+    color: #000;
+    font-size: large;
+    font-weight: 500;
+}
+
+#cover-info span {
+    color: #000;
+    font-size: large;
+    font-weight: 500;
+}
+
+#book-info:hover #cover-info {
+    display: block;
+}
