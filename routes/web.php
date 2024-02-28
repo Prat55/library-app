@@ -43,7 +43,4 @@ Route::middleware(['admin'])->group(function () {
 
     // ? Faculty route
     Route::get('/faculty', [BookController::class, 'faculty'])->name('faculty');
-
-    // ?Messages route
-    Route::get('/messages/inbox', [BookController::class, 'inbox'])->name('message.inbox');
 });

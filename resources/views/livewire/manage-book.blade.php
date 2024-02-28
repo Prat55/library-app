@@ -8,16 +8,19 @@
             @include('backend.message')
         </ul>
 
-        <div class="d-flex justify-content-center align-items-center">
-            <input type="text" class="rounded form-control" placeholder="Serach books here...">
-            <i class="cursor-pointer fa-solid fa-magnifying-glass ps-3"></i>
-        </div>
+        @livewire('search')
     </div>
 
     <div class="row">
         <div class="col-lg-12 col-xl-12">
+            <div class="text-gray-700">
+                @if ($search)
+                    Searching {{ $search }}
+                @endif
+            </div>
+
             <div class="row">
-                @forelse ($books as $book)
+                @forelse ($this->books as $book)
                     <div class="overflow-hidden col-xl-3 col-lg-3 alert">
                         <div class="card item-card">
                             <div class="pb-0 card-body">
@@ -189,7 +192,7 @@
                 @endforelse
             </div>
             <div class="d-flex justify-content-end">
-                {{ $books->links() }}
+                {{ $this->books->links() }}
             </div>
         </div>
 

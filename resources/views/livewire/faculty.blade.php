@@ -16,11 +16,6 @@
                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#addFaculty">Add</button>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div id="example1_filter" class="dataTables_filter"><label><input type="search"
-                                            class="form-control form-control-sm" placeholder="Search..."
-                                            aria-controls="example1"></label></div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
