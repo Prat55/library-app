@@ -2,12 +2,13 @@
  <aside class="app-sidebar">
      <div class="app-sidebar__logo">
          <a class="header-brand" href="{{ route('dashboard') }}">
-             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo" alt="Azea logo">
-             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo" alt="Azea logo">
+             <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo" alt="LMS logo">
+             <img src="{{ 'admin-assets/images/logo/lms_dark_logo.png' }}" class="header-brand-img dark-logo"
+                 alt="LMS logo">
              <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-img mobile-logo"
-                 alt="Azea logo">
+                 alt="LMS logo">
              <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-img darkmobile-logo"
-                 alt="Azea logo">
+                 alt="LMS logo">
          </a>
      </div>
 
@@ -145,7 +146,7 @@
 
          <li class="side-item side-item-category">Messages & Notifications</li>
          <li class="slide">
-             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('students') }}">
+             <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('message.inbox') }}">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                      width="24">
                      <path d="M0 0h24v24H0V0z" fill="none"></path>

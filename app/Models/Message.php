@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -15,6 +16,7 @@ class Message extends Model
         'email',
         'message',
         'status',
+        'created_at'
     ];
 
     public function getShortMessage()
@@ -25,5 +27,10 @@ class Message extends Model
     public function scopeUnseen($query)
     {
         $query->where('status', 'unseen');
+    }
+
+    public function scopeToday($query)
+    {
+        $query->where('received_at', Carbon::today());
     }
 }

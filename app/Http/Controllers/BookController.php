@@ -41,4 +41,9 @@ class BookController extends Controller
     {
         return view("backend.faculty.faculty");
     }
+
+    protected function inbox()
+    {
+        return view('backend.messages.email-inbox');
+    }
 }

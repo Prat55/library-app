@@ -14,10 +14,13 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
             $table->text('email');
             $table->text('message');
             $table->string('status')->default('unseen');
+            $table->timestamp('received_at')->nullable();
+
             $table->timestamps();
         });
     }

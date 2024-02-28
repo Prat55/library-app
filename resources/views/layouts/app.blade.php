@@ -15,7 +15,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Favicon -->
-    <link rel="icon" href="{{ 'admin-assets/images/brand/favicon.ico' }}" type="image/x-icon">
+    <link rel="icon" href="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" type="image/x-icon">
 
     <!--Bootstrap css -->
     <link id="style" href="{{ 'admin-assets/plugins/bootstrap/css/bootstrap.min.css' }}" rel="stylesheet">

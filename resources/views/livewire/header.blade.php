@@ -3,13 +3,13 @@
         <div class="d-flex">
             <a class="header-brand" href="{{ route('dashboard') }}">
                 <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img desktop-lgo"
-                    alt="Azea logo">
-                <img src="{{ 'admin-assets/images/logo/lms_logo.png' }}" class="header-brand-img dark-logo"
-                    alt="Azea logo">
+                    alt="LMS logo">
+                <img src="{{ 'admin-assets/images/logo/lms_dark_logo.png' }}" class="header-brand-img dark-logo"
+                    alt="LMS logo">
                 <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-img mobile-logo"
-                    alt="Azea logo">
+                    alt="LMS logo">
                 <img src="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" class="header-brand-darkmobile-logo"
-                    alt="Azea logo">
+                    alt="LMS logo">
             </a>
             <div class="app-sidebar__toggle d-flex" data-bs-toggle="sidebar">
                 <a class="open-toggle" href="javascript:void(0);">
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="header-dropdown-list message-menu">
                                         @forelse ($messages as $message)
-                                            <a class="dropdown-item border-bottom"
+                                            <a wire:navigate class="dropdown-item border-bottom"
                                                 href="/messages/inbox/{{ $message->id }}">
                                                 <div class="d-flex align-items-center">
                                                     <div class="">
