@@ -21,10 +21,11 @@
                                     <div id="example1_filter" class="dataTables_filter">
                                         <label class="gap-1 d-flex justify-content-end align-items-center">
                                             <input type="search" name="search" class="form-control form-control-sm"
-                                                placeholder="Search anything related to teacher here."
-                                                aria-controls="example1">
+                                                placeholder="Search anything related to student here."
+                                                aria-controls="example1" x-model='query' value="{{ $this->search }}">
 
-                                            <button type="submit" class="btn btn-sm btn-primary">
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                x-on:click="$dispatch('search', {search: query})">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </label>

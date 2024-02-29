@@ -6,6 +6,6 @@
     @livewire('dashboard1')
     <!-- End Row-1 -->
     <!-- Row-2 -->
-    @livewire('dashboard-message')
+    {{-- @livewire('dashboard-message') --}}
     <!-- End Row-2 -->
 </x-app-layout>

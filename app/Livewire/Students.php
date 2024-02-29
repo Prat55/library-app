@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\Faculty;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Students extends Component
@@ -19,6 +21,9 @@ class Students extends Component
     public $phone;
     #[Rule('required')]
     public $faculty_id;
+
+    #[Url()]
+    public $search = '';
 
     public function addStudent()
     {
@@ -57,10 +62,21 @@ class Students extends Component
         return redirect()->back()->with('success', 'Student account has been banned');
     }
 
+    #[On('search')]
+    public function updateSearch($search)
+    {
+        $this->search = $search;
+    }
+
     public function render()
     {
         return view('livewire.students', [
-            'students' => User::students()->latest()->paginate(10),
+            'students' => User::latest()
+                ->where('name', 'like', "%{$this->search}%")
+                ->orWhere('email', 'like', "%{$this->search}%")
+                ->orWhere('phone', 'like', "%{$this->search}%")
+                ->students()
+                ->paginate(10),
             'faculties' => Faculty::private()->latest()->get()
         ]);
     }

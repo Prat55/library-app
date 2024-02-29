@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\Faculty;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,6 +26,9 @@ class Teachers extends Component
     public $faculty_id;
     #[Rule('required')]
     public $role = 'teacher';
+
+    #[Url()]
+    public $search = '';
 
     public function addTeacher()
     {
@@ -62,10 +67,21 @@ class Teachers extends Component
         return redirect()->back()->with('success', 'Student account has been banned');
     }
 
+    #[On('search')]
+    public function updateSearch($search)
+    {
+        $this->search = $search;
+    }
+
     public function render()
     {
         return view('livewire.teachers', [
-            'teachers' => User::teachers()->latest()->paginate(10),
+            'teachers' => User::latest()
+                ->where('name', 'like', "%{$this->search}%")
+                ->orWhere('email', 'like', "%{$this->search}%")
+                ->orWhere('phone', 'like', "%{$this->search}%")
+                ->teachers()
+                ->paginate(10),
             'faculties' => Faculty::private()->latest()->get()
         ]);
     }
