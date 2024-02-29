@@ -15,15 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeCotroller::class, 'home']);
+
+Route::get('/contact', [BookController::class, 'contact'])->name('contact');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    Route::get('/profile', [BookController::class, 'profile'])->name('user.profile');
 });
 
 Route::middleware(['admin'])->group(function () {

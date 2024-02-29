@@ -33,4 +33,49 @@ class Book extends Model
     {
         $query->where('published_at', '<=', Carbon::now());
     }
+
+    public function scopeBsccs($query)
+    {
+        $query->where('faculty_id', '2');
+    }
+
+    public function scopeBscit($query)
+    {
+        $query->where('faculty_id', '3');
+    }
+
+    public function scopeBms($query)
+    {
+        $query->where('faculty_id', '4');
+    }
+
+    public function scopeBcom($query)
+    {
+        $query->where('faculty_id', '5');
+    }
+
+    public function scopeBaf($query)
+    {
+        $query->where('faculty_id', '6');
+    }
+
+    public function scopeBiotech($query)
+    {
+        $query->where('faculty_id', '7');
+    }
+
+    public function scopeMcom($query)
+    {
+        $query->where('faculty_id', '8');
+    }
+
+    public function scopeBbi($query)
+    {
+        $query->where('faculty_id', '9');
+    }
+
+    public function scopeFeatured($query)
+    {
+        $query->where('featured', true);
+    }
 }
