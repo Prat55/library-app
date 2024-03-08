@@ -12,10 +12,9 @@ class IssuedBook extends Component
 
     public function returnBook(int $book_id)
     {
-        $book = AssignBook::findOrFail($book_id);
-        if ($book) {
-            $book->status = "returned";
-            $book->update();
+        $req = AssignBook::findOrFail($book_id);
+        if ($req) {
+            $req->delete();
 
             return redirect()->back()->with('success', 'Book is returned by user.');
         } else {
