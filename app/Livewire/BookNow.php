@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\AssignBook;
 use App\Models\Book;
+use App\Models\RequestHistory;
 use Livewire\Component;
 
 class BookNow extends Component
@@ -26,14 +27,17 @@ class BookNow extends Component
                 $book->book_quantity = $quantity;
                 $book->update();
 
-                AssignBook::create([
+                $data = [
                     'user_id' => auth()->user()->id,
                     'book_id' => $this->bookId,
-                ]);
+                ];
+
+                AssignBook::create($data);
+                RequestHistory::create($data);
 
                 return redirect()->back()->with('success', 'Book is added successfully');
             } else {
-                return redirect()->back()->with('error', 'You have already added book!');
+                return redirect()->back()->with('error', 'Return previous book first!');
             }
         } else {
             return redirect()->route('login');

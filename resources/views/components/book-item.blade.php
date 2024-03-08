@@ -20,10 +20,7 @@
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <div class="amount-content">
-                        <div class="current">Available Books</div>
-                        <div class="amount">{{ $book->book_quantity }}</div>
-                    </div>
+                    <livewire:book-count-home :quantity="$book->book_quantity" />
                 </div>
                 <div class="bid-amount">
                     <div class="icon">
