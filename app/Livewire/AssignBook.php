@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\AssignBook as ModelsAssignBook;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,6 +16,8 @@ class AssignBook extends Component
         $book_req = ModelsAssignBook::findOrFail($req_id);
         if ($book_req) {
             $book_req->status = "accepted";
+            $book_req->start_date = Carbon::now();
+            $book_req->end_date = Carbon::now()->addDays(7);
             $book_req->update();
 
             return redirect()->back()->with('success', 'Book request is accepted.');

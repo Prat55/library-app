@@ -54,67 +54,7 @@
                 </div>
                 <div class="row justify-content-center mb-30-none">
                     @forelse ($bsccsbooks as $book)
-                        <div class="col-sm-10 col-md-6 col-lg-4">
-                            <div class="auction-item-2">
-                                <div class="auction-thumb">
-                                    <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                        @if ($book->book_pdf_path) download @endif>
-                                        <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                            alt="{{ $book->book_name }}" height="380px" width="200px">
-                                    </a>
-                                    <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                    {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                                </div>
-                                <div class="auction-content">
-                                    <h6 class="title">
-                                        <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                        <span class="text-success" style="text-transform: capitalize"> -
-                                            {{ $book->author }}</span>
-                                    </h6>
-                                    <div class="bid-area">
-                                        <div class="bid-amount">
-                                            <div class="icon">
-                                                <i class="fa fa-book"></i>
-                                            </div>
-                                            <div class="amount-content">
-                                                <div class="current">Available Books</div>
-                                                <div class="amount">{{ $book->book_quantity }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="bid-amount">
-                                            <div class="icon">
-                                                <i class="fa fa-plus"></i>
-                                            </div>
-                                            <div class="amount-content">
-                                                <div class="current">Book Now</div>
-                                                <div class="amount">7 days</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    @if ($book->book_quantity == 0)
-                                        <div class="mt-3 text-center">
-                                            <button type="button" class="btn btn-sm btn-outline-primary">
-                                                Wait untill it's available
-                                            </button>
-                                        </div>
-                                    @else
-                                        <div class="mt-3 text-center">
-                                            {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                            <form action="/booknow/{{ $book->token }}" method="post">
-                                                @csrf
-
-                                                <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                    id="bookNow">
-                                                    Book Now
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        <x-book-item :book="$book" />
                     @empty
                         <div class="col-md-12">
                             <h4 class="text-center">No Books added</h4>
@@ -148,67 +88,7 @@
             </div>
             <div class="row justify-content-center mb-30-none">
                 @forelse ($bmsbooks as $book)
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                    @if ($book->book_pdf_path) download @endif>
-                                    <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                        alt="{{ $book->book_name }}" height="380px" width="200px">
-                                </a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                    <span class="text-success" style="text-transform: capitalize"> -
-                                        {{ $book->author }}</span>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-book"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Available Books</div>
-                                            <div class="amount">{{ $book->book_quantity }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Book Now</div>
-                                            <div class="amount">7 days</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if ($book->book_quantity == 0)
-                                    <div class="mt-3 text-center">
-                                        <button type="button" class="btn btn-sm btn-outline-primary">
-                                            Wait untill it's available
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="mt-3 text-center">
-                                        {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                        <form action="/booknow/{{ $book->token }}" method="post">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                id="bookNow">
-                                                Book Now
-                                            </button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    <x-book-item :book="$book" />
                 @empty
                     <div class="col-md-12">
                         <h4 class="text-center">No Books added</h4>
@@ -255,67 +135,7 @@
             </div>
             <div class="row justify-content-center mb-30">
                 @forelse ($bscitbooks as $book)
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                    @if ($book->book_pdf_path) download @endif>
-                                    <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                        alt="{{ $book->book_name }}" height="380px" width="200px">
-                                </a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                    <span class="text-success" style="text-transform: capitalize"> -
-                                        {{ $book->author }}</span>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-book"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Available Books</div>
-                                            <div class="amount">{{ $book->book_quantity }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Book Now</div>
-                                            <div class="amount">7 days</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if ($book->book_quantity == 0)
-                                    <div class="mt-3 text-center">
-                                        <button type="button" class="btn btn-sm btn-outline-primary">
-                                            Wait untill it's available
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="mt-3 text-center">
-                                        {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                        <form action="/booknow/{{ $book->token }}" method="post">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                id="bookNow">
-                                                Book Now
-                                            </button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    <x-book-item :book="$book" />
                 @empty
                     <div class="col-md-12">
                         <h4 class="text-center">No Books added</h4>
@@ -345,9 +165,10 @@
                         <div class="col-lg-6">
                             <div class="auction-item-3">
                                 <div class="auction-thumb" style="height:320px; width:248px; ">
-                                    <a href="#0"><img src="/books/{{ $item->book_img }}" alt="popular"
+                                    <a
+                                        href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"><img
+                                            src="{{ asset('storage/' . $book->book_image_path) }}" alt="popular"
                                             height="100%" width="100%"></a>
-                                    <a href="#0" class="bid"><i class="fa fa-eye"></i></a>
                                 </div>
                                 <div class="auction-content">
                                     <h6 class="title">
@@ -363,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div class="bids-area">
-                                        Author : <span class="total-bids">{{ $item->author }}</span>
+                                        Author : <span class="total-bids">{{ $item->book_author }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -400,67 +221,7 @@
             </div>
             <div class="row justify-content-center mb-30-none">
                 @forelse ($bcombooks as $book)
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                    @if ($book->book_pdf_path) download @endif>
-                                    <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                        alt="{{ $book->book_name }}" height="380px" width="200px">
-                                </a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                    <span class="text-success" style="text-transform: capitalize"> -
-                                        {{ $book->author }}</span>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-book"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Available Books</div>
-                                            <div class="amount">{{ $book->book_quantity }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Book Now</div>
-                                            <div class="amount">7 days</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if ($book->book_quantity == 0)
-                                    <div class="mt-3 text-center">
-                                        <button type="button" class="btn btn-sm btn-outline-primary">
-                                            Wait untill it's available
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="mt-3 text-center">
-                                        {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                        <form action="/booknow/{{ $book->token }}" method="post">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                id="bookNow">
-                                                Book Now
-                                            </button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    <x-book-item :book="$book" />
                 @empty
                     <div class="col-md-12">
                         <h4 class="text-center">No Books added</h4>
@@ -493,67 +254,7 @@
             </div>
             <div class="row justify-content-center mb-30-none">
                 @forelse ($bafbooks as $book)
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                    @if ($book->book_pdf_path) download @endif>
-                                    <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                        alt="{{ $book->book_name }}" height="380px" width="200px">
-                                </a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                    <span class="text-success" style="text-transform: capitalize"> -
-                                        {{ $book->author }}</span>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-book"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Available Books</div>
-                                            <div class="amount">{{ $book->book_quantity }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Book Now</div>
-                                            <div class="amount">7 days</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if ($book->book_quantity == 0)
-                                    <div class="mt-3 text-center">
-                                        <button type="button" class="btn btn-sm btn-outline-primary">
-                                            Wait untill it's available
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="mt-3 text-center">
-                                        {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                        <form action="/booknow/{{ $book->token }}" method="post">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                id="bookNow">
-                                                Book Now
-                                            </button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    <x-book-item :book="$book" />
                 @empty
                     <div class="col-md-12">
                         <h4 class="text-center">No Books added</h4>
@@ -577,7 +278,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="title">BBI</h2>
+                        <h2 class="text-white title">BBI</h2>
                         {{-- <p>Discover rare, foreign, & ancient coins that are worth collecting</p> --}}
                     </div>
                 </div>
@@ -585,67 +286,7 @@
             </div>
             <div class="row justify-content-center mb-30-none">
                 @forelse ($bbibooks as $book)
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="@if ($book->book_pdf_path) {{ asset('storage/' . $book->book_pdf_path) }}
-                                    @else #0 @endif"
-                                    @if ($book->book_pdf_path) download @endif>
-                                    <img src="{{ asset('storage/' . $book->book_image_path) }}"
-                                        alt="{{ $book->book_name }}" height="380px" width="200px">
-                                </a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <span style="text-transform: capitalize">{{ $book->book_name }}</span>
-                                    <span class="text-success" style="text-transform: capitalize"> -
-                                        {{ $book->author }}</span>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-book"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Available Books</div>
-                                            <div class="amount">{{ $book->book_quantity }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="bid-amount">
-                                        <div class="icon">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Book Now</div>
-                                            <div class="amount">7 days</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if ($book->book_quantity == 0)
-                                    <div class="mt-3 text-center">
-                                        <button type="button" class="btn btn-sm btn-outline-primary">
-                                            Wait untill it's available
-                                        </button>
-                                    </div>
-                                @else
-                                    <div class="mt-3 text-center">
-                                        {{-- <a href="#0" class="custom-button">Book Now</a> --}}
-                                        <form action="/booknow/{{ $book->token }}" method="post">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
-                                                id="bookNow">
-                                                Book Now
-                                            </button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    <x-book-item :book="$book" />
                 @empty
                     <div class="col-md-12">
                         <h4 class="text-center">No Books added</h4>

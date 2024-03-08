@@ -90,13 +90,13 @@
             <div class="container">
                 <div class="header-wrapper">
                     <div class="logo">
-                        <a wire:navigate href="/">
+                        <a href="/">
                             <img src="{{ asset('user-assets/images/logo/lms_logo.png') }}" alt="logo">
                         </a>
                     </div>
                     <ul class="ml-auto menu">
                         <li>
-                            <a wire:navigate href="/">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
                             <a href="/#books">books</a>
@@ -115,13 +115,16 @@
                             @endif
                         @else
                             <li>
-                                <a wire:navigate href="{{ route('login') }}">Login</a>
+                                <a href="{{ route('login') }}">Login</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('register') }}">Register</a>
                             </li>
                         @endif
 
 
                         <li>
-                            <a wire:navigate href="{{ route('contact') }}">Contact Us</a>
+                            <a href="{{ route('contact') }}">Contact Us</a>
                         </li>
                     </ul>
                     <form class="search-form">
@@ -292,8 +295,8 @@
                 <div class="copyright-area">
                     <div class="footer-bottom-wrapper">
                         <div class="justify-content-around logo">
-                            <a href="/"><img src="{{ asset('user-assets/images/logo/lms_logo.png') }}"
-                                    width="150px" height="80px" alt="logo"></a>
+                            <a href="/" class="footer-logo"><img src="{{ asset('user-assets/images/logo/lms_logo.png') }}"
+                                    alt="logo"></a>
                         </div>
 
                         <div class="copyright">

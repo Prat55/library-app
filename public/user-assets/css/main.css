@@ -9058,3 +9058,9 @@ button.custom-button {
 .footer-area {
     justify-content: space-around;
 }
+
+.footer-logo img {
+    width: 150px;
+    height: 50px;
+
+}
