@@ -87,7 +87,7 @@
                  </a>
              </li>
          @endif
-         <li class="side-item side-item-category">Profile & Account Information</li>
+         {{-- <li class="side-item side-item-category">Profile & Account Information</li>
          <li class="slide">
              <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('profile.show') }}">
                  <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
@@ -101,7 +101,7 @@
                  </svg>
                  <span class="side-menu__label">Profile</span>
              </a>
-         </li>
+         </li> --}}
          <li class="side-item side-item-category">User Management</li>
          <li class="slide">
              <a wire:navigate class="side-menu__item" data-bs-toggle="slide" href="{{ route('students') }}">
