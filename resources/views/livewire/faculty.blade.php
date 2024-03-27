@@ -88,8 +88,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-end align-items-center">
                                     {{ $faculty->links() }}
                                 </div>
                             </div>

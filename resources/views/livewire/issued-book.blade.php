@@ -31,7 +31,11 @@
                                      <span>Email:</span>
                                      <span style="font-size: 0.9rem">&nbsp;{{ $book->user->email }}</span><br>
                                      <span>Name:</span>
-                                     <span>&nbsp;{{ $book->user->name }}</span>
+                                     <span>&nbsp;{{ $book->user->name }}</span><br>
+                                     <span>Assign At:</span>
+
+                                     <span>&nbsp;</span>
+
                                  </div>
                              </div>
                              <div class="pt-2 pb-4 text-center justify-content-around ps-2 pe-2 d-flex">

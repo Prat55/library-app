@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\AssignBook;
+use App\Models\Book;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,7 +14,11 @@ class IssuedBook extends Component
     public function returnBook(int $book_id)
     {
         $req = AssignBook::findOrFail($book_id);
+        $book = Book::findOrFail($req->book_id);
         if ($req) {
+            $quantity = $book->book_quantity + 1;
+            $book->book_quantity = $quantity;
+            $book->update();
             $req->delete();
 
             return redirect()->back()->with('success', 'Book is returned by user.');

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
+    <title>{{ config('app.name', 'Library') }} | @yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('user-assets/css/bootstrap.min.css') }}">
@@ -295,8 +295,8 @@
                 <div class="copyright-area">
                     <div class="footer-bottom-wrapper">
                         <div class="justify-content-around logo">
-                            <a href="/" class="footer-logo"><img src="{{ asset('user-assets/images/logo/lms_logo.png') }}"
-                                    alt="logo"></a>
+                            <a href="/" class="footer-logo"><img
+                                    src="{{ asset('user-assets/images/logo/lms_logo.png') }}" alt="logo"></a>
                         </div>
 
                         <div class="copyright">

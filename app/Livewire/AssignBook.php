@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\AssignBook as ModelsAssignBook;
+use App\Models\Book;
 use App\Models\RequestHistory;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -40,9 +41,14 @@ class AssignBook extends Component
         $book_req = ModelsAssignBook::findOrFail($req_id);
         $book_req2 = RequestHistory::findOrFail($req_id);
 
+        $book = Book::findOrFail($book_req->book_id);
+
         if ($book_req) {
+            $quantity = $book->book_quantity + 1;
+            $book->book_quantity = $quantity;
             $book_req->status = "rejected";
             $book_req2->status = "rejected";
+            $book->update();
             $book_req->update();
             $book_req2->update();
 
