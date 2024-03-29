@@ -46,10 +46,9 @@ class AssignBook extends Component
         if ($book_req) {
             $quantity = $book->book_quantity + 1;
             $book->book_quantity = $quantity;
-            $book_req->status = "rejected";
             $book_req2->status = "rejected";
             $book->update();
-            $book_req->update();
+            $book_req->delete();
             $book_req2->update();
 
             return redirect()->back()->with('success', 'Book request is rejected.');

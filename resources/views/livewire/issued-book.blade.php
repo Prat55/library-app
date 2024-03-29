@@ -32,8 +32,7 @@
                                      <span style="font-size: 0.9rem">&nbsp;{{ $book->user->email }}</span><br>
                                      <span>Name:</span>
                                      <span>&nbsp;{{ $book->user->name }}</span><br>
-                                     <span>Assign At:</span>
-
+                                     <span>Return In:</span>
                                      <span>&nbsp;</span>
 
                                  </div>

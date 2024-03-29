@@ -25,10 +25,10 @@
                                     <h5>
                                         {{ $req_book->book->book_name }} book is requested by
                                     </h5>
-                                    <span>Email:</span>
-                                    <span style="font-size: 0.9rem">&nbsp;{{ $req_book->user->email }}</span><br>
                                     <span>Name:</span>
-                                    <span>&nbsp;{{ $req_book->user->name }}</span>
+                                    <span>&nbsp;{{ $req_book->user->name }}</span><br>
+                                    <span>Email:</span>
+                                    <span style="font-size: 0.9rem">&nbsp;{{ $req_book->user->email }}</span>
                                 </div>
                             </div>
                             <div class="pt-2 pb-4 text-center justify-content-around ps-2 pe-2 d-flex">
