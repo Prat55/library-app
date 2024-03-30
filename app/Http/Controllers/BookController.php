@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignBook;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -40,5 +41,17 @@ class BookController extends Controller
     protected function faculty()
     {
         return view("backend.faculty.faculty");
+    }
+
+    protected function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    protected function profile()
+    {
+        return view('frontend.profile', [
+            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->where('status', 'accepted')->first()
+        ]);
     }
 }

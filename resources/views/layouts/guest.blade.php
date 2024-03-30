@@ -44,7 +44,7 @@
                 <div class="header-top-wrapper">
                     <ul class="customer-support">
                         <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span
+                            <a href="{{ route('contact') }}" class="mr-3"><i class="fas fa-phone-alt"></i><span
                                     class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
                         </li>
                     </ul>
@@ -55,11 +55,11 @@
                         <li>
                             @auth
                                 @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
-                                    <a wire:navigate href="{{ route('profile.show') }}" class="user-button">
+                                    <a href="{{ route('profile.show') }}" class="user-button">
                                         <i class="flaticon-user"></i>
                                     </a>
                                 @else
-                                    <a wire:navigate href="{{ route('user.profile') }}" class="user-button">
+                                    <a href="{{ route('user.profile') }}" class="user-button">
                                         @if (auth()->check() && auth()->user()->profile_img)
                                             <div style="height:40px;width:40px;border-radius: 50%;overflow:hidden">
                                                 <img src="/profileImg/{{ auth()->user()->profile_img }}" alt="profileImg"
@@ -71,7 +71,7 @@
                                     </a>
                                 @endif
                             @else
-                                <a wire:navigate href="{{ route('user.profile') }}" class="user-button"
+                                <a href="{{ route('user.profile') }}" class="user-button"
                                     style="height: 40px;width:40px;overflow:hidden">
                                     @if (auth()->check() && auth()->user()->profile_img)
                                         <img src="/profileImg/{{ auth()->user()->profile_img }}" alt="profileImg"
@@ -110,7 +110,7 @@
                             </li>
                             @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
                                 <li>
-                                    <a wire:navigate href="{{ route('dashboard') }}">Dashboard</a>
+                                    <a href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
                             @endif
                         @else

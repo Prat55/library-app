@@ -1,4 +1,8 @@
 <x-guest-layout>
+
+    @section('title')
+        Customer Support
+    @endsection
     <!--============= Hero Section Starts Here =============-->
     <div class="hero-section">
         <div class="container">
