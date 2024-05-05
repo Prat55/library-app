@@ -90,16 +90,29 @@
                                 </div>
                             </div>
                         @endif
+
                         <div class="col-12">
                             <div class="dash-pro-item mb-30 dashboard-widget">
                                 <div class="header">
-                                    <h4 class="title">Issued Book</h4>
+                                    <h4 class="title">Issued/Requested Book</h4>
                                 </div>
                                 <ul class="dash-pro-body">
 
+                                    <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
+                                        alt="{{ $issuedBook->book->book_author }}" height="380px" width="220px">
+                                    <p class="">Book Title:</span>
+                                        {{ $issuedBook->book->book_name }}</p>
+                                    @if ($issuedBook->start_date && $issuedBook->end_date)
+                                        <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
+                                        <p>Return Date: <span>{{ $issuedBook->end_date }}</span></p>
+                                    @endif
+                                    @if ($issuedBook->status === 'request')
+                                        <span class="text-red-500">Collect your book from library</span>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -51,7 +51,7 @@ class BookController extends Controller
     protected function profile()
     {
         return view('frontend.profile', [
-            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->where('status', 'accepted')->first()
+            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->first()
         ]);
     }
 }

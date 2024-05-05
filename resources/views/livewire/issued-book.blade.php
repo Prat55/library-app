@@ -6,10 +6,10 @@
          <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">
              @include('backend.message')
          </ul>
-         <div class="d-flex justify-content-center align-items-center">
+         {{-- <div class="d-flex justify-content-center align-items-center">
              <input type="text" class="rounded form-control" placeholder="Serach here...">
              <i class="cursor-pointer fa-solid fa-magnifying-glass ps-3"></i>
-         </div>
+         </div> --}}
      </div>
 
      <div class="row">
@@ -32,17 +32,24 @@
                                      <span style="font-size: 0.9rem">&nbsp;{{ $book->user->email }}</span><br>
                                      <span>Name:</span>
                                      <span>&nbsp;{{ $book->user->name }}</span><br>
-                                     <span>Return In:</span>
-                                     <span>&nbsp;</span>
 
+                                     <span>Return In:</span>
+                                     <span>&nbsp;{{ $book->end_date }} @if ($book->end_date == $today)
+                                             <span class="text-center text-red-500">
+                                                 Today is the last day to return
+                                             </span>
+                                         @elseif ($book->end_date < $today)
+                                             <span class="text-center text-red-500">Overdue</span>
+                                         @endif
+                                     </span>
                                  </div>
                              </div>
                              <div class="pt-2 pb-4 text-center justify-content-around ps-2 pe-2 d-flex">
                                  <button type="button"
                                      class="mb-2 btn btn-md bg-success-transparent text-primary border-primary"
                                      title="Return the book" wire:click="returnBook({{ $book->id }})">
-                                     <i class="fa fa-rotate-left font-weight-bold"></i>&nbsp;<span>Return the
-                                         book</span>
+                                     <i class="fa fa-rotate-left font-weight-bold"></i>&nbsp;
+                                     <span>Return the book</span>
                                  </button>
                              </div>
                          </div>

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\AssignBook;
 use App\Models\Book;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,8 +30,8 @@ class IssuedBook extends Component
 
     public function render()
     {
-        return view('livewire.issued-book', [
-            'issuedBooks' => AssignBook::accepted()->latest()->paginate(8)
-        ]);
+        $today = Carbon::now(); 
+        $issuedBooks = AssignBook::accepted()->latest()->paginate(8);
+        return view('livewire.issued-book', compact('issuedBooks', 'today'));
     }
 }
