@@ -45,4 +45,8 @@ Route::middleware(['admin'])->group(function () {
 
     // ? Faculty route
     Route::get('/faculty', [BookController::class, 'faculty'])->name('faculty');
+
+    // ? Edit and Update book routes
+    Route::get('/book/edit/{token}', [BookController::class, 'edit_book']);
+    Route::put('/book/update/{token}', [BookController::class, 'update_book']);
 });

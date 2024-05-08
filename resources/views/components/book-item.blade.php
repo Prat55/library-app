@@ -4,16 +4,16 @@
             <a href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"
                 @if ($book->book_pdf_path) download @endif>
                 <img src="{{ asset('storage/' . $book->book_image_path) }}" alt="{{ $book->book_name }}" height="380px"
-                    width="200px">
+                    width="200px" class="overflow-hidden">
             </a>
-            <a href="#0" class="rating"><i class="far fa-star"></i></a>
+            {{-- <a href="#0" class="rating"><i class="far fa-star"></i></a> --}}
             {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
         </div>
         <div class="auction-content">
             <h6 class="title">
                 <span style="text-transform: capitalize">{{ $book->book_name }}</span>
                 <span class="text-success" style="text-transform: capitalize"> -
-                    {{ $book->author }}</span>
+                    {{ $book->book_author }}</span>
             </h6>
             <div class="bid-area">
                 <div class="bid-amount">

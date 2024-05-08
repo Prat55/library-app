@@ -161,7 +161,7 @@
                                         </span>
                                         <div class="dropdown-divider"></div>
                                     </div>
-                                    <a class="dropdown-item d-flex" href="">
+                                    {{-- <a class="dropdown-item d-flex" href="">
                                         <svg class="header-icon me-2" xmlns="http://www.w3.org/2000/svg"
                                             height="24" viewbox="0 0 24 24" width="24">
                                             <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -170,7 +170,7 @@
                                             </path>
                                         </svg>
                                         <div class="fs-13">Profile</div>
-                                    </a>
+                                    </a> --}}
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item d-flex">

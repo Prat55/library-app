@@ -62,16 +62,14 @@
                                         <i class="fa fa-star"></i>
                                     </button>
                                 @endif
-                                <button type="button" class="mb-2 btn btn-md btn-outline-primary ms-2 fs-14"
-                                    title="Edit Book" data-toggle="modal"
-                                    data-target="#editBook{{ $book->book_token }}"
-                                    wire:click='editBook({{ $book->id }})'>
+                                <a wire:navigate href="/book/edit/{{ $book->book_token }}" type="button"
+                                    class="mb-2 btn btn-md btn-outline-primary ms-2 fs-14" title="Edit Book">
                                     <i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" class="mb-2 assign-btn btn btn-md btn-outline-primary ms-2 fs-14"
+                                </a>
+                                {{-- <button type="button" class="mb-2 assign-btn btn btn-md btn-outline-primary ms-2 fs-14"
                                     value="{{ $book->id }}" title="Assign Book">
                                     <i class="fa fa-user-plus"></i>
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     </div>
