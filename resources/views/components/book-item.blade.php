@@ -1,12 +1,15 @@
 <div class="col-sm-10 col-md-6 col-lg-4">
     <div class="auction-item-2">
         <div class="auction-thumb">
-            <a href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"
-                @if ($book->book_pdf_path) download @endif>
+            <a>
                 <img src="{{ asset('storage/' . $book->book_image_path) }}" alt="{{ $book->book_name }}" height="380px"
                     width="200px" class="overflow-hidden">
             </a>
-            {{-- <a href="#0" class="rating"><i class="far fa-star"></i></a> --}}
+            @if ($book->book_pdf_path)
+                <a href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"
+                    @if ($book->book_pdf_path) download @endif class="rating"><i
+                        class="fa fa-file-pdf fa-lg"></i></a>
+            @endif
             {{-- <a href="#0" class="bid"><i class="flaticon-auction"></i></a> --}}
         </div>
         <div class="auction-content">

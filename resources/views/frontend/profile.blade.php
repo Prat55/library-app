@@ -1,6 +1,6 @@
 <x-guest-layout>
     @section('title')
-        Personal Information
+        Profile
     @endsection
 
     <!--============= Hero Section Starts Here =============-->
@@ -23,7 +23,6 @@
     </div>
     <!--============= Hero Section Ends Here =============-->
 
-
     <!--============= Dashboard Section Starts Here =============-->
     <section class="dashboard-section padding-bottom mt--240 mt-lg--440 pos-rel">
         <div class="container">
@@ -33,13 +32,16 @@
                         <div class="user">
                             <div class="thumb-area">
                                 <div class="thumb" style="height: 100px;width:100px;overflow:hidden">
-                                    @if (auth()->user()->profile_img)
-                                        <img id="profile_img" src="/profileImg/{{ auth()->user()->profile_img }}"
-                                            alt="user">
+                                    @if (auth()->user()->profile_photo_path)
+                                        <img id="profile_img"
+                                            src="/profile-img/{{ auth()->user()->profile_photo_path }}"
+                                            alt="{{ auth()->user()->name }}">
                                     @else
                                         <img id="profile_img" src="{{ asset('user-assets/images/dashboard/user.png') }}"
                                             alt="user">
                                     @endif
+                                    <input type="hidden" name="userid" id="userId"
+                                        value="{{ auth()->user()->id }}">
                                 </div>
                                 <label for="profile-pic" class="profile-pic-edit"><i
                                         class="flaticon-pencil"></i></label>
@@ -97,17 +99,25 @@
                                     <h4 class="title">Issued/Requested Book</h4>
                                 </div>
                                 <ul class="dash-pro-body">
+                                    @if ($issuedBook)
+                                        <a href="{{ $issuedBook->book_pdf_path ? asset('storage/' . $issuedBook->book_pdf_path) : '#0' }}"
+                                            @if ($issuedBook->book_pdf_path) download @endif>
 
-                                    <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
-                                        alt="{{ $issuedBook->book->book_author }}" height="380px" width="220px">
-                                    <p class="">Book Title:</span>
-                                        {{ $issuedBook->book->book_name }}</p>
-                                    @if ($issuedBook->start_date && $issuedBook->end_date)
-                                        <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
-                                        <p>Return Date: <span>{{ $issuedBook->end_date }}</span></p>
-                                    @endif
-                                    @if ($issuedBook->status === 'request')
-                                        <span class="text-red-500">Collect your book from library</span>
+                                            <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
+                                                alt="{{ $issuedBook->book->book_author }}" height="380px"
+                                                width="220px">
+                                        </a>
+                                        <p class="">Book Title:</span>
+                                            {{ $issuedBook->book->book_name }}</p>
+                                        @if ($issuedBook->start_date && $issuedBook->end_date)
+                                            <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
+                                            <p>Return Date: <span>{{ $issuedBook->end_date }}</span></p>
+                                        @endif
+                                        @if ($issuedBook->status === 'request')
+                                            <span class="text-red-500">Collect your book from library</span>
+                                        @endif
+                                    @else
+                                        <span>No book added!</span>
                                     @endif
                                 </ul>
                             </div>
@@ -118,5 +128,6 @@
             </div>
         </div>
     </section>
+
     <!--============= Dashboard Section Ends Here =============-->
 </x-guest-layout>

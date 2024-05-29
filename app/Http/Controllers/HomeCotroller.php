@@ -18,10 +18,10 @@ class HomeCotroller extends Controller
                 'bafbooks' => Book::latest()->baf()->published()->paginate(3),
                 'bmsbooks' => Book::latest()->bms()->published()->paginate(3),
                 'bscitbooks' => Book::latest()->bscit()->published()->paginate(3),
-                'featured' => Book::latest()->featured()->published()->paginate(5),
+                'featuredBooks' => Book::latest()->featured()->published()->paginate(5),
                 'bcombooks' => Book::latest()->bcom()->published()->paginate(3),
                 'bbibooks' => Book::latest()->bbi()->published()->paginate(3),
-                
+
             ]
         );
     }

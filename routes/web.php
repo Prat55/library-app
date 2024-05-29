@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeCotroller;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/profile', [BookController::class, 'profile'])->name('user.profile');
+    Route::post('/change-profile/{uid}', [ProfileController::class, 'changeProfilePhoto']);
 });
 
 Route::middleware(['admin'])->group(function () {

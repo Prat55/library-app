@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Book::class);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
+            $table->integer('re_assign_count')->default('0')->nullable();
             $table->string('status')->default('request');
 
             $table->timestamps();

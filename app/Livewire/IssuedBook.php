@@ -28,9 +28,24 @@ class IssuedBook extends Component
         }
     }
 
+    public function reAssignBook(int $book_id)
+    {
+        $assignBook = AssignBook::findOrFail($book_id);
+        if ($assignBook) {
+            $assignBook->start_date = Carbon::now();
+            $assignBook->end_date = Carbon::now()->addDays(7);
+            $assignCount = $assignBook->re_assign_count + 1;
+            $assignBook->re_assign_count = $assignCount;
+
+            return redirect()->back()->with('success', 'Book re assignment successfully');
+        } else {
+            return redirect()->back()->with('error', 'Book not found!');
+        }
+    }
+
     public function render()
     {
-        $today = Carbon::now(); 
+        $today = Carbon::now();
         $issuedBooks = AssignBook::accepted()->latest()->paginate(8);
         return view('livewire.issued-book', compact('issuedBooks', 'today'));
     }

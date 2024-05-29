@@ -47,7 +47,7 @@
                             <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                         </div>
                         <div class="title-area">
-                            <h2 class="title" style="color: #fff">Bsc CS</h2>
+                            <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">Bsc CS</h2>
                         </div>
                     </div>
                     {{-- <a href="#0" class="normal-button">View All</a> --}}
@@ -80,7 +80,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="title">BMS</h2>
+                        <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">BMS</h2>
                         {{-- <p>Online Book Shows where you can bid now and save money</p> --}}
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="title">Bsc IT</h2>
+                        <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">Bsc IT</h2>
                     </div>
                 </div>
                 {{-- <a href="#0" class="normal-button">View All</a> --}}
@@ -156,23 +156,29 @@
         <div class="container">
             <div class="section-header cl-white">
                 <span class="cate">You will see some featured books here</span>
-                <h2 class="title">Featured Books</h2>
+                <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">Featured Books</h2>
                 {{-- <p>Bid and win great deals,Our auction process is simple, efficient, and transparent.</p> --}}
             </div>
             <div class="popular-auction-wrapper">
                 <div class="row justify-content-center mb-30-none">
-                    @forelse ($featured as $item)
+                    @forelse ($featuredBooks as $book)
                         <div class="col-lg-6">
                             <div class="auction-item-3">
                                 <div class="auction-thumb" style="height:320px; width:248px; ">
-                                    <a
-                                        href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"><img
-                                            src="{{ asset('storage/' . $book->book_image_path) }}" alt="popular"
-                                            height="100%" width="100%"></a>
+                                    <a>
+                                        <img src="{{ asset('storage/' . $book->book_image_path) }}"
+                                            alt="{{ $book->book_name }}" height="100%" width="100%">
+
+                                        @if ($book->book_pdf_path)
+                                            <a href="{{ $book->book_pdf_path ? asset('storage/' . $book->book_pdf_path) : '#0' }}"
+                                                @if ($book->book_pdf_path) download @endif class="rating"><i
+                                                    class="fa fa-file-pdf fa-lg"></i></a>
+                                        @endif
+                                    </a>
                                 </div>
                                 <div class="auction-content">
                                     <h6 class="title">
-                                        <a href="#0">{{ $item->book_name }}</a>
+                                        <a href="#0">{{ $book->book_name }}</a>
                                     </h6>
                                     <div class="bid-amount">
                                         <div class="icon">
@@ -180,11 +186,11 @@
                                         </div>
                                         <div class="amount-content">
                                             <div class="current">Available</div>
-                                            <div class="amount">{{ $item->book_quantity }}</div>
+                                            <div class="amount">{{ $book->book_quantity }}</div>
                                         </div>
                                     </div>
                                     <div class="bids-area">
-                                        Author : <span class="total-bids">{{ $item->book_author }}</span>
+                                        Author : <span class="total-bids">{{ $book->book_author }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +219,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="title" style="color: #fff">B Com</h2>
+                        <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">B Com</h2>
                         {{-- <p>Discover rare, foreign, & ancient coins that are worth collecting</p> --}}
                     </div>
                 </div>
@@ -246,7 +252,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="title">BAF</h2>
+                        <h2 class="title" style="color: #f6659c;font-size:2rem;font-weight:700">BAF</h2>
                         {{-- <p>Discover rare, foreign, & ancient coins that are worth collecting</p> --}}
                     </div>
                 </div>
@@ -278,7 +284,7 @@
                         <i class="fa fa-book" style="font-size: 3rem; color: #f6659c"></i>
                     </div>
                     <div class="title-area">
-                        <h2 class="text-white title">BBI</h2>
+                        <h2 class="text-white title" style="color: #f6659c;font-size:2rem;font-weight:700">BBI</h2>
                         {{-- <p>Discover rare, foreign, & ancient coins that are worth collecting</p> --}}
                     </div>
                 </div>

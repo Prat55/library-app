@@ -60,10 +60,10 @@
                                     </a>
                                 @else
                                     <a href="{{ route('user.profile') }}" class="user-button">
-                                        @if (auth()->check() && auth()->user()->profile_img)
+                                        @if (auth()->check() && auth()->user()->profile_photo_path)
                                             <div style="height:40px;width:40px;border-radius: 50%;overflow:hidden">
-                                                <img src="/profileImg/{{ auth()->user()->profile_img }}" alt="profileImg"
-                                                    style="width:100%">
+                                                <img src="/profile-img/{{ auth()->user()->profile_photo_path }}"
+                                                    alt="{{ auth()->user()->name }}" style="width:100%">
                                             </div>
                                         @else
                                             <i class="flaticon-user"></i>
@@ -73,9 +73,9 @@
                             @else
                                 <a href="{{ route('user.profile') }}" class="user-button"
                                     style="height: 40px;width:40px;overflow:hidden">
-                                    @if (auth()->check() && auth()->user()->profile_img)
-                                        <img src="/profileImg/{{ auth()->user()->profile_img }}" alt="profileImg"
-                                            style="border-radius: 50% ">
+                                    @if (auth()->check() && auth()->user()->profile_photo_path)
+                                        <img src="/profile-img/{{ auth()->user()->profile_photo_path }}"
+                                            alt="{{ auth()->user()->name }}" style="border-radius: 50% ">
                                     @else
                                         <i class="flaticon-user"></i>
                                     @endif
@@ -127,13 +127,7 @@
                             <a href="{{ route('contact') }}">Contact Us</a>
                         </li>
                     </ul>
-                    <form class="search-form">
-                        <input type="text" placeholder="Search for book, author....">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
-                    <div class="search-bar d-md-none">
-                        <a href="#0"><i class="fas fa-search"></i></a>
-                    </div>
+
                     <div class="header-bar d-lg-none">
                         <span></span>
                         <span></span>
@@ -194,7 +188,7 @@
                         </div>
                         <form class="subscribe-form">
                             <input type="text" placeholder="Enter Your Email" name="email">
-                            <button type="submit" class="custom-button">Subscribe</button>
+                            <button type="submit" class="custom-button" style="color: #000">Subscribe</button>
                         </form>
                     </div>
                 </div>
@@ -339,6 +333,7 @@
     <script src="{{ asset('user-assets/js/yscountdown.min.js') }}"></script>
     <script src="{{ asset('user-assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('user-assets/js/main.js') }}"></script>
+    <script src="{{ asset('user-assets/js/profile.js') }}"></script>
 
     @livewireScripts
 </body>
