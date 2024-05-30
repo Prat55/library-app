@@ -44,8 +44,6 @@ class BookNow extends Component
         }
     }
 
-
-
     public function render()
     {
         return view('livewire.book-now');

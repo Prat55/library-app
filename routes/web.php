@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeCotroller::class, 'home']);
 
 Route::get('/contact', [BookController::class, 'contact'])->name('contact');
+Route::get('/books', [BookController::class, 'books'])->name('books');
 
 Route::middleware([
     'auth:sanctum',

@@ -99,7 +99,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/#books">books</a>
+                            <a href="{{ route('books') }}">books</a>
                         </li>
                         @if (auth()->check())
                             <li>

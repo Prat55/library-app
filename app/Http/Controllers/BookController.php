@@ -83,4 +83,9 @@ class BookController extends Controller
 
         return redirect()->route('manage-books')->with('success', 'Book updated successfully');
     }
+
+    protected function books()
+    {
+        return view('frontend.books');
+    }
 }
