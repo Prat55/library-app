@@ -3,6 +3,5 @@
         Manage Books
     @endsection
 
-
     @livewire('manage-book')
 </x-app-layout>

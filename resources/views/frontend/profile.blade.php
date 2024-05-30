@@ -100,12 +100,18 @@
                                 </div>
                                 <ul class="dash-pro-body">
                                     @if ($issuedBook)
-                                        <a href="{{ $issuedBook->book_pdf_path ? asset('storage/' . $issuedBook->book_pdf_path) : '#0' }}"
-                                            @if ($issuedBook->book_pdf_path) download @endif>
-
+                                        <a class="p-relative">
                                             <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
                                                 alt="{{ $issuedBook->book->book_author }}" height="380px"
                                                 width="220px">
+
+                                            <div>
+                                                @if ($issuedBook->book->book_pdf_path)
+                                                    <a href="{{ $issuedBook->book->book_pdf_path ? asset('storage/' . $issuedBook->book->book_pdf_path) : '#0' }}"
+                                                        @if ($issuedBook->book->book_pdf_path) download @endif
+                                                        class="rating"><i class="fa fa-file-pdf fa-lg"></i></a>
+                                                @endif
+                                            </div>
                                         </a>
                                         <p class="">Book Title:</span>
                                             {{ $issuedBook->book->book_name }}</p>
