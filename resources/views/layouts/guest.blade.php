@@ -228,16 +228,7 @@
                                     <a href="{{ route('user.profile') }}">Your Account</a>
                                 </li>
                                 <li>
-                                    <a href="#0">Safe and Secure</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Shipping Information</a>
-                                </li>
-                                <li>
-                                    <a href="#contact">Contact Us</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Help & FAQ</a>
+                                    <a href="{{ route('contact') }}">Contact Us</a>
                                 </li>
                             </ul>
                         </div>

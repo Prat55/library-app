@@ -88,4 +88,9 @@ class BookController extends Controller
     {
         return view('frontend.books');
     }
+
+    protected function issued_history()
+    {
+        return view('backend.books.requests-history');
+    }
 }

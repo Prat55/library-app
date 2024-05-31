@@ -52,4 +52,7 @@ Route::middleware(['admin'])->group(function () {
     // ? Edit and Update book routes
     Route::get('/book/edit/{token}', [BookController::class, 'edit_book']);
     Route::put('/book/update/{token}', [BookController::class, 'update_book']);
+
+    // ? Issued book history routes
+    Route::get('/issued-books/history', [BookController::class, 'issued_history'])->name('issued-history');
 });
