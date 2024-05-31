@@ -45,11 +45,7 @@
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-sort="ascending"
                                                  aria-label="First name: activate to sort column descending"
-                                                 style="width: 116.55px;">First name</th>
-                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0"
-                                                 aria-controls="example1" rowspan="1" colspan="1"
-                                                 aria-label="Last name: activate to sort column ascending"
-                                                 style="width: 115.387px;">Last name</th>
+                                                 style="width: 116.55px;">Name</th>
                                              <th class="wd-20p border-bottom-0 sorting" tabindex="0"
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-label="Position: activate to sort column ascending"
@@ -73,11 +69,7 @@
                                          @forelse ($students as $stu)
                                              <tr class="odd">
                                                  <td>{{ $stu->id }}</td>
-                                                 @php
-                                                     $flName = explode(' ', $stu->name);
-                                                 @endphp
-                                                 <td class="sorting_1">{{ $flName[0] }}</td>
-                                                 <td>{{ $flName[1] }}</td>
+                                                 <td class="sorting_1">{{ $stu->name }}</td>
                                                  <td>
                                                      @if ($stu->faculty_id)
                                                          {{ $stu->faculty->faculty_name }}
