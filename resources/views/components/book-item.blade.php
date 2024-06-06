@@ -1,4 +1,4 @@
-<div class="col-sm-10 col-md-6 col-lg-4">
+<div class="col-sm-10 col-md-6 col-lg-4" id="{{ $book->faculty->f_name }}">
     <div class="auction-item-2">
         <div class="auction-thumb">
             <a>

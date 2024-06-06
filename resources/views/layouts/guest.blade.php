@@ -201,21 +201,15 @@
                         <div class="footer-widget widget-links">
                             <h5 class="title">Books Categories</h5>
                             <ul class="links-list">
-                                <li>
-                                    <a href="#0">Bsc CS</a>
-                                </li>
-                                <li>
-                                    <a href="#0">BMS</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Bsc IT</a>
-                                </li>
-                                <li>
-                                    <a href="#0">BAF</a>
-                                </li>
-                                <li>
-                                    <a href="#0">B Com</a>
-                                </li>
+                                @forelse ($faculties as $faculty)
+                                    <li>
+                                        <a href="#{{ $faculty->f_name }}">{{ $faculty->faculty_name }}</a>
+                                    </li>
+                                @empty
+                                    <li>
+                                        <a href="#0">No faculty added!</a>
+                                    </li>
+                                @endforelse
                             </ul>
                         </div>
                     </div>

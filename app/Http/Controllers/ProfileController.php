@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignBook;
+use App\Models\Faculty;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -9,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
+
+    protected function profile()
+    {
+        return view('frontend.profile', [
+            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->first(),
+            'faculties' => Faculty::private()->get(),
+        ]);
+    }
     protected function changeProfilePhoto($uid, Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -47,6 +57,35 @@ class ProfileController extends Controller
                     'message' => "File Not Found!",
                 ]);
             }
+        }
+    }
+
+    protected function updateProfile(Request $request)
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+        $validator = Validator::make($request->all(), [
+            'library_card' => 'mimes:png,jpg,jpeg',
+            'faculty' => 'required|numeric',
+            'phone' => 'max_digits:10|min_digits:10|numeric'
+        ]);
+
+        if ($validator->passes()) {
+            if ($user) {
+
+                if ($request->hasFile('library_card')) {
+                    $user->library_card = $request->library_card->store('library-cards', 'public');
+                }
+                $user->faculty_id = $request->faculty;
+                $user->phone = $request->phone;
+                $user->update();
+
+                return redirect()->back()->with('success', 'Information updated successfully');
+            } else {
+                return redirect()->back()->with('error', 'User not found!');
+            }
+        } else {
+            return redirect()->back()
+                ->withErrors($validator);
         }
     }
 }

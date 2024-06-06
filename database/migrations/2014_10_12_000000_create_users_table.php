@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('mode')->default('light');
             $table->string('status')->default('active');
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('library_card', 2048)->nullable();
 
             $table->timestamps();
         });

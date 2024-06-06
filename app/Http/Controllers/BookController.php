@@ -49,13 +49,6 @@ class BookController extends Controller
         return view('frontend.contact');
     }
 
-    protected function profile()
-    {
-        return view('frontend.profile', [
-            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->first()
-        ]);
-    }
-
     protected function edit_book($token)
     {
         $book = Book::where('book_token', $token)->first();

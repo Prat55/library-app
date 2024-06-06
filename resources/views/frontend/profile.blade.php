@@ -30,6 +30,7 @@
                 <div class="col-sm-10 col-md-7 col-lg-4">
                     <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
+                            {{-- * User email and username with profile photo section * --}}
                             <div class="thumb-area">
                                 <div class="thumb" style="height: 100px;width:100px;overflow:hidden">
                                     @if (auth()->user()->profile_photo_path)
@@ -72,6 +73,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="row">
+                        {{-- * Email verification section * --}}
                         @if (!auth()->user()->email_verified_at)
                             <div class="col-12">
                                 <div class="dash-pro-item mb-30 dashboard-widget">
@@ -93,6 +95,7 @@
                             </div>
                         @endif
 
+                        {{-- * Issued/requested book section * --}}
                         <div class="col-12">
                             <div class="dash-pro-item mb-30 dashboard-widget">
                                 <div class="header">
@@ -128,6 +131,94 @@
                                 </ul>
                             </div>
                         </div>
+
+                        {{-- * User account information section * --}}
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
+                                    <h4 class="title">Academic Information</h4>
+                                </div>
+                                <ul class="dash-pro-body">
+                                    <form action="/profile/update" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div>
+                                            <h3>Library Card</h3>
+                                            @if (auth()->user()->library_card)
+                                                <div class="p-2" style="height: 350px;overflow:hidden">
+                                                    <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
+                                                        alt="{{ auth()->user()->name }}">
+                                                </div><br>
+                                            @endif
+                                            <input type="file"
+                                                class="form-control w-full @error('library_card') is-invalid @enderror"
+                                                name="library_card" id="library_card">
+                                            @error('library_card')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <h3>Faculty
+                                                {{ auth()->user()->faculty_id
+                                                    ? ''
+                                                    : '<span class="text-warning">(Make sure before selecting. You cant modify this.)</span>' }}
+                                            </h3>
+                                            @if (auth()->user()->faculty_id)
+                                                <input type="text" class="form-control"
+                                                    value="{{ auth()->user()->faculty->faculty_name }}" readonly>
+                                            @else
+                                                <select name="faculty" id="faculty"
+                                                    class="form-control @error('faculty') is-invalid @enderror">
+                                                    <option>Select your faculty</option>
+                                                    @forelse ($faculties as $faculty)
+                                                        <option value="{{ $faculty->id }}"
+                                                            {{ $faculty->id === auth()->user()->faculty_id ? 'selected' : '' }}>
+                                                            {{ $faculty->faculty_name }}
+                                                        </option>
+                                                    @empty
+                                                        <option>No Faculty Found!</option>
+                                                    @endforelse
+                                                </select>
+                                            @endif
+
+                                            @error('faculty')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <h3>Phone</h3>
+                                            <input type="text" name="phone" id="phone"
+                                                class="form-control @error('phone') is-invalid @enderror"
+                                                value="{{ auth()->user()->phone }}" maxlength="10" minlength="10">
+
+                                            @error('phone')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div><br>
+
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                                Update
+                                            </button>
+                                        </div>
+                                    </form>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {{-- * Two factor authentication section * --}}
+                        {{-- <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
+                                    <h4 class="title">Two Factor Authentication</h4>
+                                </div>
+                                <ul class="dash-pro-body">
+
+                                </ul>
+                            </div>
+                        </div> --}}
 
                     </div>
                 </div>

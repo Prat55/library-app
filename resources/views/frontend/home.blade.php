@@ -267,7 +267,7 @@
                     </div>
                 @endforelse
             </div>
-            {{ $bcombooks->links() }}
+            {{ $bafbooks->links() }}
         </div>
     </section>
     <!--============= Books Show  Section Ends Here =============-->
@@ -299,7 +299,7 @@
                     </div>
                 @endforelse
             </div>
-            {{ $bcombooks->links() }}
+            {{ $bbibooks->links() }}
         </div>
     </section>
     <!--============= Books Show  Section Ends Here =============-->
