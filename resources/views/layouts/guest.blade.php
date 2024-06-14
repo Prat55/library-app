@@ -102,10 +102,10 @@
                             <a href="{{ route('books') }}">books</a>
                         </li>
                         @if (auth()->check())
-                            <li>
+                            <li class="">
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm" style="color: white">Logout</button>
+                                    <button type="submit" class="btn btn-sm " id="logout-btn">Logout</button>
                                 </form>
                             </li>
                             @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')

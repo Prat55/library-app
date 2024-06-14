@@ -160,9 +160,7 @@
 
                                         <div>
                                             <h3>Faculty
-                                                {{ auth()->user()->faculty_id
-                                                    ? ''
-                                                    : '<span class="text-warning">(Make sure before selecting. You cant modify this.)</span>' }}
+                                                {{ auth()->user()->faculty_id ? '' : '(Make sure before selecting. You cant modify this.)' }}
                                             </h3>
                                             @if (auth()->user()->faculty_id)
                                                 <input type="text" class="form-control"
@@ -220,6 +218,17 @@
                             </div>
                         </div> --}}
 
+                        {{-- ? Password update section --}}
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
+                                    <h4 class="title">Change Password</h4>
+                                </div>
+                                <ul class="dash-pro-body">
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

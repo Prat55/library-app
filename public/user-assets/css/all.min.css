@@ -5916,3 +5916,15 @@
 .fas {
     font-weight: 900
 }
+
+#logout-btn {
+    width: 100px;
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    #logout-btn {
+        width: 100px;
+        color: #171d1c;
+    }
+}
