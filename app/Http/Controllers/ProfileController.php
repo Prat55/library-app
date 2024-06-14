@@ -7,6 +7,7 @@ use App\Models\Faculty;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -80,6 +81,38 @@ class ProfileController extends Controller
                 $user->update();
 
                 return redirect()->back()->with('success', 'Information updated successfully');
+            } else {
+                return redirect()->back()->with('error', 'User not found!');
+            }
+        } else {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+    }
+
+    protected function updatePassword(Request $request)
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+        $validator = Validator::make($request->all(), [
+            'currentPassword' => 'required|min:8|max:16',
+            'newPassword' => 'required|min:8|max:16',
+            'confirmNewPassword' => 'required|same:newPassword',
+        ]);
+
+        if ($validator->passes()) {
+            if ($user) {
+                if (Hash::check($request->currentPassword, $user->password)) {
+                    if ($request->newPassword != $request->currentPassword) {
+                        $user->password = Hash::make($request->newPassword);
+                        $user->update();
+
+                        return redirect()->back()->with('success', 'Password change successfully!');
+                    } else {
+                        return redirect()->back()->with('error', 'New password cannot be same as current password!');
+                    }
+                } else {
+                    return redirect()->back()->with('error', 'Please enter valid password!');
+                }
             } else {
                 return redirect()->back()->with('error', 'User not found!');
             }

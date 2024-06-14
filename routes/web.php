@@ -30,6 +30,7 @@ Route::middleware([
     Route::get('/profile', [ProfileController::class, 'profile'])->name('user.profile');
     Route::put('/profile/update', [ProfileController::class, 'updateProfile']);
     Route::post('/change-profile/{uid}', [ProfileController::class, 'changeProfilePhoto']);
+    Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
 
 Route::middleware(['admin'])->group(function () {

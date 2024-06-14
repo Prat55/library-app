@@ -38,7 +38,7 @@
                                             src="/profile-img/{{ auth()->user()->profile_photo_path }}"
                                             alt="{{ auth()->user()->name }}">
                                     @else
-                                        <img id="profile_img" src="{{ asset('user-assets/images/dashboard/user.png') }}"
+                                        <img id="profile_img" src="{{ asset('user-assets/images/dashboard/user.jpg') }}"
                                             alt="user">
                                     @endif
                                     <input type="hidden" name="userid" id="userId"
@@ -58,7 +58,8 @@
                                 </div>
                                 <h5 class="title"><a href="#0">{{ auth()->user()->name }}</a></h5>
                                 <span class="username"><a href="mailto: info@library.com"
-                                        class="__cf_email__">{{ auth()->user()->email }}</a></span>
+                                        class="__cf_email__">{{ auth()->user()->email }}</a></span><br>
+                                <span class="username">{{ auth()->user()->faculty->faculty_name ?: '' }}</span>
                             </div>
                         </div>
                         <ul class="dashboard-menu">
@@ -145,7 +146,7 @@
                                         <div>
                                             <h3>Library Card</h3>
                                             @if (auth()->user()->library_card)
-                                                <div class="p-2" style="height: 350px;overflow:hidden">
+                                                <div class="p-2" style="max-height: 350px;overflow:hidden">
                                                     <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
                                                         alt="{{ auth()->user()->name }}">
                                                 </div><br>
@@ -160,7 +161,7 @@
 
                                         <div>
                                             <h3>Faculty
-                                                {{ auth()->user()->faculty_id ? '' : '(Make sure before selecting. You cant modify this.)' }}
+                                                {{ auth()->user()->faculty_id ? '' : "(Make sure before selecting. You can't modify this.)" }}
                                             </h3>
                                             @if (auth()->user()->faculty_id)
                                                 <input type="text" class="form-control"
@@ -225,7 +226,41 @@
                                     <h4 class="title">Change Password</h4>
                                 </div>
                                 <ul class="dash-pro-body">
+                                    <form action="{{ route('password.update') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
 
+                                        <div>
+                                            <label for="currentPassword">Current Password</label>
+                                            <input type="password" name="currentPassword" id="currentPassword"
+                                                class="form-control @error('currentPassword') is-invalid @enderror">
+                                            @error('currentPassword')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div><br>
+
+                                        <div>
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" name="newPassword" id="newPassword"
+                                                class="form-control @error('newPassword') is-invalid @enderror">
+                                            @error('newPassword')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div><br>
+
+                                        <div>
+                                            <label for="confirmNewPassword">Confirm New Password</label>
+                                            <input type="password" name="confirmNewPassword" id="confirmNewPassword"
+                                                class="form-control @error('confirmNewPassword') is-invalid @enderror">
+                                            @error('confirmNewPassword')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div><br>
+
+                                        <button class="btn btn-outline-secondary">
+                                            Update
+                                        </button>
+                                    </form>
                                 </ul>
                             </div>
                         </div>
