@@ -143,6 +143,7 @@ class ProfileController extends Controller
                 $userHistory->save();
 
                 $user->delete();
+                return redirect()->route('login');
             } else {
                 return redirect()->back()->with('error', 'Please return your book first!');
             }
