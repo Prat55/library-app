@@ -5,11 +5,7 @@
             <polyline points="9 11 12 14 22 4"></polyline>
             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
-        <strong>Success!</strong> {{ Session::get('success') }}
-        {{-- <button type="button" class="btn-close d-flex justify-content-center align-items-center"
-            data-bs-dismiss="alert" aria-label="btn-close">
-            <i class="fa fa-times"></i>
-        </button> --}}
+        <strong>Success!</strong>&nbsp;{{ Session::get('success') }}
     </div>
 @endif
 
@@ -21,10 +17,6 @@
             <line x1="15" y1="9" x2="9" y2="15"></line>
             <line x1="9" y1="9" x2="15" y2="15"></line>
         </svg>
-        <strong>Error!</strong> {{ Session::get('error') }}
-        {{-- <button type="button" class="btn-close d-flex justify-content-center align-items-center"
-            data-bs-dismiss="alert" aria-label="btn-close">
-            <i class="fa fa-times"></i>
-        </button> --}}
+        <strong>Error!</strong>&nbsp;{{ Session::get('error') }}
     </div>
 @endif

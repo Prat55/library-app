@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AssignBook;
 use App\Models\Faculty;
 use App\Models\User;
+use App\Models\UserHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -119,6 +120,34 @@ class ProfileController extends Controller
         } else {
             return redirect()->back()
                 ->withErrors($validator);
+        }
+    }
+
+    protected function removeAccount()
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+
+        if ($user) {
+            $assignBook = AssignBook::where('user_id', "$user->id")->first();
+
+            if (!$assignBook) {
+                $userHistory = UserHistory::create([
+                    'old_id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'faculty_id' => $user->faculty_id,
+                    'phone' => $user->phone,
+                    'profile_photo_path' => $user->profile_photo_path,
+                    'library_card' => $user->library_card
+                ]);
+                $userHistory->save();
+
+                $user->delete();
+            } else {
+                return redirect()->back()->with('error', 'Please return your book first!');
+            }
+        } else {
+            return redirect()->back()->with('error', 'User not found!');
         }
     }
 }

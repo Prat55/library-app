@@ -6,10 +6,6 @@
          <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">
              @include('backend.message')
          </ul>
-         {{-- <div class="d-flex justify-content-center align-items-center">
-             <input type="text" class="rounded form-control" placeholder="Serach here...">
-             <i class="cursor-pointer fa-solid fa-magnifying-glass ps-3"></i>
-         </div> --}}
      </div>
 
      <div class="row">
@@ -29,13 +25,20 @@
                                          <b>{{ $rbook->book->book_name }}</b> book is assign to
                                      </h5>
                                      <span><b>Email:</b></span>
-                                     <span style="font-size: 0.9rem">&nbsp;{{ $rbook->user->email }}</span><br>
+                                     <span
+                                         style="font-size: 0.9rem">&nbsp;{{ $rbook->user->email ?: $rbook->olduser->email }}
+                                     </span><br>
                                      <span><b>Name:</b></span>
-                                     <span>&nbsp;{{ $rbook->user->name }} - 
-                                         {{ $rbook->book->faculty->faculty_name }}</span><br>
+                                     <span>
+                                         &nbsp;{{ $rbook->user->name ?: $rbook->olduser->name }} -
+                                         {{ $rbook->book->faculty->faculty_name }}
+                                     </span><br>
                                      @if ($rbook->status == 'rejected')
                                          <span><b>Status:</b></span>
                                          <span class="text-danger">&nbsp;Rejected</span>
+                                     @elseif ($rbook->status == 'request')
+                                         <span><b>Status:</b></span>
+                                         <span class="text-warning">&nbsp;Under request</span>
                                      @else
                                          <span><b>Issued On:</b></span>
                                          <span>&nbsp;{{ $rbook->start_date }}</span><br>

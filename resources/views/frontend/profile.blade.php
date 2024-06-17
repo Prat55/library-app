@@ -264,6 +264,26 @@
                                 </ul>
                             </div>
                         </div>
+
+                        {{-- ? Delete account section --}}
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
+                                    <h4 class="title">Delete Account</h4>
+                                </div>
+                                <ul class="dash-pro-body">
+                                    <form method="POST" action="{{ route('user.delete') }}">
+                                        @csrf
+
+                                        <div>
+                                            <button type="submit" class="mt-2 btn btn-sm btn-outline-danger">
+                                                Delete Account
+                                            </button>
+                                        </div>
+                                    </form>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

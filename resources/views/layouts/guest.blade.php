@@ -247,7 +247,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#0"><i class="fas fa-location-arrow"></i>Palghar SDSM College</a>
+                                    <a href="https://sdsmcollege.com/"><i class="fas fa-location-arrow"></i>Palghar
+                                        SDSM College</a>
                                 </li>
                             </ul>
                             <ul class="social-icons">
@@ -280,7 +281,7 @@
 
                         <div class="copyright">
                             <p>&copy; Copyright 2023 | <a href="#0">Self Financing Library</a> By <a
-                                    href="#0">Pratik & Milind</a>
+                                    href="#0">Pratik&nbsp;</a>&&nbsp;<a href="">Milind</a>
                             </p>
                         </div>
                     </div>

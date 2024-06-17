@@ -36,4 +36,9 @@ class RequestHistory extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function oldUser()
+    {
+        return $this->belongsTo(UserHistory::class, 'user_id', 'old_id');
+    }
 }

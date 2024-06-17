@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AssignBook;
 use App\Models\Book;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
@@ -106,13 +107,18 @@ class ManageBook extends Component
     {
         $book = Book::find($book_id);
         if ($book) {
-            if ($book->book_image_path) {
-                Storage::disk('public')->delete($book->book_image_path);
+            $assignBook = AssignBook::where('book_id', $book_id)->first();
+            if (!$assignBook) {
+                if ($book->book_image_path) {
+                    Storage::disk('public')->delete($book->book_image_path);
+                }
+
+                $book->delete();
+
+                return redirect()->route('manage-books')->with("success", "Book deleted successfully");
+            } else {
+                return redirect()->route('manage-books')->with("error", "A book cannot be deleted if it is assigned to someone.");
             }
-
-            $book->delete();
-
-            return redirect()->back()->with("success", "Book deleted successfully");
         } else {
             abort(404);
         }

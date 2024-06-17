@@ -27,10 +27,16 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
+    // ? User profile page route
     Route::get('/profile', [ProfileController::class, 'profile'])->name('user.profile');
+    // ? User profile information route
     Route::put('/profile/update', [ProfileController::class, 'updateProfile']);
+    // ? User profile photo change route
     Route::post('/change-profile/{uid}', [ProfileController::class, 'changeProfilePhoto']);
+    // ? User password updation route
     Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
+    // ? User account deletion route
+    Route::post('/profile/account/delete', [ProfileController::class, 'removeAccount'])->name('user.delete');
 });
 
 Route::middleware(['admin'])->group(function () {
