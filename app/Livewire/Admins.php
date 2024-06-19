@@ -2,17 +2,15 @@
 
 namespace App\Livewire;
 
-use App\Models\AssignBook;
 use App\Models\Faculty;
 use App\Models\User;
-use App\Models\UserHistory;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
-class Students extends Component
+class Admins extends Component
 {
     #[Rule('required|min:3')]
     public $name;
@@ -22,43 +20,28 @@ class Students extends Component
     public $pass;
     #[Rule('required|min:10|max:10')]
     public $phone;
-    #[Rule('required')]
-    public $faculty_id;
+
 
     #[Url()]
     public $search = '';
 
-    public function addStudent()
+    public function addAdmin()
     {
         $validated = $this->validate();
+        $validated['faculty_id'] = 1;
+        $validated['role'] = 'admin';
         $validated['password'] = Hash::make($this->pass);
 
         User::create($validated);
-        return redirect()->to('/students')->with('success', 'Student has been added successfully');
+        return redirect()->to('/admins')->with('success', 'Admin has been added successfully');
     }
 
     public function removeUser(int $user_id)
     {
         $user = User::findOrFail($user_id);
-        $assignBook = AssignBook::where('user_id', $user->id)->first();
-        if (!$assignBook) {
-            $userHistory = UserHistory::create([
-                'old_id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'faculty_id' => $user->faculty_id,
-                'phone' => $user->phone,
-                'profile_photo_path' => $user->profile_photo_path,
-                'library_card' => $user->library_card
-            ]);
-            $userHistory->save();
 
-            $user->delete();
-
-            return redirect()->to('/students')->with('success', 'Student account has been removed');
-        } else {
-            return redirect()->to('/students')->with('error', 'Assign book is not collected from this student!');
-        }
+        $user->delete();
+        return redirect()->to('/admins')->with('success', 'Admin account has been removed');
     }
 
     public function ban(int $user_id)
@@ -68,7 +51,7 @@ class Students extends Component
         $user->status = 'ban';
         $user->update();
 
-        return redirect()->back()->with('success', 'Student account has been banned');
+        return redirect()->back()->with('success', 'Admin account has been banned');
     }
 
     public function unban(int $user_id)
@@ -78,7 +61,7 @@ class Students extends Component
         $user->status = 'active';
         $user->update();
 
-        return redirect()->back()->with('success', 'Student account has been banned');
+        return redirect()->back()->with('success', 'Admin account has been banned');
     }
 
     #[On('search')]
@@ -89,12 +72,12 @@ class Students extends Component
 
     public function render()
     {
-        return view('livewire.students', [
-            'students' => User::latest()
+        return view('livewire.admins', [
+            'admins' => User::latest()
                 ->where('name', 'like', "%{$this->search}%")
                 ->orWhere('email', 'like', "%{$this->search}%")
                 ->orWhere('phone', 'like', "%{$this->search}%")
-                ->students()
+                ->admins()
                 ->paginate(10),
             'faculties' => Faculty::private()->latest()->get()
         ]);

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeCotroller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,8 +52,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/issued-books', [BookController::class, 'issued_books'])->name('issued-books');
 
     // ? Users management routes
-    Route::get('/students', [BookController::class, 'students'])->name('students');
-    Route::get('/teachers', [BookController::class, 'teachers'])->name('teachers');
+    Route::get('/students', [UserController::class, 'students'])->name('students');
+    Route::get('/teachers', [UserController::class, 'teachers'])->name('teachers');
+    Route::get('/admins', [UserController::class, 'admins'])->name('admins');;
 
     // ? Faculty route
     Route::get('/faculty', [BookController::class, 'faculty'])->name('faculty');

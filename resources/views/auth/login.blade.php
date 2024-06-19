@@ -8,6 +8,7 @@
         </x-slot>
 
         <x-validation-errors class="mb-4" />
+        @include('frontend.message')
 
         @if (session('status'))
             <div class="mb-4 text-sm font-medium text-green-600">

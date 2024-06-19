@@ -74,9 +74,9 @@ class AddBook extends Component
             Book::create($validated);
 
             $this->clear();
-            return redirect()->back()->with('success', 'Book added successfully.');
+            return redirect()->route('add-book')->with('success', 'Book added successfully.');
         } else {
-            return redirect()->back()->with('error', 'Please select a book image!');
+            return redirect()->route('add-book')->with('error', 'Please select a book image!');
         }
     }
 

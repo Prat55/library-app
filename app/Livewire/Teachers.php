@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Faculty;
 use App\Models\User;
+use App\Models\UserHistory;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
@@ -19,6 +20,7 @@ class Teachers extends Component
     public $name;
     #[Rule('required|unique:' . User::class)]
     public $email;
+    #[Rule('required|min:8|max:16')]
     public $pass;
     #[Rule('required|min:10|max:10')]
     public $phone;
@@ -43,8 +45,25 @@ class Teachers extends Component
     {
         $user = User::findOrFail($user_id);
 
-        $user->delete();
-        return redirect()->to('/teachers')->with('success', 'Student account has been removed');
+        $assignBook = AssignBook::where('user_id', $user->id)->first();
+        if (!$assignBook) {
+            $userHistory = UserHistory::create([
+                'old_id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'faculty_id' => $user->faculty_id,
+                'phone' => $user->phone,
+                'profile_photo_path' => $user->profile_photo_path,
+                'library_card' => $user->library_card
+            ]);
+            $userHistory->save();
+
+            $user->delete();
+
+            return redirect()->to('/students')->with('success', 'Student account has been removed');
+        } else {
+            return redirect()->to('/students')->with('error', 'Assign book is not collected from this student!');
+        }
     }
 
     public function ban(int $user_id)

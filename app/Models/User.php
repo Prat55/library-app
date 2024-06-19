@@ -28,6 +28,11 @@ class User extends Authenticatable
         $query->where('role', 'teacher');
     }
 
+    public function scopeAdmins($query)
+    {
+        $query->where('role', 'admin');
+    }
+
     public function faculty()
     {
         return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
