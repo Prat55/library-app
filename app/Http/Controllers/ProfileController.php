@@ -66,14 +66,13 @@ class ProfileController extends Controller
     {
         $user = User::where('id', auth()->user()->id)->first();
         $validator = Validator::make($request->all(), [
-            'library_card' => 'mimes:png,jpg,jpeg',
+            'library_card' => 'mimes:png,jpg,jpeg|max:7500',
             'faculty' => 'required|numeric',
             'phone' => 'max_digits:10|min_digits:10|numeric'
         ]);
 
         if ($validator->passes()) {
             if ($user) {
-
                 if ($request->hasFile('library_card')) {
                     $user->library_card = $request->library_card->store('library-cards', 'public');
                 }

@@ -5,13 +5,28 @@ namespace App\Livewire;
 use App\Models\AssignBook as ModelsAssignBook;
 use App\Models\Book;
 use App\Models\RequestHistory;
+use App\Models\User;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AssignBook extends Component
 {
     use WithPagination;
+
+    #[Url()]
+    public $search = '';
+
+    #[On('search')]
+    public function updateSearch($search)
+    {
+        $user = User::where('email', $search)->first();
+        if ($user) {
+            $this->search = $user->id;
+        }
+    }
 
     public function assignBook(int $req_id)
     {
@@ -60,7 +75,9 @@ class AssignBook extends Component
     public function render()
     {
         return view('livewire.assign-book', [
-            'assignBooks' => ModelsAssignBook::requests()->paginate(8)
+            'assignBooks' => ModelsAssignBook::requests()
+                ->where('user_id', 'like', "%{$this->search}%")
+                ->paginate(8)
         ]);
     }
 }

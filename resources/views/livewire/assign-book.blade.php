@@ -7,6 +7,8 @@
         <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">
             @include('backend.message')
         </ul>
+
+        @livewire('search-by-id')
     </div>
 
     <div class="row">

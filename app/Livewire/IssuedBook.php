@@ -4,13 +4,28 @@ namespace App\Livewire;
 
 use App\Models\AssignBook;
 use App\Models\Book;
+use App\Models\User;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class IssuedBook extends Component
 {
     use WithPagination;
+
+    #[Url()]
+    public $search = '';
+
+    #[On('search')]
+    public function updateSearch($search)
+    {
+        $user = User::where('email', $search)->first();
+        if ($user) {
+            $this->search = $user->id;
+        }
+    }
 
     public function returnBook(int $book_id)
     {
@@ -46,7 +61,7 @@ class IssuedBook extends Component
     public function render()
     {
         $today = Carbon::now();
-        $issuedBooks = AssignBook::accepted()->latest()->paginate(8);
+        $issuedBooks = AssignBook::accepted()->latest()->where('user_id', 'like', "%{$this->search}%")->paginate(8);
         return view('livewire.issued-book', compact('issuedBooks', 'today'));
     }
 }

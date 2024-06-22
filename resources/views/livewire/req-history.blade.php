@@ -6,6 +6,8 @@
          <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">
              @include('backend.message')
          </ul>
+
+         <livewire:search-by-id />
      </div>
 
      <div class="row">
@@ -64,7 +66,7 @@
              </div>
          @empty
              <div class="justify-content-center d-flex col-md-12">
-                 No requests found!
+                 No history found!
              </div>
          @endforelse
      </div>

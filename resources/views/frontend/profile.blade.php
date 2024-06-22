@@ -59,7 +59,8 @@
                                 <h5 class="title"><a href="#0">{{ auth()->user()->name }}</a></h5>
                                 <span class="username"><a href="mailto: info@library.com"
                                         class="__cf_email__">{{ auth()->user()->email }}</a></span><br>
-                                <span class="username">{{ auth()->user()->faculty->faculty_name ?: '' }}</span>
+                                <span
+                                    class="username">{{ auth()->user()->faculty_id ? auth()->user()->faculty->faculty_name : '' }}</span>
                             </div>
                         </div>
                         <ul class="dashboard-menu">
