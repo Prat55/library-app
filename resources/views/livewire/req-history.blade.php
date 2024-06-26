@@ -1,7 +1,7 @@
  <div>
      <div class="page-header d-flex justify-content-between align-items-center">
          <div class="page-leftheader">
-             <h4 class="mb-0 page-title text-primary">Issued Books History</h4>
+             <h4 class="mb-0 page-title text-primary">Issued History</h4>
          </div>
          <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">
              @include('backend.message')
@@ -74,5 +74,4 @@
          {{ $this->req_histories->links() }}
      </div>
  </div>
-</div>
 </div>

@@ -14,7 +14,7 @@
                          <div class="row">
                              <div class="col-sm-12 col-md-6">
                                  <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                     data-target="#addStudent"s>Add</button>
+                                     data-target="#addStudent">New</button>
                              </div>
                              <div class="col-sm-12 col-md-6">
                                  <div id="example1_filter" class="dataTables_filter">

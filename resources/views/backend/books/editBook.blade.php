@@ -6,7 +6,7 @@
     <div>
         <div class="page-header position-relative">
             <div class="page-leftheader">
-                <h4 class="mb-0 page-title text-primary">Edit Book</h4>
+                <h4 class="mb-0 page-title text-primary">Edit Book {{ $book->book_name }} - {{ $book->faculty->faculty_name }}</h4>
             </div>
 
             <ul id="megaError" style="position: absolute;top: 0;right:0;z-index:999">

@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#addTeacher">Add</button>
+                                    data-target="#addTeacher">New</button>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <form action="" method="get">
