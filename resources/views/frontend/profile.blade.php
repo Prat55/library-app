@@ -138,28 +138,67 @@
                         <div class="col-12">
                             <div class="dash-pro-item mb-30 dashboard-widget">
                                 <div class="header">
+                                    <h4 class="title">Library Card</h4>
+                                </div>
+                                <ul class="dash-pro-body">
+                                    @empty(auth()->user()->library_card)
+                                        <form action="{{ route('user.library-card-upload') }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div>
+                                                <span class="text-warning">
+                                                    Note: Please upload an image that is legitimate.
+                                                </span>
+                                                <div class="p-2 cursor-pointer d-flex justify-content-center align-items-center"
+                                                    style="height: 220px;overflow:hidden;border: 2px dotted #d5d5d5"
+                                                    id="library_card_btn">
+                                                    <label for="library_card" class="library_card-edit">
+                                                        <div class="text-center">
+                                                            <h3>Upload Library Card Image Here</h3>
+                                                            <i class="fa fa-image fa-3xl"></i>
+                                                        </div>
+                                                    </label>
+
+                                                </div><br>
+
+                                                <input type="file"
+                                                    class="hidden form-control w-full @error('library_card') is-invalid @enderror"
+                                                    name="library_card" id="library_card">
+                                                @error('library_card')
+                                                    <p class="invalid-feedback">{{ $message }}</p>
+                                                @enderror
+                                            </div><br>
+
+
+                                            <div>
+                                                <button class="btn btn-sm btn-outline-primary" type="submit">
+                                                    Update
+                                                </button>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <div>
+                                            <div class="p-2" style="max-height: 350px;overflow:hidden">
+                                                <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
+                                                    alt="{{ auth()->user()->name }}"
+                                                    style="height: 350px!important;width:100%;">
+                                            </div>
+                                        </div><br>
+                                    @endempty
+                                </ul>
+                            </div>
+                        </div>
+                        {{-- * User account information section * --}}
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
                                     <h4 class="title">Academic Information</h4>
                                 </div>
                                 <ul class="dash-pro-body">
                                     <form action="/profile/update" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <div>
-                                            <h3>Library Card</h3>
-                                            @if (auth()->user()->library_card)
-                                                <div class="p-2" style="max-height: 350px;overflow:hidden">
-                                                    <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
-                                                        alt="{{ auth()->user()->name }}">
-                                                </div><br>
-                                            @endif
-                                            <input type="file"
-                                                class="form-control w-full @error('library_card') is-invalid @enderror"
-                                                name="library_card" id="library_card">
-                                            @error('library_card')
-                                                <p class="invalid-feedback">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
                                         <div>
                                             <h3>Faculty
                                                 {{ auth()->user()->faculty_id ? '' : "(Make sure before selecting. You can't modify this.)" }}

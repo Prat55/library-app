@@ -9,6 +9,7 @@ use App\Models\UserHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -62,20 +63,41 @@ class ProfileController extends Controller
         }
     }
 
+    protected function library_card_upload(Request $request)
+    {
+        $user = User::findOrFail(auth()->user()->id);
+        $validator = Validator::make($request->all(), [
+            'library_card' => 'mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        if ($validator->passes()) {
+            if ($user) {
+                if ($user->library_card) {
+                    Storage::disk('public')->delete($user->library_card);
+                }
+                $user->library_card = $request->library_card->store('library-cards', 'public');
+                $user->update();
+
+                return redirect()->back()->with('success', 'Library card uploaded successfully');
+            } else {
+                return redirect()->back()->with('error', 'User not found!');
+            }
+        } else {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+    }
+
     protected function updateProfile(Request $request)
     {
         $user = User::where('id', auth()->user()->id)->first();
         $validator = Validator::make($request->all(), [
-            'library_card' => 'mimes:png,jpg,jpeg|max:7500',
             'faculty' => 'required|numeric',
             'phone' => 'max_digits:10|min_digits:10|numeric'
         ]);
 
         if ($validator->passes()) {
             if ($user) {
-                if ($request->hasFile('library_card')) {
-                    $user->library_card = $request->library_card->store('library-cards', 'public');
-                }
                 $user->faculty_id = $request->faculty;
                 $user->phone = $request->phone;
                 $user->update();

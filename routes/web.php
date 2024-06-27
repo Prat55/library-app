@@ -32,6 +32,8 @@ Route::middleware([
     Route::get('/profile', [ProfileController::class, 'profile'])->name('user.profile');
     // ? User profile information route
     Route::put('/profile/update', [ProfileController::class, 'updateProfile']);
+    // ? User Library card upload route
+    Route::put('/profile/library-card/update', [ProfileController::class, 'library_card_upload'])->name('user.library-card-upload');
     // ? User profile photo change route
     Route::post('/change-profile/{uid}', [ProfileController::class, 'changeProfilePhoto']);
     // ? User password updation route

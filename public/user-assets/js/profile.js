@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
     $("#profile-pic").change(function () {
         let reader = new FileReader();
@@ -47,5 +49,9 @@ $(document).ready(function () {
                 }
             },
         });
+    });
+
+    $("#library_card_btn").click(function () {
+        $("#library_card").click();
     });
 });
