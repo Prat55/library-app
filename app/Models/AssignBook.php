@@ -14,6 +14,7 @@ class AssignBook extends Model
         'book_id',
         'start_date',
         'end_date',
+        're_assign_count',
         'status',
     ];
 

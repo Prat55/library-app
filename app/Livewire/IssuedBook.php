@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\AssignBook;
 use App\Models\Book;
+use App\Models\RequestHistory;
 use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
@@ -46,22 +47,34 @@ class IssuedBook extends Component
     public function reAssignBook(int $book_id)
     {
         $assignBook = AssignBook::findOrFail($book_id);
+        $assignHistory = new RequestHistory;
         if ($assignBook) {
-            $assignBook->start_date = Carbon::now();
-            $assignBook->end_date = Carbon::now()->addDays(7);
-            $assignCount = $assignBook->re_assign_count + 1;
-            $assignBook->re_assign_count = $assignCount;
+            if ($assignBook->end_date == Carbon::now()) {
+                $assignBook->start_date = Carbon::now();
+                $assignBook->end_date = Carbon::now()->addDays(7);
+                $assignCount = $assignBook->re_assign_count + 1;
+                $assignBook->re_assign_count = $assignCount;
+                $assignBook->update();
 
-            return redirect()->back()->with('success', 'Book re assignment successfully');
+                $assignHistory->user_id = $assignBook->user_id;
+                $assignHistory->book_id = $assignBook->book_id;
+                $assignHistory->start_date = Carbon::now();
+                $assignHistory->end_date = Carbon::now()->addDays(7);
+                $assignHistory->status = 're-assign';
+                $assignHistory->save();
+
+                return redirect()->route('issued-books')->with('success', 'Book is reassign to user successfully');
+            } else {
+                return redirect()->route('issued-books')->with('error', 'Not overdued!');
+            }
         } else {
-            return redirect()->back()->with('error', 'Book not found!');
+            return redirect()->route('issued-books')->with('error', 'Book not found!');
         }
     }
 
     public function render()
     {
-        $today = Carbon::now();
         $issuedBooks = AssignBook::accepted()->latest()->where('user_id', 'like', "%{$this->search}%")->paginate(8);
-        return view('livewire.issued-book', compact('issuedBooks', 'today'));
+        return view('livewire.issued-book', compact('issuedBooks'));
     }
 }

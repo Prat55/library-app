@@ -37,12 +37,30 @@
                                      <span><b>Issued On:</b></span>
                                      <span>&nbsp;{{ $ibook->start_date }}</span><br>
                                      <span><b>Return In:</b></span>
-                                     <span>&nbsp;{{ $ibook->end_date }} @if ($ibook->end_date == $today)
+                                     <span>
+                                         @php
+                                             $today = Carbon\Carbon::now();
+                                             $endDate = Carbon\Carbon::parse($ibook->end_date);
+
+                                             $overdueDays = $today->diffInDays($endDate);
+                                             $totalDays = $endDate->diffInDays($today);
+
+                                         @endphp
+                                         &nbsp;
+                                         @if ($endDate == $today)
                                              <span class="text-center text-red-500">
-                                                 Today is the last day to return
+                                                 Today is the last day of return
                                              </span>
-                                         @elseif ($ibook->end_date < $today)
-                                             <span class="text-center text-red-500">Overdue</span>
+                                         @elseif ($endDate < $today)
+                                             <span class="text-center text-red-500">Overdue
+                                                 @if ($overdueDays != '0' || $overdueDays != '1')
+                                                     {{ $overdueDays . ' days ago' }}
+                                                 @elseif ($overdueDays == '1')
+                                                     {{ $overdueDays . ' day ago' }}
+                                                 @endif
+                                             </span>
+                                         @else
+                                             {{ ($totalDays != '0' ? $totalDays . ' days left' : '' || $totalDays == '1') ? $totalDays . ' day left' : '' }}
                                          @endif
                                      </span>
                                  </div>
