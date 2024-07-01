@@ -57,10 +57,29 @@
 
                                 </div>
                                 <h5 class="title"><a href="#0">{{ auth()->user()->name }}</a></h5>
-                                <span class="username"><a href="mailto: info@library.com"
-                                        class="__cf_email__">{{ auth()->user()->email }}</a></span><br>
-                                <span
-                                    class="username">{{ auth()->user()->faculty_id ? auth()->user()->faculty->faculty_name : '' }}</span>
+                                <span class="username">
+                                    <a href="mailto: info@library.com" class="__cf_email__">
+                                        {{ auth()->user()->email }}
+                                    </a>
+                                </span><br>
+
+                                <span class="username">
+                                    {{ auth()->user()->faculty_id ? auth()->user()->faculty->faculty_name : '' }}
+                                </span>
+
+                                @if (auth()->user()->role === 'teacher')
+                                    <span class="username">
+                                        Teacher
+                                    </span>
+                                @elseif (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
+                                    <span class="username">
+                                        Admin
+                                    </span>
+                                @else
+                                    <span class="username">
+                                        Student
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <ul class="dashboard-menu">
@@ -103,34 +122,94 @@
                                 <div class="header">
                                     <h4 class="title">Issued/Requested Book</h4>
                                 </div>
-                                <ul class="dash-pro-body">
+                                <div class="d-flex justify-content-between align-items-top">
                                     @if ($issuedBook)
-                                        <a class="p-relative">
-                                            <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
-                                                alt="{{ $issuedBook->book->book_author }}" height="380px"
-                                                width="220px">
+                                        <ul class="dash-pro-body">
+                                            <a class="p-relative">
+                                                <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
+                                                    alt="{{ $issuedBook->book->book_author }}" height="380px"
+                                                    width="220px">
 
+                                                <div>
+                                                    @if ($issuedBook->book->book_pdf_path)
+                                                        <a href="{{ $issuedBook->book->book_pdf_path ? asset('storage/' . $issuedBook->book->book_pdf_path) : '#0' }}"
+                                                            @if ($issuedBook->book->book_pdf_path) download @endif
+                                                            class="rating"><i class="fa fa-file-pdf fa-lg"></i></a>
+                                                    @endif
+                                                </div>
+                                            </a>
+                                            <p class="">Book Title:</span>
+                                                {{ $issuedBook->book->book_name }}</p>
+                                            @if ($issuedBook->start_date && $issuedBook->end_date)
+                                                <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
+                                                <p>Return Date: <span>{{ $issuedBook->end_date }}&nbsp;</span></p>
+                                            @endif
+                                            @if ($issuedBook->status === 'request')
+                                                <span class="text-red-500">Collect your book from library</span>
+                                            @endif
+
+                                        </ul>
+                                        <ul class="d-flex justify-content-center align-items-center">
                                             <div>
-                                                @if ($issuedBook->book->book_pdf_path)
-                                                    <a href="{{ $issuedBook->book->book_pdf_path ? asset('storage/' . $issuedBook->book->book_pdf_path) : '#0' }}"
-                                                        @if ($issuedBook->book->book_pdf_path) download @endif
-                                                        class="rating"><i class="fa fa-file-pdf fa-lg"></i></a>
-                                                @endif
+                                                <form action="" method="post">
+                                                    @php
+                                                        if ($issuedBook) {
+                                                            $today = Carbon\Carbon::now();
+                                                            $endDate = Carbon\Carbon::parse($issuedBook->end_date);
+
+                                                            $overdueDays = $today->diffInDays($endDate);
+
+                                                            $totalFine = $overdueDays * 100;
+
+                                                            if ($endDate < $today) {
+                                                                $fine = new App\Models\Fine();
+                                                                $fine->user_id = auth()->user()->id;
+                                                                $fine->book_id = $issuedBook->book_id;
+                                                                $fine->overdue_days = $overdueDays;
+                                                                $fine->total_amount = $totalFine;
+                                                                $fine->save();
+                                                            }
+                                                        }
+                                                    @endphp
+
+                                                    @if ($fine)
+                                                        <h3>Fine</h3>
+                                                        <hr>
+
+                                                        <table>
+                                                            <tr>
+                                                                <th>Book Name:&nbsp;</th>
+                                                                <td>{{ $issuedBook->book->book_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Overdued:&nbsp;</th>
+                                                                <td>
+                                                                    @if ($overdueDays != '0' && $overdueDays != '1')
+                                                                        {{ $overdueDays . ' days ago' }}
+                                                                    @elseif ($overdueDays == '1')
+                                                                        {{ $overdueDays . ' day ago' }}
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Total:&nbsp;</th>
+                                                                <td>{{ '₹' . $totalFine }}</td>
+                                                            </tr>
+                                                        </table><br>
+                                                        <tr>
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-outline-primary">
+                                                                Pay Now
+                                                            </button>
+                                                        </tr>
+                                                    @endif
+                                                </form>
                                             </div>
-                                        </a>
-                                        <p class="">Book Title:</span>
-                                            {{ $issuedBook->book->book_name }}</p>
-                                        @if ($issuedBook->start_date && $issuedBook->end_date)
-                                            <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
-                                            <p>Return Date: <span>{{ $issuedBook->end_date }}</span></p>
-                                        @endif
-                                        @if ($issuedBook->status === 'request')
-                                            <span class="text-red-500">Collect your book from library</span>
-                                        @endif
+                                        </ul>
                                     @else
                                         <span>No book added!</span>
                                     @endif
-                                </ul>
+                                </div>
                             </div>
                         </div>
 

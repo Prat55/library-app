@@ -53,7 +53,7 @@
                                              </span>
                                          @elseif ($endDate < $today)
                                              <span class="text-center text-red-500">Overdue
-                                                 @if ($overdueDays != '0' || $overdueDays != '1')
+                                                 @if ($overdueDays != '0' && $overdueDays != '1')
                                                      {{ $overdueDays . ' days ago' }}
                                                  @elseif ($overdueDays == '1')
                                                      {{ $overdueDays . ' day ago' }}

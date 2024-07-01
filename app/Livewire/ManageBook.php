@@ -174,3 +174,5 @@ class ManageBook extends Component
         return view('livewire.manage-book');
     }
 }
+
+//? All logics are made by Pratik Desai

@@ -30,22 +30,23 @@ class AssignBook extends Component
 
     public function assignBook(int $req_id)
     {
-        $book_req = ModelsAssignBook::findOrFail($req_id);
-        $book_req2 = RequestHistory::findOrFail($req_id);
+        $issueRequest = ModelsAssignBook::findOrFail($req_id);
+        $issueRequest2 = RequestHistory::findOrFail($req_id);
 
-        if ($book_req) {
-            $book_req->status = "accepted";
-            $book_req2->status = "accepted";
+        if ($issueRequest) {
+            $issueRequest->status = "accepted";
+            $issueRequest2->status = "accepted";
 
-            $book_req->start_date = Carbon::now();
-            $book_req->end_date = Carbon::now()->addDays(7);
+            $issueRequest->start_date = Carbon::now();
+            $issueRequest->end_date = Carbon::now()->addDays(7);
 
-            $book_req2->start_date = Carbon::now();
-            $book_req2->end_date = Carbon::now()->addDays(7);
-            $book_req->update();
-            $book_req2->update();
+            $issueRequest2->start_date = Carbon::now();
+            $issueRequest2->end_date = Carbon::now()->addDays(7);
 
-            return redirect()->back()->with('success', 'Book request is accepted.');
+            $issueRequest->update();
+            $issueRequest2->update();
+
+            return redirect()->back()->with('success', 'Book is issued to user successfully.');
         } else {
             return redirect()->back()->with('error', 'Book not found!');
         }
@@ -53,18 +54,18 @@ class AssignBook extends Component
 
     public function rejectBook(int $req_id)
     {
-        $book_req = ModelsAssignBook::findOrFail($req_id);
-        $book_req2 = RequestHistory::findOrFail($req_id);
+        $issueRequest = ModelsAssignBook::findOrFail($req_id);
+        $issueRequest2 = RequestHistory::findOrFail($req_id);
 
-        $book = Book::findOrFail($book_req->book_id);
+        $book = Book::findOrFail($issueRequest->book_id);
 
-        if ($book_req) {
+        if ($issueRequest) {
             $quantity = $book->book_quantity + 1;
             $book->book_quantity = $quantity;
-            $book_req2->status = "rejected";
+            $issueRequest2->status = "rejected";
             $book->update();
-            $book_req->delete();
-            $book_req2->update();
+            $issueRequest->delete();
+            $issueRequest2->update();
 
             return redirect()->back()->with('success', 'Book request is rejected.');
         } else {
@@ -81,3 +82,5 @@ class AssignBook extends Component
         ]);
     }
 }
+
+//? All logics are made by Pratik Desai

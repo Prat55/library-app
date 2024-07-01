@@ -61,3 +61,5 @@ class BookNow extends Component
         return view('livewire.book-now');
     }
 }
+
+//? All logics are made by Pratik Desai

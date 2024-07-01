@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignBook;
 use App\Models\Faculty;
+use App\Models\Fine;
 use App\Models\User;
 use App\Models\UserHistory;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class ProfileController extends Controller
         return view('frontend.profile', [
             'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->first(),
             'faculties' => Faculty::private()->get(),
+            'fine' => Fine::where('user_id', auth()->user()->id)->unpaid()->first(),
         ]);
     }
     protected function changeProfilePhoto($uid, Request $request)

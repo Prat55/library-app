@@ -55,7 +55,7 @@
                         <li>
                             @auth
                                 @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
-                                    <a href="{{ route('profile.show') }}" class="user-button">
+                                    <a href="{{ route('dashboard') }}" class="user-button">
                                         <i class="flaticon-user"></i>
                                     </a>
                                 @else

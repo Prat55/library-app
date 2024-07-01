@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\AssignBook;
 use App\Models\Book;
+use App\Models\Fine;
 use App\Models\RequestHistory;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,45 +31,62 @@ class IssuedBook extends Component
 
     public function returnBook(int $book_id)
     {
-        $req = AssignBook::findOrFail($book_id);
-        $book = Book::findOrFail($req->book_id);
-        if ($req) {
-            $quantity = $book->book_quantity + 1;
-            $book->book_quantity = $quantity;
-            $book->update();
-            $req->delete();
+        $issuedBook = AssignBook::findOrFail($book_id);
+        $issuedHistory = RequestHistory::where('user_id', $issuedBook->user_id)->where('start_date', $issuedBook->start_date)->first();
+        $book = Book::findOrFail($issuedBook->book_id);
 
-            return redirect()->back()->with('success', 'Book is returned by user.');
+        // ?Searching in fine table for ensuring fine is paid or not by user
+        $fine = Fine::where('user_id', $issuedBook->user_id)->unpaid()->first();
+
+        if (!$fine) {
+            if ($issuedBook) {
+                $quantity = $book->book_quantity + 1;
+                $book->book_quantity = $quantity;
+                $book->update();
+                $issuedBook->delete();
+                $issuedHistory->end_date = Carbon::now();
+                $issuedHistory->update();
+
+                return redirect()->route('issued-books')->with('success', 'Book is returned by user.');
+            } else {
+                return redirect()->route('issued-books')->with('error', 'Book not found!');
+            }
         } else {
-            return redirect()->back()->with('error', 'Book not found!');
+            return redirect()->route('issued-books')->with('error', 'Fine is not paid!');
         }
     }
 
     public function reAssignBook(int $book_id)
     {
-        $assignBook = AssignBook::findOrFail($book_id);
-        $assignHistory = new RequestHistory;
-        if ($assignBook) {
-            if ($assignBook->end_date == Carbon::now()) {
-                $assignBook->start_date = Carbon::now();
-                $assignBook->end_date = Carbon::now()->addDays(7);
-                $assignCount = $assignBook->re_assign_count + 1;
-                $assignBook->re_assign_count = $assignCount;
-                $assignBook->update();
+        $issuedBook = AssignBook::findOrFail($book_id);
+        $issuedHistory = new RequestHistory;
+        $fine = Fine::where('user_id', $issuedBook->user_id)->where('status', 'unpaid')->first();
 
-                $assignHistory->user_id = $assignBook->user_id;
-                $assignHistory->book_id = $assignBook->book_id;
-                $assignHistory->start_date = Carbon::now();
-                $assignHistory->end_date = Carbon::now()->addDays(7);
-                $assignHistory->status = 're-assign';
-                $assignHistory->save();
+        if (!$fine) {
+            if ($issuedBook) {
+                if ($issuedBook->end_date == Carbon::now()) {
+                    $issuedBook->start_date = Carbon::now();
+                    $issuedBook->end_date = Carbon::now()->addDays(7);
+                    $assignCount = $issuedBook->re_assign_count + 1;
+                    $issuedBook->re_assign_count = $assignCount;
+                    $issuedBook->update();
 
-                return redirect()->route('issued-books')->with('success', 'Book is reassign to user successfully');
+                    $issuedHistory->user_id = $issuedBook->user_id;
+                    $issuedHistory->book_id = $issuedBook->book_id;
+                    $issuedHistory->start_date = Carbon::now();
+                    $issuedHistory->end_date = Carbon::now()->addDays(7);
+                    $issuedHistory->status = 're-assign';
+                    $issuedHistory->save();
+
+                    return redirect()->route('issued-books')->with('success', 'Book is reassign to user successfully');
+                } else {
+                    return redirect()->route('issued-books')->with('error', 'Not overdued!');
+                }
             } else {
-                return redirect()->route('issued-books')->with('error', 'Not overdued!');
+                return redirect()->route('issued-books')->with('error', 'Book not found!');
             }
         } else {
-            return redirect()->route('issued-books')->with('error', 'Book not found!');
+            return redirect()->route('issued-books')->with('error', 'Fine is not paid!');
         }
     }
 
@@ -78,3 +96,5 @@ class IssuedBook extends Component
         return view('livewire.issued-book', compact('issuedBooks'));
     }
 }
+
+//? All logics are made by Pratik Desai

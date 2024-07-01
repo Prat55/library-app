@@ -57,6 +57,10 @@
                                  <span><b>Return In:</b></span>
                                  <span>&nbsp;{{ $rbook->end_date }}</span>
                              @endif
+
+                             @if ($rbook->status == 're-assign')
+                                 <span class="text-warning">&nbsp;Re Assigned</span>
+                             @endif
                          </div>
                      </div>
                      <div class="pt-2 pb-4 text-center justify-content-around ps-2 pe-2 d-flex">
