@@ -9064,3 +9064,20 @@ button.custom-button {
     height: 50px;
 
 }
+
+#issued-books {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    #issued-books {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #fineCal {
+        margin-top: 30px;
+    }
+}

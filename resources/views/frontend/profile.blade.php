@@ -122,7 +122,7 @@
                                 <div class="header">
                                     <h4 class="title">Issued/Requested Book</h4>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-top">
+                                <div id="issued-books">
                                     @if ($issuedBook)
                                         <ul class="dash-pro-body">
                                             <a class="p-relative">
@@ -149,7 +149,7 @@
                                             @endif
 
                                         </ul>
-                                        <ul class="d-flex justify-content-center align-items-center">
+                                        <ul class="d-flex justify-content-center align-items-center" id="fineCal">
                                             <div>
                                                 <form action="" method="post">
                                                     @php
@@ -162,12 +162,14 @@
                                                             $totalFine = $overdueDays * 100;
 
                                                             if ($endDate < $today) {
-                                                                $fine = new App\Models\Fine();
-                                                                $fine->user_id = auth()->user()->id;
-                                                                $fine->book_id = $issuedBook->book_id;
-                                                                $fine->overdue_days = $overdueDays;
-                                                                $fine->total_amount = $totalFine;
-                                                                $fine->save();
+                                                                if (!$fine) {
+                                                                    $fine = new App\Models\Fine();
+                                                                    $fine->user_id = auth()->user()->id;
+                                                                    $fine->book_id = $issuedBook->book_id;
+                                                                    $fine->overdue_days = $overdueDays;
+                                                                    $fine->total_amount = $totalFine;
+                                                                    $fine->save();
+                                                                }
                                                             }
                                                         }
                                                     @endphp

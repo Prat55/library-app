@@ -53,8 +53,12 @@
                      <div class="col-md-12 col-sm-6 col-6">
                          <div class="">
                              <span class="fs-14">Total Fine</span>
-                             <h2 class="mt-1 mb-2 number-font carn2 font-weight-bold">₹2,590</h2>
-                             <span class=""><i class="fa fa-arrow-up"></i> 60%
+                             <h2 class="mt-1 mb-2 number-font carn2 font-weight-bold">{{ $this->fines }}</h2>
+                             @php
+                                 $total = $this->fines / 10000;
+                                 $totalFine = number_format($total);
+                             @endphp
+                             <span class=""><i class="fa fa-arrow-up"></i> {{ $totalFine }}%
                                  <span class="ms-1 fs-11">
                                      Fine collected
                                  </span>
