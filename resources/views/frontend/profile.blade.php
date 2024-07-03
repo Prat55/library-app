@@ -153,6 +153,10 @@
                                             <div>
                                                 <form action="" method="post">
                                                     @php
+                                                        $fine = App\Models\Fine::where('user_id', auth()->user()->id)
+                                                            ->where('book_id', $issuedBook->book_id)
+                                                            ->first();
+
                                                         if ($issuedBook) {
                                                             $today = Carbon\Carbon::now();
                                                             $endDate = Carbon\Carbon::parse($issuedBook->end_date);
@@ -162,7 +166,7 @@
                                                             $totalFine = $overdueDays * 100;
 
                                                             if ($endDate < $today) {
-                                                                if (!$fine) {
+                                                                if (!$fine && $fine->status != 'paid') {
                                                                     $fine = new App\Models\Fine();
                                                                     $fine->user_id = auth()->user()->id;
                                                                     $fine->book_id = $issuedBook->book_id;
@@ -174,7 +178,7 @@
                                                         }
                                                     @endphp
 
-                                                    @if ($fine)
+                                                    @if ($fine->status === 'unpaid')
                                                         <h3>Fine</h3>
                                                         <hr>
 

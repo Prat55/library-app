@@ -12,29 +12,8 @@ use Livewire\Component;
 
 class Admins extends Component
 {
-    #[Rule('required|min:3')]
-    public $name;
-    #[Rule('required|unique:' . User::class)]
-    public $email;
-    #[Rule('required|min:8|max:16')]
-    public $pass;
-    #[Rule('required|min:10|max:10')]
-    public $phone;
-
-
     #[Url()]
     public $search = '';
-
-    public function addAdmin()
-    {
-        $validated = $this->validate();
-        $validated['faculty_id'] = 1;
-        $validated['role'] = 'admin';
-        $validated['password'] = Hash::make($this->pass);
-
-        User::create($validated);
-        return redirect()->to('/admins')->with('success', 'Admin has been added successfully');
-    }
 
     public function removeUser(int $user_id)
     {

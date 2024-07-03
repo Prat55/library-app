@@ -14,28 +14,9 @@ use Livewire\Component;
 
 class Students extends Component
 {
-    #[Rule('required|min:3')]
-    public $name;
-    #[Rule('required|unique:' . User::class)]
-    public $email;
-    #[Rule('required|min:8|max:16')]
-    public $pass;
-    #[Rule('required|min:10|max:10')]
-    public $phone;
-    #[Rule('required')]
-    public $faculty_id;
 
     #[Url()]
     public $search = '';
-
-    public function addStudent()
-    {
-        $validated = $this->validate();
-        $validated['password'] = Hash::make($this->pass);
-
-        User::create($validated);
-        return redirect()->to('/students')->with('success', 'Student has been added successfully');
-    }
 
     public function removeUser(int $user_id)
     {

@@ -14,13 +14,9 @@ class Dashboard1 extends Component
     #[Computed()]
     public function fines()
     {
-        $fines = Fine::paid()->latest();
-        $fine = [];
-        foreach ($fines as $fine) {
-            $fine[] = $fine->total_amount;
-        }
+        $fines = Fine::paid()->sum('total_amount');
 
-        $totalFine = array_sum($fine);
+        $totalFine = $fines;
 
         return $totalFine;
     }

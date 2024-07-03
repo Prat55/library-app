@@ -32,7 +32,7 @@ class IssuedBook extends Component
     public function returnBook(int $book_id)
     {
         $issuedBook = AssignBook::findOrFail($book_id);
-        $issuedHistory = RequestHistory::where('user_id', $issuedBook->user_id)->where('start_date', $issuedBook->start_date)->first();
+        $issuedHistory = RequestHistory::where('user_id', $issuedBook->user_id)->where('book_id', $issuedBook->book_id)->where('start_date', $issuedBook->start_date)->first();
         $book = Book::findOrFail($issuedBook->book_id);
 
         // ?Searching in fine table for ensuring fine is paid or not by user
@@ -44,6 +44,7 @@ class IssuedBook extends Component
                 $book->book_quantity = $quantity;
                 $book->update();
                 $issuedBook->delete();
+
                 $issuedHistory->end_date = Carbon::now();
                 $issuedHistory->update();
 
@@ -59,8 +60,8 @@ class IssuedBook extends Component
     public function reAssignBook(int $book_id)
     {
         $issuedBook = AssignBook::findOrFail($book_id);
-        $issuedHistory = new RequestHistory;
-        $fine = Fine::where('user_id', $issuedBook->user_id)->where('status', 'unpaid')->first();
+        $issuedHistory = new RequestHistory();
+        $fine = Fine::where('user_id', $issuedBook->user_id)->unpaid()->first();
 
         if (!$fine) {
             if ($issuedBook) {

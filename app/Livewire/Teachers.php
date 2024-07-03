@@ -16,30 +16,8 @@ class Teachers extends Component
 {
     use WithPagination;
 
-    #[Rule('required|min:3')]
-    public $name;
-    #[Rule('required|unique:' . User::class)]
-    public $email;
-    #[Rule('required|min:8|max:16')]
-    public $pass;
-    #[Rule('required|min:10|max:10')]
-    public $phone;
-    #[Rule('required')]
-    public $faculty_id;
-    #[Rule('required')]
-    public $role = 'teacher';
-
     #[Url()]
     public $search = '';
-
-    public function addTeacher()
-    {
-        $validated = $this->validate();
-        $validated['password'] = Hash::make($this->pass);
-
-        User::create($validated);
-        return redirect()->to('/teachers')->with('success', 'Student has been added successfully');
-    }
 
     public function removeUser(int $user_id)
     {

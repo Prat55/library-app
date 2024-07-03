@@ -18,11 +18,10 @@ class ProfileController extends Controller
 
     protected function profile()
     {
-        return view('frontend.profile', [
-            'issuedBook' => AssignBook::where('user_id', auth()->user()->id)->first(),
-            'faculties' => Faculty::private()->get(),
-            'fine' => Fine::where('user_id', auth()->user()->id)->unpaid()->first(),
-        ]);
+        $issuedBook = AssignBook::where('user_id', auth()->user()->id)->first();
+        $faculties = Faculty::private()->get();
+
+        return view('frontend.profile', compact('issuedBook', 'faculties'));
     }
     protected function changeProfilePhoto($uid, Request $request)
     {

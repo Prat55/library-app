@@ -13,8 +13,9 @@
                      <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                          <div class="row">
                              <div class="col-sm-12 col-md-6">
-                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                     data-target="#addAdmin">Add</button>
+                                 <a href="{{ route('new_user') }}">
+                                     <button class="btn btn-sm btn-primary">New</button>
+                                 </a>
                              </div>
                              <div class="col-sm-12 col-md-6">
                                  <div id="example1_filter" class="dataTables_filter">
@@ -140,66 +141,6 @@
                              <div class="col-sm-12 col-md-7">
                                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                      {{ $admins->links() }}
-                                 </div>
-                             </div>
-                         </div>
-
-                         <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                             <div class="modal-dialog" role="document">
-                                 <div class="modal-content">
-                                     <div class="modal-header">
-                                         <h3 class="modal-title book-title" id="exampleModalLongTitle">Add Admin
-                                         </h3>
-                                         <button type="button" class="close" data-dismiss="modal"
-                                             aria-label="Close">
-                                             <span aria-hidden="true" class="fs-4"
-                                                 style="color: #fff">&times;</span>
-                                         </button>
-                                     </div>
-                                     <div class="modal-body">
-                                         <div class="col-md-12">
-                                             <form wire:submit.prevent="addAdmin" method="post">
-
-                                                 <label for="name">Name</label>
-                                                 <input type="text" name="name" id="name"
-                                                     class="form-control" required value="{{ old('name') }}"
-                                                     wire:model="name">
-                                                 @error('name')
-                                                     <span class="text-danger">{{ $message }}</span><br>
-                                                 @enderror
-
-                                                 <label for="email" class="mt-2">Email</label>
-                                                 <input type="email" name="email" id="email"
-                                                     class="form-control" required value="{{ old('email') }}"
-                                                     wire:model="email">
-                                                 @error('email')
-                                                     <span class="text-danger">{{ $message }}</span><br>
-                                                 @enderror
-
-                                                 <label for="phone" class="mt-2">Phone</label>
-                                                 <input type="number" name="phone" id="phone"
-                                                     class="form-control" required value="{{ old('phone') }}"
-                                                     wire:model="phone" maxlength="10" minlength="10">
-                                                 @error('phone')
-                                                     <span class="text-danger">{{ $message }}</span><br>
-                                                 @enderror
-
-                                                 <label for="pass" class="mt-2">Password</label>
-                                                 <input type="password" name="password" id="password"
-                                                     class="form-control" required wire:model="pass">
-                                                 @error('pass')
-                                                     <span class="text-danger">{{ $message }}</span><br>
-                                                 @enderror
-
-                                                 <button type="submit" class="mt-3 btn btn-primary">Add</button>
-                                                 <button type="button" class="mt-3 btn btn-danger ms-2"
-                                                     data-dismiss="modal" aria-label="Close">
-                                                     Cancel
-                                                 </button>
-                                             </form>
-                                         </div>
-                                     </div>
                                  </div>
                              </div>
                          </div>

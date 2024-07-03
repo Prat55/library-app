@@ -13,8 +13,9 @@
                      <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                          <div class="row">
                              <div class="col-sm-12 col-md-6">
-                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                     data-target="#addStudent">New</button>
+                                 <a href="{{ route('new_user') }}">
+                                     <button class="btn btn-sm btn-primary">New</button>
+                                 </a>
                              </div>
                              <div class="col-sm-12 col-md-6">
                                  <div id="example1_filter" class="dataTables_filter">
@@ -144,7 +145,7 @@
                              </div>
                          </div>
 
-                         <div class="modal fade" id="addStudent" tabindex="-1" role="dialog"
+                         {{-- <div class="modal fade" id="addStudent" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                              <div class="modal-dialog" role="document">
                                  <div class="modal-content">
@@ -214,7 +215,7 @@
                                      </div>
                                  </div>
                              </div>
-                         </div>
+                         </div> --}}
                      </div>
                  </div>
              </div>

@@ -24,7 +24,7 @@
                                  </div>
                                  <div class="w-full mt-3">
                                      <h5>
-                                         <b>{{ $ibook->book->book_name }}</b> book is assign to
+                                         <b>{{ $ibook->book->book_name }}</b> book is assigned to
                                      </h5>
                                      <span><b>Email:</b></span>
                                      <span style="font-size: 0.9rem">&nbsp;{{ $ibook->user->email }}</span><br>
