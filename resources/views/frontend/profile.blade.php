@@ -152,6 +152,8 @@
                                         <ul class="d-flex justify-content-center align-items-center" id="fineCal">
                                             <div>
                                                 <form action="" method="post">
+
+                                                    {{-- *Logic for calculating fine and filling in database --}}
                                                     @php
                                                         $fine = App\Models\Fine::where('user_id', auth()->user()->id)
                                                             ->where('book_id', $issuedBook->book_id)
@@ -166,19 +168,27 @@
                                                             $totalFine = $overdueDays * 100;
 
                                                             if ($endDate < $today) {
-                                                                if (!$fine && $fine->status != 'paid') {
-                                                                    $fine = new App\Models\Fine();
-                                                                    $fine->user_id = auth()->user()->id;
-                                                                    $fine->book_id = $issuedBook->book_id;
-                                                                    $fine->overdue_days = $overdueDays;
-                                                                    $fine->total_amount = $totalFine;
-                                                                    $fine->save();
+                                                                if (!$fine) {
+                                                                    if ($fine->status != 'paid') {
+                                                                        $fine = new App\Models\Fine();
+                                                                        $fine->user_id = auth()->user()->id;
+                                                                        $fine->book_id = $issuedBook->book_id;
+                                                                        $fine->overdue_days = $overdueDays;
+                                                                        $fine->total_amount = $totalFine;
+                                                                        $fine->save();
+                                                                    }
+                                                                } elseif ($fine && $fine->status == 'unpaid') {
+                                                                    if ($fine->overdue_days != $overdueDays) {
+                                                                        $fine->overdue_days = $overdueDays;
+                                                                        $fine->total_amount = $totalFine;
+                                                                        $fine->update();
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                     @endphp
 
-                                                    @if ($fine->status === 'unpaid')
+                                                    @if ($fine && $fine->status === 'unpaid')
                                                         <h3>Fine</h3>
                                                         <hr>
 
