@@ -68,5 +68,5 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/book/update/{token}', [BookController::class, 'update_book']);
 
     // ? Issued book history routes
-    Route::get('/issued-books/history', [BookController::class, 'issued_history'])->name('issued-history');
+    Route::get('/issued-books-history', [BookController::class, 'issued_history'])->name('issued-history');
 });

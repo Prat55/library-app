@@ -124,10 +124,48 @@
                                 </div>
                                 <div id="issued-books">
                                     @if ($issuedBook)
+
+                                        {{-- *Logic for calculating fine and filling in database --}}
+                                        @php
+                                            $fine = App\Models\Fine::where('user_id', auth()->user()->id)
+                                                ->where('book_id', $issuedBook->book_id)
+                                                ->first();
+
+                                            if ($issuedBook) {
+                                                $today = Carbon\Carbon::now();
+                                                $endDate = Carbon\Carbon::parse($issuedBook->end_date);
+
+                                                $countOverdueDays = $today->diffInDays($endDate);
+                                                $overdueDays = -number_format($countOverdueDays);
+
+                                                $calculateFine = $overdueDays * 100;
+                                                $totalFine = number_format($calculateFine);
+
+                                                if ($endDate < $today) {
+                                                    if (!$fine) {
+                                                        if ($fine->status != 'paid') {
+                                                            $fine = new App\Models\Fine();
+                                                            $fine->user_id = auth()->user()->id;
+                                                            $fine->book_id = $issuedBook->book_id;
+                                                            $fine->overdue_days = $overdueDays;
+                                                            $fine->total_amount = $totalFine;
+                                                            $fine->save();
+                                                        }
+                                                    } elseif ($fine && $fine->status == 'unpaid') {
+                                                        if ($fine->overdue_days != $overdueDays) {
+                                                            $fine->overdue_days = $overdueDays;
+                                                            $fine->total_amount = $totalFine;
+                                                            $fine->update();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        @endphp
+
                                         <ul class="dash-pro-body">
                                             <a class="p-relative">
                                                 <img src="{{ asset('storage/' . $issuedBook->book->book_image_path) }}"
-                                                    alt="{{ $issuedBook->book->book_author }}" height="380px"
+                                                    alt="{{ $issuedBook->book->book_name }}" height="380px"
                                                     width="220px">
 
                                                 <div>
@@ -138,11 +176,22 @@
                                                     @endif
                                                 </div>
                                             </a>
-                                            <p class="">Book Title:</span>
-                                                {{ $issuedBook->book->book_name }}</p>
+
+                                            <p class="">Book Title:
+                                                {{ $issuedBook->book->book_name }}
+                                            </p>
                                             @if ($issuedBook->start_date && $issuedBook->end_date)
-                                                <p>Issued Date: <span>{{ $issuedBook->start_date }}</span></p>
-                                                <p>Return Date: <span>{{ $issuedBook->end_date }}&nbsp;</span></p>
+                                                @php
+                                                    $issuedDate = Carbon\Carbon::parse($issuedBook->start_date)->format(
+                                                        'Y-m-d',
+                                                    );
+
+                                                    $returnDate = Carbon\Carbon::parse($issuedBook->end_date)->format(
+                                                        'Y-m-d',
+                                                    );
+                                                @endphp
+                                                <p>Issued Date: <span>{{ $issuedDate }}</span></p>
+                                                <p>Return Date: <span>{{ $returnDate }}&nbsp;</span></p>
                                             @endif
                                             @if ($issuedBook->status === 'request')
                                                 <span class="text-red-500">Collect your book from library</span>
@@ -152,42 +201,6 @@
                                         <ul class="d-flex justify-content-center align-items-center" id="fineCal">
                                             <div>
                                                 <form action="" method="post">
-
-                                                    {{-- *Logic for calculating fine and filling in database --}}
-                                                    @php
-                                                        $fine = App\Models\Fine::where('user_id', auth()->user()->id)
-                                                            ->where('book_id', $issuedBook->book_id)
-                                                            ->first();
-
-                                                        if ($issuedBook) {
-                                                            $today = Carbon\Carbon::now();
-                                                            $endDate = Carbon\Carbon::parse($issuedBook->end_date);
-
-                                                            $overdueDays = $today->diffInDays($endDate);
-
-                                                            $totalFine = $overdueDays * 100;
-
-                                                            if ($endDate < $today) {
-                                                                if (!$fine) {
-                                                                    if ($fine->status != 'paid') {
-                                                                        $fine = new App\Models\Fine();
-                                                                        $fine->user_id = auth()->user()->id;
-                                                                        $fine->book_id = $issuedBook->book_id;
-                                                                        $fine->overdue_days = $overdueDays;
-                                                                        $fine->total_amount = $totalFine;
-                                                                        $fine->save();
-                                                                    }
-                                                                } elseif ($fine && $fine->status == 'unpaid') {
-                                                                    if ($fine->overdue_days != $overdueDays) {
-                                                                        $fine->overdue_days = $overdueDays;
-                                                                        $fine->total_amount = $totalFine;
-                                                                        $fine->update();
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    @endphp
-
                                                     @if ($fine && $fine->status === 'unpaid')
                                                         <h3>Fine</h3>
                                                         <hr>

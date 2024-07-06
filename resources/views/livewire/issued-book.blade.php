@@ -42,9 +42,10 @@
                                              $today = Carbon\Carbon::now();
                                              $endDate = Carbon\Carbon::parse($ibook->end_date);
 
-                                             $overdueDays = $today->diffInDays($endDate);
-                                             $totalDays = $endDate->diffInDays($today);
-
+                                             $countOverdueDays = $today->diffInDays($endDate);
+                                             $overdueDays = -number_format($countOverdueDays);
+                                             $countTotalDays = $endDate->diffInDays($today);
+                                             $totalDays = -number_format($countTotalDays);
                                          @endphp
                                          &nbsp;
                                          @if ($endDate == $today)
