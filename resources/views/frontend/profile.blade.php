@@ -138,8 +138,7 @@
                                                 $countOverdueDays = $today->diffInDays($endDate);
                                                 $overdueDays = -number_format($countOverdueDays);
 
-                                                $calculateFine = $overdueDays * 100;
-                                                $totalFine = number_format($calculateFine);
+                                                $totalFine = $overdueDays * 100;
 
                                                 if ($endDate < $today) {
                                                     if (!$fine) {
