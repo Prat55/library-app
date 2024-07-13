@@ -141,16 +141,14 @@
                                                 $totalFine = $overdueDays * 100;
 
                                                 if ($endDate < $today) {
-                                                    if (!$fine) {
-                                                        if ($fine->status != 'paid') {
-                                                            $fine = new App\Models\Fine();
-                                                            $fine->user_id = auth()->user()->id;
-                                                            $fine->book_id = $issuedBook->book_id;
-                                                            $fine->overdue_days = $overdueDays;
-                                                            $fine->total_amount = $totalFine;
-                                                            $fine->save();
-                                                        }
-                                                    } elseif ($fine && $fine->status == 'unpaid') {
+                                                    if (!$fine && $fine->status != 'paid') {
+                                                        $fine = new App\Models\Fine();
+                                                        $fine->user_id = auth()->user()->id;
+                                                        $fine->book_id = $issuedBook->book_id;
+                                                        $fine->overdue_days = $overdueDays;
+                                                        $fine->total_amount = $totalFine;
+                                                        $fine->save();
+                                                    } elseif ($fine && $fine->status === 'unpaid') {
                                                         if ($fine->overdue_days != $overdueDays) {
                                                             $fine->overdue_days = $overdueDays;
                                                             $fine->total_amount = $totalFine;
@@ -289,7 +287,7 @@
                                             <div class="p-2" style="max-height: 350px;overflow:hidden">
                                                 <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
                                                     alt="{{ auth()->user()->name }}"
-                                                    style="height: 350px!important;width:100%;">
+                                                    style="max-height: 350px!important;width:100%;">
                                             </div>
                                         </div><br>
                                     @endempty
