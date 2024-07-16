@@ -53,7 +53,7 @@
                                                  Today is the last day of return
                                              </span>
                                          @elseif ($endDate < $today)
-                                             <span class="text-center text-red-500">Overdue
+                                             <span class="text-center text-red-500">Overdued
                                                  @if ($overdueDays != '0' && $overdueDays != '1')
                                                      {{ $overdueDays . ' days ago' }}
                                                  @elseif ($overdueDays == '1')

@@ -59,4 +59,14 @@ class UserController extends Controller
                 ->withErrors($validator);
         }
     }
+
+    protected function user_detailed(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user) {
+            return view('backend.user-management.user-details', compact('user'));
+        } else {
+            return redirect()->route('students')->with('error', 'User not found!');
+        }
+    }
 }

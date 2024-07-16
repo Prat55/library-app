@@ -59,6 +59,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admins', [UserController::class, 'admins'])->name('admins');
     Route::get('/add-user', [UserController::class, 'new_user'])->name('new_user');
     Route::post('/add-user/new', [UserController::class, 'add_user'])->name('add_user');
+    Route::get('/user/{id}', [UserController::class, 'user_detailed']);
 
     // ? Faculty route
     Route::get('/faculty', [BookController::class, 'faculty'])->name('faculty');

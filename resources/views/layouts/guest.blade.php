@@ -304,6 +304,13 @@
         });
     </script>
 
+    {{-- ?For turn off right click on page --}}
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        })
+    </script>
+
     @yield('scripts')
 
     <script src="{{ asset('user-assets/js/modernizr-3.6.0.min.js') }}"></script>

@@ -90,6 +90,12 @@
                                             <td>{{ $teacher->email }}</td>
                                             <td>{{ $teacher->phone }}</td>
                                             <td class="gap-2 d-flex">
+                                                <a wire:navigate href="/user/{{ $teacher->id }}">
+                                                    <button type="button" class="btn btn-sm btn-primary">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                </a>
+
                                                 @if ($teacher->status == 'active')
                                                     <button type="button" class="btn btn-sm btn-danger"
                                                         wire:click="ban({{ $teacher->id }})">

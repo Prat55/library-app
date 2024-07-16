@@ -1,6 +1,6 @@
 <x-guest-layout>
     @section('title')
-        Profile
+        Profile | {{ auth()->user()->email }}
     @endsection
 
     <!--============= Hero Section Starts Here =============-->
@@ -50,12 +50,9 @@
                                 <input type="hidden" name="UserId" id="UserId" value="{{ auth()->user()->uid }}">
                             </div>
                             <div class="content">
-                                <ul id="errstatus">
+                                <ul id="errstatus"></ul>
+                                <div id="sStatus"></div>
 
-                                </ul>
-                                <div id="sStatus">
-
-                                </div>
                                 <h5 class="title"><a href="#0">{{ auth()->user()->name }}</a></h5>
                                 <span class="username">
                                     <a href="mailto: info@library.com" class="__cf_email__">
@@ -124,7 +121,6 @@
                                 </div>
                                 <div id="issued-books">
                                     @if ($issuedBook)
-
                                         {{-- *Logic for calculating fine and filling in database --}}
                                         @php
                                             $fine = App\Models\Fine::where('user_id', auth()->user()->id)
@@ -169,13 +165,15 @@
                                                     @if ($issuedBook->book->book_pdf_path)
                                                         <a href="{{ $issuedBook->book->book_pdf_path ? asset('storage/' . $issuedBook->book->book_pdf_path) : '#0' }}"
                                                             @if ($issuedBook->book->book_pdf_path) download @endif
-                                                            class="rating"><i class="fa fa-file-pdf fa-lg"></i></a>
+                                                            class="rating">
+                                                            <i class="fa fa-file-pdf fa-lg"></i>
+                                                        </a>
                                                     @endif
                                                 </div>
                                             </a>
 
-                                            <p class="">Book Title:
-                                                {{ $issuedBook->book->book_name }}
+                                            <p class="">
+                                                Book Title:&nbsp;{{ $issuedBook->book->book_name }}
                                             </p>
                                             @if ($issuedBook->start_date && $issuedBook->end_date)
                                                 @php
@@ -187,8 +185,8 @@
                                                         'Y-m-d',
                                                     );
                                                 @endphp
-                                                <p>Issued Date: <span>{{ $issuedDate }}</span></p>
-                                                <p>Return Date: <span>{{ $returnDate }}&nbsp;</span></p>
+                                                <p>Issued Date:&nbsp;<span>{{ $issuedDate }}</span></p>
+                                                <p>Return Date:&nbsp;<span>{{ $returnDate }}&nbsp;</span></p>
                                             @endif
                                             @if ($issuedBook->status === 'request')
                                                 <span class="text-red-500">Collect your book from library</span>
