@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('user-assets/css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('user-assets/css/main.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('user-assets/images/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ 'admin-assets/images/logo/lms_logo_mobile.png' }}" type="image/x-icon">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -308,7 +308,13 @@
     <script>
         document.addEventListener('contextmenu', function(event) {
             event.preventDefault();
-        })
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+                e.preventDefault();
+            }
+        });
     </script>
 
     @yield('scripts')
