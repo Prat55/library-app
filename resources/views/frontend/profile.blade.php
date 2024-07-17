@@ -1,6 +1,6 @@
 <x-guest-layout>
     @section('title')
-        Profile | {{ auth()->user()->email }}
+        Profile > {{ auth()->user()->email }}
     @endsection
 
     <!--============= Hero Section Starts Here =============-->
