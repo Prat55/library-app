@@ -1,8 +1,11 @@
 <x-guest-layout>
-    @section('title')
-        Profile > {{ auth()->user()->email }}
-    @endsection
+    @php
+        $user = auth()->user();
+    @endphp
 
+    @section('title')
+        Profile > {{ $user->email }}
+    @endsection
     <!--============= Hero Section Starts Here =============-->
     <div class="hero-section style-2">
         <div class="container">
@@ -14,7 +17,7 @@
                     <a href="#0">My Account</a>
                 </li>
                 <li>
-                    <span>{{ auth()->user()->name }}</span>
+                    <span>{{ $user->name }}</span>
                 </li>
             </ul>
         </div>
@@ -33,48 +36,48 @@
                             {{-- * User email and username with profile photo section * --}}
                             <div class="thumb-area">
                                 <div class="thumb" style="height: 100px;width:100px;overflow:hidden">
-                                    @if (auth()->user()->profile_photo_path)
-                                        <img id="profile_img"
-                                            src="/profile-img/{{ auth()->user()->profile_photo_path }}"
-                                            alt="{{ auth()->user()->name }}">
+                                    @if ($user->profile_photo_path)
+                                        <img id="profile_img" src="/profile-img/{{ $user->profile_photo_path }}"
+                                            alt="{{ $user->name }}">
                                     @else
                                         <img id="profile_img" src="{{ asset('user-assets/images/dashboard/user.jpg') }}"
                                             alt="user">
                                     @endif
-                                    <input type="hidden" name="userid" id="userId"
-                                        value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="userid" id="userId" value="{{ $user->id }}">
                                 </div>
                                 <label for="profile-pic" class="profile-pic-edit"><i
                                         class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" name="profile_pic" class="d-none">
-                                <input type="hidden" name="UserId" id="UserId" value="{{ auth()->user()->uid }}">
+                                <input type="hidden" name="UserId" id="UserId" value="{{ $user->uid }}">
                             </div>
                             <div class="content">
                                 <ul id="errstatus"></ul>
                                 <div id="sStatus"></div>
 
-                                <h5 class="title"><a href="#0">{{ auth()->user()->name }}</a></h5>
+                                <h5 class="title"><a href="#0">{{ $user->name }}</a></h5>
                                 <span class="username">
                                     <a href="mailto: info@library.com" class="__cf_email__">
-                                        {{ auth()->user()->email }}
+                                        {{ $user->email }}
                                     </a>
                                 </span><br>
 
-                                <span class="username">
-                                    {{ auth()->user()->faculty_id ? auth()->user()->faculty->faculty_name : '' }}
-                                </span>
-
-                                @if (auth()->user()->role === 'teacher')
+                                @if ($user->role === 'teacher')
+                                    <span class="username">
+                                        {{ $user->faculty_id ? $user->faculty->faculty_name : '' }}
+                                    </span>
                                     <span class="username">
                                         Teacher
                                     </span>
-                                @elseif (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
+                                @elseif ($user->role === 'user')
                                     <span class="username">
-                                        Admin
+                                        {{ $user->faculty_id ? $user->faculty->faculty_name : '' }}
+                                    </span>
+                                    <span class="username">
+                                        Student
                                     </span>
                                 @else
                                     <span class="username">
-                                        Student
+                                        Admin
                                     </span>
                                 @endif
                             </div>
@@ -92,7 +95,7 @@
                 <div class="col-lg-8">
                     <div class="row">
                         {{-- * Email verification section * --}}
-                        @if (!auth()->user()->email_verified_at)
+                        @if (!$user->email_verified_at)
                             <div class="col-12">
                                 <div class="dash-pro-item mb-30 dashboard-widget">
                                     <div class="header">
@@ -123,17 +126,15 @@
                                     @if ($issuedBook)
                                         {{-- *Logic for calculating fine and filling in database --}}
                                         @php
-                                            $fine = App\Models\Fine::where('user_id', auth()->user()->id)
+                                            $fine = App\Models\Fine::where('user_id', $user->id)
                                                 ->where('book_id', $issuedBook->book_id)
                                                 ->first();
 
-                                            if ($issuedBook) {
-                                                $today = Carbon\Carbon::now();
-                                                $endDate = Carbon\Carbon::parse($issuedBook->end_date);
+                                            $today = Carbon\Carbon::now();
+                                            $endDate = Carbon\Carbon::parse($issuedBook->end_date);
 
-                                                $countOverdueDays = $today->diffInDays($endDate);
-                                                $overdueDays = -number_format($countOverdueDays);
-                                            }
+                                            $countOverdueDays = $today->diffInDays($endDate);
+                                            $overdueDays = -number_format($countOverdueDays);
                                         @endphp
 
                                         <ul class="dash-pro-body">
@@ -225,7 +226,7 @@
                                     <h4 class="title">Library Card</h4>
                                 </div>
                                 <ul class="dash-pro-body">
-                                    @empty(auth()->user()->library_card)
+                                    @empty($user->library_card)
                                         <form action="{{ route('user.library-card-upload') }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
@@ -264,8 +265,8 @@
                                     @else
                                         <div>
                                             <div class="p-2" style="max-height: 350px;overflow:hidden">
-                                                <img src="{{ asset('storage/' . auth()->user()->library_card) }}"
-                                                    alt="{{ auth()->user()->name }}"
+                                                <img src="{{ asset('storage/' . $user->library_card) }}"
+                                                    alt="{{ $user->name }}"
                                                     style="max-height: 350px!important;width:100%;">
                                             </div>
                                         </div><br>
@@ -285,18 +286,18 @@
                                         @method('PUT')
                                         <div>
                                             <h3>Faculty
-                                                {{ auth()->user()->faculty_id ? '' : "(Make sure before selecting. You can't modify this.)" }}
+                                                {{ $user->faculty_id ? '' : "(Make sure before selecting. You can't modify this.)" }}
                                             </h3>
-                                            @if (auth()->user()->faculty_id)
+                                            @if ($user->faculty_id)
                                                 <input type="text" class="form-control"
-                                                    value="{{ auth()->user()->faculty->faculty_name }}" readonly>
+                                                    value="{{ $user->faculty->faculty_name }}" readonly>
                                             @else
                                                 <select name="faculty" id="faculty"
                                                     class="form-control @error('faculty') is-invalid @enderror">
                                                     <option>Select your faculty</option>
                                                     @forelse ($faculties as $faculty)
                                                         <option value="{{ $faculty->id }}"
-                                                            {{ $faculty->id === auth()->user()->faculty_id ? 'selected' : '' }}>
+                                                            {{ $faculty->id === $user->faculty_id ? 'selected' : '' }}>
                                                             {{ $faculty->faculty_name }}
                                                         </option>
                                                     @empty
@@ -314,7 +315,7 @@
                                             <h3>Phone</h3>
                                             <input type="text" name="phone" id="phone"
                                                 class="form-control @error('phone') is-invalid @enderror"
-                                                value="{{ auth()->user()->phone }}" maxlength="10" minlength="10">
+                                                value="{{ $user->phone }}" maxlength="10" minlength="10">
 
                                             @error('phone')
                                                 <p class="invalid-feedback">{{ $message }}</p>
