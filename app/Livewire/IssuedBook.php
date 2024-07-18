@@ -65,7 +65,7 @@ class IssuedBook extends Component
 
         if (!$fine) {
             if ($issuedBook) {
-                if ($issuedBook->end_date == Carbon::now()) {
+                if ($issuedBook->end_date <= Carbon::now()) {
                     $issuedBook->start_date = Carbon::now();
                     $issuedBook->end_date = Carbon::now()->addDays(7);
                     $assignCount = $issuedBook->re_assign_count + 1;

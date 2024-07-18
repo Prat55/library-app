@@ -14,6 +14,10 @@
          <div class="col-lg-12 col-xl-12">
              <div class="row">
                  @forelse ($issuedBooks as $ibook)
+                     @php
+                         finecalculation($ibook->book_id, $ibook->user_id, $ibook->end_date);
+                     @endphp
+
                      <div class="col-xl-3 col-lg-3 alert">
                          <div class="card item-card">
                              <div class="pb-0 card-body">

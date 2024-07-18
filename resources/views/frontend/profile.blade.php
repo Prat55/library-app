@@ -133,25 +133,6 @@
 
                                                 $countOverdueDays = $today->diffInDays($endDate);
                                                 $overdueDays = -number_format($countOverdueDays);
-
-                                                $totalFine = $overdueDays * 100;
-
-                                                if ($endDate < $today) {
-                                                    if (!$fine && $fine->status != 'paid') {
-                                                        $fine = new App\Models\Fine();
-                                                        $fine->user_id = auth()->user()->id;
-                                                        $fine->book_id = $issuedBook->book_id;
-                                                        $fine->overdue_days = $overdueDays;
-                                                        $fine->total_amount = $totalFine;
-                                                        $fine->save();
-                                                    } elseif ($fine && $fine->status === 'unpaid') {
-                                                        if ($fine->overdue_days != $overdueDays) {
-                                                            $fine->overdue_days = $overdueDays;
-                                                            $fine->total_amount = $totalFine;
-                                                            $fine->update();
-                                                        }
-                                                    }
-                                                }
                                             }
                                         @endphp
 
@@ -195,7 +176,7 @@
                                         </ul>
                                         <ul class="d-flex justify-content-center align-items-center" id="fineCal">
                                             <div>
-                                                <form action="" method="post">
+                                                <form action="/payments/fine" method="post">
                                                     @if ($fine && $fine->status === 'unpaid')
                                                         <h3>Fine</h3>
                                                         <hr>

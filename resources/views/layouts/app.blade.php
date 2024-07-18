@@ -91,7 +91,7 @@
                                 href="https://myportfolio-pratik.vercel.app" target="_blank">
                                 Pratik
                             </a> & <a href="javascript:void(0);">Milind</a> All rights reserved
-                            <h3>v2.2.0</h3>
+                            <h3>v2.3.0</h3>
                         </div>
                     </div>
                 </div>
