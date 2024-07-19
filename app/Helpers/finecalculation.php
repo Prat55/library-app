@@ -18,7 +18,7 @@ function finecalculation($issuedBookId, $userId, $issuedBookEndDate)
     $totalFine = $overdueDays * 100;
 
     if ($endDate < $today) {
-        if (!$fine && $fine->status != 'paid') {
+        if (!$fine) {
             $fine = new Fine();
             $fine->user_id = $userId;
             $fine->book_id = $issuedBookId;

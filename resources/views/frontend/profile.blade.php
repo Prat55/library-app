@@ -177,7 +177,7 @@
                                         </ul>
                                         <ul class="d-flex justify-content-center align-items-center" id="fineCal">
                                             <div>
-                                                <form action="/payments/fine" method="post">
+                                                <form action="{{ route('checkout') }}" method="post">
                                                     @if ($fine && $fine->status === 'unpaid')
                                                         <h3>Fine</h3>
                                                         <hr>
@@ -199,7 +199,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <th>Total:&nbsp;</th>
-                                                                <td>{{ '₹' . $totalFine }}</td>
+                                                                <td>{{ '₹' . $fine->total_amount }}</td>
                                                             </tr>
                                                         </table><br>
                                                         <tr>

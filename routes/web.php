@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\FineController;
 use App\Http\Controllers\HomeCotroller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::middleware([
     Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
     // ? User account deletion route
     Route::delete('/profile/account/delete', [ProfileController::class, 'removeAccount'])->name('user.delete');
+
+    // ?Payment Gateway routes
+    Route::post('/checkout', [StripeController::class, 'checkout'])->name('checkout');
 });
 
 Route::middleware(['admin'])->group(function () {
