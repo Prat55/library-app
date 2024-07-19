@@ -399,7 +399,14 @@
                                 <ul class="dash-pro-body">
                                     <form method="POST" action="{{ route('user.delete') }}">
                                         @csrf
+                                        @method('delete')
 
+                                        <input type="password" name="password" id="password"
+                                            class="mb-2 form-control"
+                                            placeholder="Please enter your current password">
+                                        @error('password')
+                                            <p class="invalid-feedback">{{ $message }}</p>
+                                        @enderror
                                         <div>
                                             <button type="submit" class="mt-2 btn btn-sm btn-outline-danger">
                                                 Delete Account

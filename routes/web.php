@@ -40,7 +40,7 @@ Route::middleware([
     // ? User password updation route
     Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
     // ? User account deletion route
-    Route::post('/profile/account/delete', [ProfileController::class, 'removeAccount'])->name('user.delete');
+    Route::delete('/profile/account/delete', [ProfileController::class, 'removeAccount'])->name('user.delete');
 });
 
 Route::middleware(['admin'])->group(function () {

@@ -145,29 +145,36 @@ class ProfileController extends Controller
         }
     }
 
-    protected function removeAccount()
+    protected function removeAccount(Request $request)
     {
         $user = User::where('id', auth()->user()->id)->first();
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:8|max:16',
+        ]);
 
         if ($user) {
-            $assignBook = AssignBook::where('user_id', "$user->id")->first();
+            if (Hash::check($request->password, $user->password)) {
+                $assignBook = AssignBook::where('user_id', "$user->id")->first();
 
-            if (!$assignBook) {
-                $userHistory = UserHistory::create([
-                    'old_id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'faculty_id' => $user->faculty_id,
-                    'phone' => $user->phone,
-                    'profile_photo_path' => $user->profile_photo_path,
-                    'library_card' => $user->library_card
-                ]);
-                $userHistory->save();
+                if (!$assignBook) {
+                    $userHistory = UserHistory::create([
+                        'old_id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'faculty_id' => $user->faculty_id,
+                        'phone' => $user->phone,
+                        'profile_photo_path' => $user->profile_photo_path,
+                        'library_card' => $user->library_card
+                    ]);
+                    $userHistory->save();
 
-                $user->delete();
-                return redirect()->route('login');
+                    $user->delete();
+                    return redirect()->route('login');
+                } else {
+                    return redirect()->back()->with('error', 'Please return your book first!');
+                }
             } else {
-                return redirect()->back()->with('error', 'Please return your book first!');
+                return redirect()->back()->with('error', 'Please enter valid password!');
             }
         } else {
             return redirect()->back()->with('error', 'User not found!');
