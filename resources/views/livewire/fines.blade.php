@@ -12,25 +12,9 @@
                  <div class="table-responsive">
                      <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                          <div class="row">
-                             <div class="col-sm-12 col-md-6">
-                                 <a href="{{ route('new_user') }}">
-                                     <button class="btn btn-sm btn-primary">
-                                         New&nbsp;<i class="fa-solid fa-user-plus"></i>
-                                     </button>
-                                 </a>
-                             </div>
-                             <div class="col-sm-12 col-md-6">
-                                 <div id="example1_filter" class="dataTables_filter">
-                                     <label class="gap-1 d-flex justify-content-end align-items-center">
-                                         <input type="search" name="search" class="form-control form-control-sm"
-                                             placeholder="Search anything related to student here."
-                                             aria-controls="example1" x-model='query' value="{{ $this->search }}">
-
-                                         <button type="button" class="btn btn-sm btn-primary"
-                                             x-on:click="$dispatch('search', {search: query})">
-                                             <i class="fa fa-search"></i>
-                                         </button>
-                                     </label>
+                             <div class="col-md-12 d-flex justify-content-end">
+                                 <div class="col-md-3 ">
+                                     @livewire('search-by-id')
                                  </div>
                              </div>
                          </div>
@@ -48,96 +32,47 @@
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-sort="ascending"
                                                  aria-label="First name: activate to sort column descending"
-                                                 style="width: 116.55px;">Name</th>
-                                             <th class="wd-20p border-bottom-0 sorting" tabindex="0"
-                                                 aria-controls="example1" rowspan="1" colspan="1"
-                                                 aria-label="Position: activate to sort column ascending"
-                                                 style="width: 100px;">Faculty</th>
+                                                 style="width: 116.55px;">User Name</th>
                                              <th class="wd-25p border-bottom-0 sorting" tabindex="0"
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-label="E-mail: activate to sort column ascending"
-                                                 style="width: 220.238px;">E-mail</th>
+                                                 style="width: 116.55px;">Book Name</th>
                                              <th class="wd-15p border-bottom-0 sorting" tabindex="0"
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-label="Start date: activate to sort column ascending"
-                                                 style="width: 130.863px;">Phone</th>
+                                                 style="width: 90px;">Overdued</th>
+                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0"
+                                                 aria-controls="example1" rowspan="1" colspan="1"
+                                                 aria-label="Start date: activate to sort column ascending"
+                                                 style="width: 130.863px;">Total Amount</th>
                                              <th class="wd-10p border-bottom-0 sorting" tabindex="0"
                                                  aria-controls="example1" rowspan="1" colspan="1"
                                                  aria-label="Salary: activate to sort column ascending"
-                                                 style="width: 96.925px;">Operations
+                                                 style="width: 96.925px;">Status
                                              </th>
                                          </tr>
                                      </thead>
                                      <tbody>
-                                         @forelse ($students as $stu)
+                                         @forelse ($fines as $fine)
                                              <tr class="odd">
-                                                 <td>{{ $stu->id }}</td>
-                                                 <td class="sorting_1">{{ $stu->name }}</td>
-                                                 <td>
-                                                     @if ($stu->faculty_id)
-                                                         {{ $stu->faculty->faculty_name }}
-                                                     @else
-                                                         Not Selected
-                                                     @endif
-                                                 </td>
-                                                 <td>{{ $stu->email }}</td>
-                                                 <td>{{ $stu->phone }}</td>
+                                                 <td>{{ $fine->id }}</td>
+                                                 <td class="sorting_1">{{ $fine->user->name }}</td>
+                                                 <td>{{ $fine->book->book_name }}</td>
+                                                 <td>{{ $fine->overdue_days }}</td>
+                                                 <td>{{ $fine->total_amount }}</td>
                                                  <td class="gap-2 d-flex">
-                                                     <a wire:navigate href="/user/{{ $stu->id }}">
-                                                         <button type="button" class="btn btn-sm btn-primary">
-                                                             <i class="fa fa-eye"></i>
-                                                         </button>
-                                                     </a>
-
-                                                     @if ($stu->status == 'active')
-                                                         <button type="button" class="btn btn-sm btn-danger"
-                                                             wire:click="ban({{ $stu->id }})">
-                                                             Ban
-                                                         </button>
+                                                     @if ($fine->status == 'paid')
+                                                         <span class="text-success">Paid</span>
+                                                     @elseif ($fine->status == 'unpaid')
+                                                         <span class="text-danger">Unpaid</span>
                                                      @else
-                                                         <button type="button" class="btn btn-sm btn-danger"
-                                                             wire:click="unban({{ $stu->id }})">
-                                                             Unban
-                                                         </button>
-                                                     @endif
-
-                                                     @if (auth()->user()->role === 'admin' || auth()->user()->role === 'super-admin')
-                                                         <button type="button" class="btn btn-sm btn-danger"
-                                                             data-toggle="modal"
-                                                             data-target="#rmUser{{ $stu->id }}">
-                                                             Remove
-                                                         </button>
+                                                         <span class="text-warning">In process</span>
                                                      @endif
                                                  </td>
                                              </tr>
-
-                                             <div class="modal fade" id="rmUser{{ $stu->id }}" tabindex="-1"
-                                                 role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                 aria-hidden="true">
-                                                 <div class="modal-dialog modal-dialog-centered" role="document">
-                                                     <div class="modal-content">
-                                                         <div class="modal-body">
-                                                             <h3 class="text-center">Are you sure?</h3>
-                                                             <span class="text-center text-danger">
-                                                                 If user will removed then data of user is also
-                                                                 removed. So Make
-                                                                 sure while removing anyone.
-                                                             </span>
-                                                         </div>
-                                                         <div class="modal-footer">
-                                                             <button type="button" class="btn btn-secondary"
-                                                                 data-dismiss="modal">Cancel</button>
-                                                             <button type="submit" class="btn btn-danger"
-                                                                 wire:click="removeUser({{ $stu->id }})">
-                                                                 Delete
-                                                             </button>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
                                          @empty
                                              <tr>
-                                                 <td colspan="7" class="text-center">No students found!</td>
+                                                 <td colspan="7" class="text-center">No fine collected!</td>
                                              </tr>
                                          @endforelse
 
@@ -148,7 +83,7 @@
                          <div class="row">
                              <div class="col-sm-12 col-md-7">
                                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                     {{ $students->links() }}
+                                     {{ $fines->links() }}
                                  </div>
                              </div>
                          </div>

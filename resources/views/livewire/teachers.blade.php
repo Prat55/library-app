@@ -14,7 +14,9 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <a href="{{ route('new_user') }}">
-                                    <button class="btn btn-sm btn-primary">New</button>
+                                    <button class="btn btn-sm btn-primary">
+                                        New&nbsp;<i class="fa-solid fa-user-plus"></i>
+                                    </button>
                                 </a>
                             </div>
                             <div class="col-sm-12 col-md-6">

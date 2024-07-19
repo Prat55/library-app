@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title')
-        Issued Books History
+        Fines
     @endsection
 
-    @livewire('req-history')
+    @livewire('fines')
 </x-app-layout>

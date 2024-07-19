@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FineController;
 use App\Http\Controllers\HomeCotroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -70,4 +71,7 @@ Route::middleware(['admin'])->group(function () {
 
     // ? Issued book history routes
     Route::get('/issued-books-history', [BookController::class, 'issued_history'])->name('issued-history');
+
+    // ?Fines route
+    Route::get('/fines', [FineController::class, 'index'])->name('fines');
 });
