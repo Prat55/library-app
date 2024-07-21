@@ -79,9 +79,11 @@ class ProfileController extends Controller
                 $user->library_card = $request->library_card->store('library-cards', 'public');
                 $user->update();
 
-                return redirect()->back()->with('success', 'Library card uploaded successfully');
+                return redirect()->back()
+                    ->with('success', 'Library card uploaded successfully');
             } else {
-                return redirect()->back()->with('error', 'User not found!');
+                return redirect()->back()
+                    ->with('error', 'User not found!');
             }
         } else {
             return redirect()->back()
@@ -103,9 +105,11 @@ class ProfileController extends Controller
                 $user->phone = $request->phone;
                 $user->update();
 
-                return redirect()->back()->with('success', 'Information updated successfully');
+                return redirect()->back()
+                    ->with('success', 'Information updated successfully');
             } else {
-                return redirect()->back()->with('error', 'User not found!');
+                return redirect()->back()
+                    ->with('error', 'User not found!');
             }
         } else {
             return redirect()->back()
@@ -129,15 +133,19 @@ class ProfileController extends Controller
                         $user->password = Hash::make($request->newPassword);
                         $user->update();
 
-                        return redirect()->back()->with('success', 'Password change successfully!');
+                        return redirect()->back()
+                            ->with('success', 'Password change successfully!');
                     } else {
-                        return redirect()->back()->with('error', 'New password cannot be same as current password!');
+                        return redirect()->back()
+                            ->with('error', 'New password cannot be same as current password!');
                     }
                 } else {
-                    return redirect()->back()->with('error', 'Please enter valid password!');
+                    return redirect()->back()
+                        ->with('error', 'Please enter valid password!');
                 }
             } else {
-                return redirect()->back()->with('error', 'User not found!');
+                return redirect()->back()
+                    ->with('error', 'User not found!');
             }
         } else {
             return redirect()->back()
@@ -171,13 +179,16 @@ class ProfileController extends Controller
                     $user->delete();
                     return redirect()->route('login');
                 } else {
-                    return redirect()->back()->with('error', 'Please return your book first!');
+                    return redirect()->back()
+                        ->with('error', 'Please return your book first!');
                 }
             } else {
-                return redirect()->back()->with('error', 'Please enter valid password!');
+                return redirect()->back()
+                    ->with('error', 'Please enter valid password!');
             }
         } else {
-            return redirect()->back()->with('error', 'User not found!');
+            return redirect()->back()
+                ->with('error', 'User not found!');
         }
     }
 }

@@ -50,7 +50,7 @@
                     </ul>
                     <ul class="cart-button-area">
                         <li class="d-flex justify-content-end align-items-center">
-                            @include('backend.message')
+                            @include('frontend.message')
                         </li>
                         <li>
                             @auth
